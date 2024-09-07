@@ -1,0 +1,123 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\content\\font-awesome.min.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\content\\font-awesome.min.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\content\\font-awesome.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\content\\font-awesome.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 478,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-07T12:24:06.28Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:48:48.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\RouteConfig.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:48:13.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Startup.Auth.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:48:04.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "font-awesome.css",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Content\\font-awesome.css",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Content\\font-awesome.css",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Content\\font-awesome.css",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Content\\font-awesome.css",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAAABUAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-07T12:36:39.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "font-awesome.min.css",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Content\\font-awesome.min.css",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Content\\font-awesome.min.css",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Content\\font-awesome.min.css",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Content\\font-awesome.min.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-07T12:36:36.665Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
