@@ -29,9 +29,17 @@ textarea {
     max-width: 100% !important;
 }
 
+bodyLogin {
+    background-image: url('/ruta/de/tu/imagen.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Hace que la imagen cubra toda la ventana */
+}
 
-.loginLogo{
-    width:100%;
+
+.loginLogo {
+    width: 100%;
 }
 
 .marginTop5{
@@ -685,7 +693,7 @@ body {
         .chiller-theme .sidebar-wrapper .sidebar-brand > a,
         .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
         .chiller-theme .sidebar-footer > a {
-            color: #818896;
+            color: #ffffff;
         }
 
             .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a,
@@ -852,4 +860,44 @@ input, select, textarea {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px !important;
+}
+
+/* Sombra suave */
+.iboxShadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    margin: 15px 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Resaltar el elemento seleccionado */
+.selected {
+    background-color: #3ca64b; /* Fondo amarillo */
+    color: white;
+}
+
+/* Íconos grandes */
+.fa-4x {
+    color: #3ca64b;
+}
+
+
+
+/* Texto centrado */
+h3 {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+small {
+    font-size: 12px;
+    color: #8e8e8e;
+}
+
+/* Hover effect */
+.iboxShadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

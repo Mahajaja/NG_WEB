@@ -6,23 +6,25 @@
 }
 
 <main aria-labelledby="title" class="container marginTop5">
-    
-    <div class="row">
+
+    <div class="row ibox-content " style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <!-- Columna para la imagen -->
         <div class="col-md-6">
-            <section id="imageSection" class="d-flex align-items-center justify-content-center">
-                <img src="/Content/IMG/Logos/GREEN GOLD.png" alt="Descripción de la imagen" class="img-fluid" style="width: 100%;">
+            <section id="imageSection" class="">
+                <center>
+                    <img src="/Content/IMG/Logos/GREEN GOLD.png" alt="Descripción de la imagen" class="img-fluid" style="width: 50%;">
+                </center>
             </section>
         </div>
-        
 
         <!-- Columna para el formulario de inicio de sesión -->
-        <div class="col-md-6 marginTop5" >
-            <section id="loginForm" class="ibox-content">
+        <div class="col-md-6" style="padding:3%;">
+            <section id="loginForm" class="">
+
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    
+
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <!-- Email Field -->
@@ -46,22 +48,16 @@
                     </div>
 
                     <!-- Submit Button -->
-            <div class="row">
-                <center>
-                    <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
-                </center>
-            </div>
-            <br />
-            @*<div class="row">
-                <center>
-                    @Html.ActionLink("Registrarse", "Register")
-                </center>
-            </div>*@
-
-                    
+                    <div class="row">
+                        <center>
+                            <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
+                        </center>
+                    </div>
+                    <br />
                 }
             </section>
         </div>
+
     </div>
 </main>
 
