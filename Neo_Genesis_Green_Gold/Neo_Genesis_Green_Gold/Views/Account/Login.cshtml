@@ -7,7 +7,8 @@
 
 <main aria-labelledby="title" class="container marginTop5">
 
-    <div class="row ibox-content " style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="row ibox-content" style="background-color: #ab723d87 !important; border: none !important; box-shadow: 0 9px 15px rgba(0, 0, 0, 0.5); ">
+
         <!-- Columna para la imagen -->
         <div class="col-md-6">
             <section id="imageSection" class="">
@@ -50,7 +51,10 @@
                     <!-- Submit Button -->
                     <div class="row">
                         <center>
-                            <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { role = "form" }))
+                            {
+                                <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
+                            }
                         </center>
                     </div>
                     <br />

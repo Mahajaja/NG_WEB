@@ -49,13 +49,13 @@ namespace Neo_Genesis_Green_Gold.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Usuario")]
-        [EmailAddress]
+        [Display(Name = "USUARIO")]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
+        [Display(Name = "CONTRASEÑA")]
         public string Password { get; set; }
 
         [Display(Name = "¿Recordar cuenta?")]

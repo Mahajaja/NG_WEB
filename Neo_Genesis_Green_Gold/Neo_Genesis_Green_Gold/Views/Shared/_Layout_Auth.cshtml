@@ -10,23 +10,25 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="icon" href="~/GREEN GOLD.ico" type="image/x-icon" />
     <style>
-        body.bodyLogin {
-            background-image: url('/Content/IMG/LOGIN.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            margin: 0;
-        }
+    body.bodyLogin {
+        background-image: url('@Url.Content("~/Content/IMG/LOGIN2.jpg")');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+    }
     </style>
+
 </head>
-<body >
-   
+<body class="bodyLogin">
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p style="color: white;">&copy; @DateTime.Now.Year - NEO GEO GREEN GOLD</p>
         </footer>
     </div>
 
