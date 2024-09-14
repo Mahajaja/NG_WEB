@@ -1,0 +1,6 @@
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Release\Entity.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Release\Entity.pdb
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Release\Entity.csproj.AssemblyReference.cache
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Release\Entity.csproj.CoreCompileInputs.cache
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Release\Entity.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Release\Entity.pdb

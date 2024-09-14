@@ -1,5 +1,6 @@
 USE NEO_GENESIS
-CREATE PROCEDURE [NEO_GENESIS].[dbo].[sp_InsertarVacaciones]
+GO 
+CREATE PROCEDURE [dbo].[sp_InsertarVacaciones]
     @folio_registro NVARCHAR(50),
     @fecha_registro DATE,
     @hora_registro TIME,
