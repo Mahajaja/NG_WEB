@@ -42,9 +42,7 @@ bodyLogin {
     width: 100%;
 }
 
-.marginTop5{
-    margin-top: 8%;
-}
+
 
 
 .qrSize1 {
@@ -106,9 +104,6 @@ bodyLogin {
     font-size:14px !important;
 }
 
-.logoSize{
-    width:5% !important;
-}
 
 .logoSize2{
     width:50% !important;
@@ -901,3 +896,58 @@ small {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+
+.blackInput {
+    background-color: #000000ad !important;
+    color: #ccc !important;
+    border: none !important;
+}
+
+.logoSize {
+    width: 70% !important;
+}
+
+/* Estilos específicos para dispositivos con pantallas más pequeñas (como teléfonos) */
+@media only screen and (max-width: 768px) {
+    .logoSize {
+        width: 50% !important;
+    }
+}
+
+.marginTop5 {
+    margin-top: 5%; /* Tamaño por defecto para pantallas medianas */
+}
+
+/* Estilos específicos para dispositivos con pantallas más pequeñas (como teléfonos) */
+@media only screen and (max-width: 768px) {
+    .marginTop5 {
+        margin-top: 15%; /* Margen mayor en móviles */
+    }
+}
+
+/* Estilos para pantallas grandes como PC */
+@media only screen and (min-width: 1200px) {
+    .marginTop5 {
+        margin-top: 3%; /* Margen de 3% para pantallas de PC grandes */
+    }
+}
+
+
+.ibox-content h3 {
+    white-space: nowrap !important; /* Evita que el texto salte a la siguiente línea */
+    overflow: hidden !important; /* Oculta el texto que se desborda fuera del contenedor */
+    text-overflow: ellipsis !important; /* Muestra "..." al final del texto desbordado */
+}
+
+.button-link {
+    display: block;
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color original del texto */
+}
+
+    .button-link:hover {
+        background-color: #f1f1f1; /* Cambia el color de fondo al pasar el ratón */
+        transition: background-color 0.3s ease; /* Suaviza el cambio de color */
+        cursor: pointer;
+    }

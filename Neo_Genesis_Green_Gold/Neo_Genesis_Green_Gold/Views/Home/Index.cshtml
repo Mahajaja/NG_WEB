@@ -4,29 +4,54 @@
 
 }
 
-<div class="row">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Cuando se hace clic en el menú de Recursos Humanos
+        $("#recursos-humanos").click(function () {
+            // Oculta el menú principal
+            $(".main-menu").hide();
+            // Muestra el submenú de Recursos Humanos
+            $("#submenu-recursos-humanos").show();
+        });
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+        // Botón de retorno para volver al menú principal
+        $("#back-to-main").click(function () {
+            // Oculta los submenús
+            $(".submenu").hide();
+            // Muestra el menú principal
+            $(".main-menu").show();
+        });
+    });
+</script>
+
+
+
+<div class="row main-menu">
+
+    <div class="col-sm-4 ibox-content widget iboxShadow" id="recursos-humanos">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-building fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     RECURSOS HUMANOS
                 </h3>
-                <small class="text-muted">42 Place</small>
+
             </div>
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content widget iboxShadow" id="vehiculos">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-car fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     VEHICULOS
+
+
                 </h3>
-                <small class="text-muted">34 Place</small>
-              
+
+
             </div>
         </center>
     </div>
@@ -37,15 +62,15 @@
                 <i class="fa fa-archive fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     ALMACEN
+
+
                 </h3>
-                <small class="text-muted">28 Place</small>
+
             </div>
         </center>
     </div>
 
-</div>
 
-<div class="row">
 
     <div class="col-sm-4 ibox-content widget iboxShadow">
         <center>
@@ -53,8 +78,10 @@
                 <i class="fa fa-tags fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     COMPRAS
+
+
                 </h3>
-                <small class="text-muted">42 Place</small>
+
             </div>
         </center>
     </div>
@@ -65,8 +92,10 @@
                 <i class="fa fa-certificate fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     CERTIFICACIONES
+
+
                 </h3>
-                <small class="text-muted">34 Place</small>
+
 
             </div>
         </center>
@@ -79,14 +108,12 @@
                 <h3 class="font-bold no-margins">
                     COMPROBACION DE GASTOS
                 </h3>
-                <small class="text-muted">28 Place</small>
+
             </div>
         </center>
     </div>
 
-</div>
 
-<div class="row">
 
     <div class="col-sm-4 ibox-content widget iboxShadow">
         <center>
@@ -95,7 +122,7 @@
                 <h3 class="font-bold no-margins">
                     INSTITUCIONAL
                 </h3>
-                <small class="text-muted">42 Place</small>
+
             </div>
         </center>
     </div>
@@ -106,7 +133,7 @@
                 <h3 class="font-bold no-margins">
                     MANTENIMIENTO
                 </h3>
-                <small class="text-muted">34 Place</small>
+
 
             </div>
         </center>
@@ -119,14 +146,12 @@
                 <h3 class="font-bold no-margins">
                     PRODUCCION
                 </h3>
-                <small class="text-muted">28 Place</small>
+
             </div>
         </center>
     </div>
 
-</div>
 
-<div class="row">
 
     <div class="col-sm-4 ibox-content widget iboxShadow">
         <center>
@@ -135,7 +160,7 @@
                 <h3 class="font-bold no-margins">
                     PROYECTOS ESPECIALES
                 </h3>
-                <small class="text-muted">42 Place</small>
+
             </div>
         </center>
     </div>
@@ -146,8 +171,10 @@
                 <i class="fa fa-car fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     VENTAS
+
+
                 </h3>
-                <small class="text-muted">34 Place</small>
+
 
             </div>
         </center>
@@ -159,13 +186,113 @@
                 <i class="fa fa-file fa-4x"></i>
                 <h3 class="font-bold no-margins">
                     CATALOGOS
+
+
                 </h3>
-                <small class="text-muted">28 Place</small>
+
             </div>
         </center>
     </div>
 
+
+
+
 </div>
 
+<div class="row submenu" id="submenu-recursos-humanos" style="display: none;">
+    <div class="col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main"><i class="fa fa-angle-left"></i> Volver</button>
+    </div>
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-user fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Alta del Empleado
+                </h3>
+            </div>
+        </center>
+    </div>
 
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <a href="@Url.Action("Index", "Solicitud_Vacaciones")" class="button-link">
+            <center>
+                <div class="m-b-md">
+                    <i class="fa fa-calendar fa-4x"></i>
+                    <h3 class="font-bold no-margins">
+                        Solicitud de Vacaciones
+                    </h3>
+                </div>
+            </center>
+        </a>
+    </div>
+
+
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-exclamation-circle fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Incidencias
+                </h3>
+            </div>
+        </center>
+    </div>
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-money fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Solicitud de Préstamos
+                </h3>
+            </div>
+        </center>
+    </div>
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-clock-o fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Horas Extras
+                </h3>
+            </div>
+        </center>
+    </div>
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-calendar-check-o fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Asistencia
+                </h3>
+            </div>
+        </center>
+    </div>
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-laptop fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Asignación de Equipo
+                </h3>
+            </div>
+        </center>
+    </div>
+
+    <div class="col-sm-4 ibox-content widget iboxShadow">
+        <center>
+            <div class="m-b-md">
+                <i class="fa fa-file-text-o fa-4x"></i>
+                <h3 class="font-bold no-margins">
+                    Solicitud de Justificante Laboral
+                </h3>
+            </div>
+        </center>
+    </div>
+</div>
 

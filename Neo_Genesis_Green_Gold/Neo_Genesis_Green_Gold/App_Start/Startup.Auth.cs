@@ -8,6 +8,7 @@ using Owin;
 using Neo_Genesis_Green_Gold.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Neo_Genesis_Green_Gold.Constants;
+using System.Collections.Generic;
 
 namespace Neo_Genesis_Green_Gold
 {
@@ -93,13 +94,37 @@ namespace Neo_Genesis_Green_Gold
 
                     if (UserManager.FindByEmail(userEmail) == null)
                     {
-                        var user = new ApplicationUser { UserName = userEmail, Email = userEmail };
+                        var user = new ApplicationUser { UserName = "spadmin", Email = userEmail };
                         var result = UserManager.Create(user, userPassword);
                         if (result.Succeeded)
                         {
                             var result1 = UserManager.AddToRole(user.Id, UserRoles.SuperAdmin);
                         }
                     }
+
+                    var users = new List<(string email, string password, string role, string userName)>
+                        {
+                            ("COOR.RH@nggg.com", "C0r.Rh23", "Colaborador", "COOR.RH"),
+                            ("TI@nggg.com", "9dm1n01%", "Administrador", "TI"),
+                            ("USUARIO3@nggg.com", "User.123", "Colaborador", "USUARIO 3"),
+                            ("GER.ADMON@nggg.com", "G3r.Adm0n", "Administrador", "GER.ADMON"),
+                            ("GERENCIA@nggg.com", "123tamarin", "Administrador", "GERENCIA")
+                        };
+
+                    foreach (var (email, password, role, userName) in users)
+                    {
+                        if (UserManager.FindByEmail(email) == null)
+                        {
+                            var user = new ApplicationUser { UserName = userName, Email = email };
+                            var result = UserManager.Create(user, password);
+                            if (result.Succeeded)
+                            {
+                                UserManager.AddToRole(user.Id, role);
+                            }
+                        }
+                    }
+
+
                 }
 
             }

@@ -1,3 +1,9 @@
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Debug\Entity.dll
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Debug\Entity.pdb
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Debug\Entity.csproj.AssemblyReference.cache
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Debug\Entity.dll
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Debug\Entity.pdb
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Debug\Entity.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\bin\Debug\Entity.pdb
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Entity\obj\Debug\Entity.csproj.AssemblyReference.cache

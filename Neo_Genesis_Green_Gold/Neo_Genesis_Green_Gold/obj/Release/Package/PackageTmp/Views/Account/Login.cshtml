@@ -7,7 +7,8 @@
 
 <main aria-labelledby="title" class="container marginTop5">
 
-    <div class="row ibox-content " style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="row ibox-content" style="background-color: #fcf8e37d !important; border: none !important; box-shadow: 0 9px 15px rgba(0, 0, 0, 0.5); ">
+
         <!-- Columna para la imagen -->
         <div class="col-md-6">
             <section id="imageSection" class="">
@@ -30,14 +31,14 @@
                     <!-- Email Field -->
                     <div class="mb-3">
                         @Html.LabelFor(m => m.Email, new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control blackInput" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
 
                     <!-- Password Field -->
                     <div class="mb-3">
                         @Html.LabelFor(m => m.Password, new { @class = "form-label" })
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control blackInput" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
 
@@ -50,7 +51,10 @@
                     <!-- Submit Button -->
                     <div class="row">
                         <center>
-                            <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { role = "form" }))
+                            {
+                                <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
+                            }
                         </center>
                     </div>
                     <br />

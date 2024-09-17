@@ -5,6 +5,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\Dev_GG\Publicaciones</_PublishTargetUrl>
+    <History>True|2024-09-17T13:00:55.8323258Z||;True|2024-09-16T13:50:45.0064647-06:00||;True|2024-09-16T13:41:20.9983925-06:00||;True|2024-09-16T13:33:28.9180366-06:00||;True|2024-09-16T12:39:58.8944263-06:00||;True|2024-09-16T12:39:40.7188835-06:00||;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -14,10 +16,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 17:29:20</publishTime>
     </File>
     <File Include="bin/BLL.dll">
-      <publishTime>09/13/2024 08:37:25</publishTime>
+      <publishTime>09/17/2024 07:00:52</publishTime>
     </File>
     <File Include="bin/BLL.pdb">
-      <publishTime>09/13/2024 08:37:25</publishTime>
+      <publishTime>09/17/2024 07:00:52</publishTime>
     </File>
     <File Include="bin/Entity.dll">
       <publishTime>09/13/2024 08:37:24</publishTime>
@@ -104,10 +106,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/11/2022 20:09:46</publishTime>
     </File>
     <File Include="bin/Neo_Genesis_Green_Gold.dll">
-      <publishTime>09/13/2024 08:37:26</publishTime>
+      <publishTime>09/17/2024 07:00:53</publishTime>
     </File>
     <File Include="bin/Neo_Genesis_Green_Gold.pdb">
-      <publishTime>09/13/2024 08:37:26</publishTime>
+      <publishTime>09/17/2024 07:00:53</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>03/08/2023 07:09:56</publishTime>
@@ -334,6 +336,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/bootstrap-reboot.rtl.min.css.map">
       <publishTime>09/02/2024 22:47:43</publishTime>
     </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>07/24/2023 08:48:20</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>07/24/2023 08:48:20</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>07/24/2023 08:48:20</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>07/24/2023 08:48:20</publishTime>
+    </File>
+    <File Include="Content/bootstrap-toggle.min.css.css">
+      <publishTime>07/28/2023 14:28:37</publishTime>
+    </File>
     <File Include="Content/bootstrap-utilities.css">
       <publishTime>09/02/2024 22:47:43</publishTime>
     </File>
@@ -359,7 +376,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2024 22:47:42</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>09/10/2024 07:06:38</publishTime>
+      <publishTime>09/16/2024 13:50:01</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
       <publishTime>07/24/2023 08:48:20</publishTime>
@@ -382,14 +399,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/bootstrap.rtl.min.css.map">
       <publishTime>09/02/2024 22:47:42</publishTime>
     </File>
+    <File Include="Content/dataTables.bootstrap.min.css">
+      <publishTime>07/26/2023 09:47:34</publishTime>
+    </File>
+    <File Include="Content/font-awesome.css">
+      <publishTime>07/26/2023 10:42:39</publishTime>
+    </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>07/26/2023 10:42:38</publishTime>
+    </File>
     <File Include="Content/IMG/LOGIN.jpg">
       <publishTime>09/10/2024 07:18:12</publishTime>
+    </File>
+    <File Include="Content/IMG/LOGIN2.JPG">
+      <publishTime>09/14/2024 06:17:19</publishTime>
     </File>
     <File Include="Content/IMG/Logos/GREEN GOLD.png">
       <publishTime>09/02/2024 22:50:13</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>09/10/2024 11:14:04</publishTime>
+      <publishTime>09/16/2024 17:00:46</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.eot">
       <publishTime>09/07/2024 01:05:40</publishTime>
@@ -500,7 +529,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2024 22:47:50</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>09/10/2024 07:21:10</publishTime>
+      <publishTime>09/16/2024 13:49:46</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>09/02/2024 22:47:50</publishTime>
@@ -527,7 +556,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2024 22:47:38</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/10/2024 15:28:30</publishTime>
+      <publishTime>09/16/2024 17:01:04</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>09/02/2024 22:47:50</publishTime>
@@ -554,13 +583,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2024 22:47:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/10/2024 09:20:21</publishTime>
+      <publishTime>09/16/2024 16:34:44</publishTime>
     </File>
     <File Include="Views/Shared/_Layout_Auth.cshtml">
-      <publishTime>09/10/2024 07:25:53</publishTime>
+      <publishTime>09/14/2024 06:17:19</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/02/2024 22:47:50</publishTime>
+    </File>
+    <File Include="Views/Solicitud_Vacaciones/Index.cshtml">
+      <publishTime>09/16/2024 21:18:02</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>09/02/2024 22:47:38</publishTime>
@@ -569,7 +601,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2024 22:47:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/13/2024 10:45:15</publishTime>
+      <publishTime>09/17/2024 07:00:54</publishTime>
     </File>
   </ItemGroup>
 </Project>
