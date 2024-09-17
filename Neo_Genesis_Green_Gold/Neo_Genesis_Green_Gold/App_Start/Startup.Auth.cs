@@ -66,7 +66,7 @@ namespace Neo_Genesis_Green_Gold
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-            CreateRolesAndUsers();
+            //CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()

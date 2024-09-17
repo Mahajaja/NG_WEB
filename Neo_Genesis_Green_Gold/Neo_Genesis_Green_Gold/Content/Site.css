@@ -773,7 +773,6 @@ body {
     border-width: 1px;
     border-radius: 5px !important;
 }
-
 .pageBackgroundColor {
     background-color: #87827f1a !important;
 }
@@ -944,10 +943,56 @@ small {
     display: block;
     text-decoration: none; /* Elimina el subrayado */
     color: inherit; /* Mantiene el color original del texto */
+    background-color: transparent; /* Fondo transparente inicialmente */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color de fondo */
 }
 
     .button-link:hover {
         background-color: #f1f1f1; /* Cambia el color de fondo al pasar el ratón */
-        transition: background-color 0.3s ease; /* Suaviza el cambio de color */
-        cursor: pointer;
+        cursor: pointer; /* Muestra el cursor de puntero para indicar interactividad */
+        text-decoration: none; /* Asegura que el texto no se subraye en el hover */
+        color: inherit; /* Mantiene el color original del texto al hacer hover */
     }
+
+    .button-link:active {
+        background-color: transparent; /* Elimina el color de fondo cuando el enlace es activado/clicado */
+    }
+
+
+
+.menu-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 15px; /* Añade espacio entre el botón y el título */
+    vertical-align: middle;
+    color: #785f39
+}
+
+.main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.ibox-content-2 {
+    margin-bottom: 20px; /* Espaciado entre las filas */
+    position: relative; /* Necesario para usar z-index */
+}
+
+    .ibox-content-2:hover {
+        background-color: #77777729; /* Color de fondo al hacer hover */
+        border: none;
+        transform: scale(1.05); /* Escala el elemento ligeramente */
+        z-index: 10; /* Eleva el elemento sobre los demás */
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Añade un sombreado para destacar más el efecto */
+    }
+
+    .ibox-content-2 img, .ibox-content-2 i {
+        max-width: 100%; /* Asegura que las imágenes o íconos no excedan el tamaño */
+    }
+
+    .ibox-content-2 h3 {
+        margin: 0; /* Elimina márgenes que puedan causar saltos */
+        padding: 10px 0; /* Espaciado interno, en lugar de márgenes, para evitar el movimiento */
+    }
+
