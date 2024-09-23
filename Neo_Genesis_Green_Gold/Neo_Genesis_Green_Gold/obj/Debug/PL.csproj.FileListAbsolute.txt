@@ -203,6 +203,7 @@ E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\System.Web.We
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\System.Web.WebPages.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\System.Web.WebPages.Razor.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\WebGrease.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\DAL.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\BLL.pdb
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\Entity.pdb
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\System.Web.Helpers.xml
@@ -229,6 +230,7 @@ E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\Microsoft.Owi
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\Microsoft.Owin.Security.OAuth.xml
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\DAL.pdb
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\es\System.Web.Helpers.resources.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\es\System.Web.Mvc.resources.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\es\System.Web.Optimization.resources.dll

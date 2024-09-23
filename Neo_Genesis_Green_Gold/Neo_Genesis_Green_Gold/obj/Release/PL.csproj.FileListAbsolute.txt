@@ -122,3 +122,5 @@ E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\obj\Release\PL.cs
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\obj\Release\PL.csproj.Up2Date
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\obj\Release\Neo_Genesis_Green_Gold.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\obj\Release\Neo_Genesis_Green_Gold.pdb
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\DAL.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\bin\DAL.pdb

@@ -42,9 +42,6 @@ bodyLogin {
     width: 100%;
 }
 
-
-
-
 .qrSize1 {
     width: 40%;
     margin-top: -5%;
@@ -856,15 +853,7 @@ input, select, textarea {
     border-radius: 5px !important;
 }
 
-/* Sombra suave */
-.iboxShadow {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background-color: #fff;
-    margin: 15px 0;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
+
 
 /* Resaltar el elemento seleccionado */
 .selected {
@@ -890,11 +879,6 @@ small {
     color: #8e8e8e;
 }
 
-/* Hover effect */
-.iboxShadow:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 
 .blackInput {
@@ -933,11 +917,11 @@ small {
 }
 
 
-.ibox-content h3 {
-    white-space: nowrap !important; /* Evita que el texto salte a la siguiente línea */
-    overflow: hidden !important; /* Oculta el texto que se desborda fuera del contenedor */
-    text-overflow: ellipsis !important; /* Muestra "..." al final del texto desbordado */
-}
+/*.ibox-content h3 {
+    white-space: nowrap !important;*/ /* Evita que el texto salte a la siguiente línea */
+    /*overflow: hidden !important;*/ /* Oculta el texto que se desborda fuera del contenedor */
+    /*text-overflow: ellipsis !important;*/ /* Muestra "..." al final del texto desbordado */
+/*}*/
 
 .button-link {
     display: block;
@@ -969,30 +953,54 @@ small {
 }
 
 .main-menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+   border:none;
 }
-
 .ibox-content-2 {
-    margin-bottom: 20px; /* Espaciado entre las filas */
-    position: relative; /* Necesario para usar z-index */
+    /*margin-bottom: 20px;*/ /* Espaciado entre las filas */
+    /*position: relative;*/ /* Necesario para usar z-index */
+    transition: background-color 0.3s ease; /* Transición suave del color */
+    border:none;
 }
 
     .ibox-content-2:hover {
         background-color: #77777729; /* Color de fondo al hacer hover */
         border: none;
-        transform: scale(1.05); /* Escala el elemento ligeramente */
-        z-index: 10; /* Eleva el elemento sobre los demás */
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Añade un sombreado para destacar más el efecto */
+        /* Quitar cualquier escala o sombra que pudiera cambiar el tamaño del bloque */
+        /*transform: none;*/ /* No escalar el elemento */
+        /*box-shadow: none;*/ /* No añadir sombra que cambie el tamaño */
     }
 
-    .ibox-content-2 img, .ibox-content-2 i {
-        max-width: 100%; /* Asegura que las imágenes o íconos no excedan el tamaño */
-    }
+    /*.ibox-content-2 img, .ibox-content-2 i {
+        max-width: 100%;*/ /* Asegura que las imágenes o íconos no excedan el tamaño */
+    /*}
 
     .ibox-content-2 h3 {
-        margin: 0; /* Elimina márgenes que puedan causar saltos */
-        padding: 10px 0; /* Espaciado interno, en lugar de márgenes, para evitar el movimiento */
-    }
+        margin: 0;*/ /* Elimina márgenes que puedan causar saltos */
+        /*padding: 10px 0;*/ /* Espaciado interno, en lugar de márgenes, para evitar el movimiento */
+    /*}*/
 
+/* Sombra suave */
+.iboxShadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    margin: 15px 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.imgEmpleado {
+    width: 10% !important;
+}
+
+@media (max-width: 768px) {
+    .imgEmpleado {
+        width: 25% !important;
+    }
+}
+
+    /* Hover effect */
+    /*.iboxShadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }*/

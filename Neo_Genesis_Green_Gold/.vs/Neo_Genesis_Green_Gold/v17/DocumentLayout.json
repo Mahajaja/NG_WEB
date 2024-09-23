@@ -1,16 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    }
-  ],
+  "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,37 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 399,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Startup.Auth.cs",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAgwEQAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T23:06:20.641Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Web.config",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Web.config",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Web.config",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-09-17T23:05:44.368Z",
-              "EditorCaption": ""
             }
           ]
         }

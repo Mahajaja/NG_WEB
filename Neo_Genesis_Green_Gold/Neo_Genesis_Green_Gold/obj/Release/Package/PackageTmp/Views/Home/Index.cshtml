@@ -13,6 +13,8 @@
             $(".main-menu").hide();
             // Muestra el submenú de Recursos Humanos
             $("#submenu-recursos-humanos").show();
+            // Actualiza el título del menú seleccionado
+            $("#menu-title").text("Recursos Humanos");
         });
 
         // Botón de retorno para volver al menú principal
@@ -21,15 +23,18 @@
             $(".submenu").hide();
             // Muestra el menú principal
             $(".main-menu").show();
+            // Limpia el título del menú
+            $("#menu-title").text("");
         });
     });
 </script>
 
 
 
+
 <div class="row main-menu">
 
-    <div class="col-sm-4 ibox-content widget iboxShadow" id="recursos-humanos">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow" id="recursos-humanos">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-building fa-4x"></i>
@@ -41,7 +46,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow" id="vehiculos">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow" id="vehiculos">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-car fa-4x"></i>
@@ -56,7 +61,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-archive fa-4x"></i>
@@ -72,7 +77,7 @@
 
 
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-tags fa-4x"></i>
@@ -86,7 +91,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-certificate fa-4x"></i>
@@ -101,7 +106,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-money fa-4x"></i>
@@ -115,7 +120,7 @@
 
 
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-building fa-4x"></i>
@@ -126,7 +131,7 @@
             </div>
         </center>
     </div>
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-gear fa-4x"></i>
@@ -139,7 +144,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-leaf fa-4x"></i>
@@ -153,7 +158,7 @@
 
 
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-tags fa-4x"></i>
@@ -165,7 +170,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-car fa-4x"></i>
@@ -180,7 +185,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-file fa-4x"></i>
@@ -199,11 +204,14 @@
 
 </div>
 
-<div class="row submenu" id="submenu-recursos-humanos" style="display: none;">
-    <div class="col-sm-12 marginTop5">
-        <button class="btn btn-success" id="back-to-main"><i class="fa fa-angle-left"></i> Volver</button>
+<div class="row submenu" id="submenu-recursos-humanos" style="display: none; ">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span id="menu-title" class="menu-title"></span>
     </div>
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-user fa-4x"></i>
@@ -214,7 +222,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <a href="@Url.Action("Index", "Solicitud_Vacaciones")" class="button-link">
             <center>
                 <div class="m-b-md">
@@ -229,7 +237,7 @@
 
 
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-exclamation-circle fa-4x"></i>
@@ -240,7 +248,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-money fa-4x"></i>
@@ -251,7 +259,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-clock-o fa-4x"></i>
@@ -262,7 +270,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-calendar-check-o fa-4x"></i>
@@ -273,7 +281,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-laptop fa-4x"></i>
@@ -284,7 +292,7 @@
         </center>
     </div>
 
-    <div class="col-sm-4 ibox-content widget iboxShadow">
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
         <center>
             <div class="m-b-md">
                 <i class="fa fa-file-text-o fa-4x"></i>

@@ -210,6 +210,7 @@
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\IMG\Default\user.png" />
     <Content Include="Content\IMG\LOGIN.jpg" />
     <Content Include="Content\IMG\LOGIN2.JPG" />
     <Content Include="Content\IMG\Logos\GREEN GOLD.png" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Solicitud_Vacaciones\Index.cshtml" />
+    <Content Include="Views\Solicitud_Vacaciones\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
