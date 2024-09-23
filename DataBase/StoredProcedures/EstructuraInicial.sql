@@ -14,6 +14,7 @@ CREATE UNIQUE INDEX RoleNameIndex ON AspNetRoles(Name);
 -- Crear tabla AspNetUsers
 CREATE TABLE AspNetUsers (
     Id NVARCHAR(128) NOT NULL PRIMARY KEY,
+	id_usuario INT IDENTITY(1,1) NOT NULL,
     Email NVARCHAR(256),
     EmailConfirmed BIT NOT NULL,
     PasswordHash NVARCHAR(MAX),
@@ -63,7 +64,8 @@ CREATE INDEX IX_AspNetUserRoles_RoleId ON AspNetUserRoles(RoleId);
 CREATE INDEX IX_AspNetUserClaims_UserId ON AspNetUserClaims(UserId);
 CREATE INDEX IX_AspNetUserLogins_UserId ON AspNetUserLogins(UserId);
 
-
+SELECT * FROM AspNetUsers
+SELECT * FROM USUARIO
 --UPDATE AspNetUsers
 --SET UserName = 'spadmin'
 --WHERE Id = 'd36b7f68-6eff-412e-a52c-593ed30c6d44'

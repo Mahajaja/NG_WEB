@@ -1,7 +1,24 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,6 +31,64 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 399,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:41:26.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IdentityConfig.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAlwCMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:41:07.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IdentityModels.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:24:07.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Startup.Auth.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAqwHUAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:09:02.166Z",
+              "EditorCaption": ""
             }
           ]
         }

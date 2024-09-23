@@ -66,7 +66,7 @@ namespace Neo_Genesis_Green_Gold
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-            //CreateRolesAndUsers();
+            CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()
@@ -102,25 +102,25 @@ namespace Neo_Genesis_Green_Gold
                         }
                     }
 
-                    var users = new List<(string email, string password, string role, string userName)>
+                    var users = new List<(string email, string password, string role, string userName, int id_usuario)>
                         {
-                            ("COOR.RH@nggg.com", "C0r.Rh23", "Colaborador", "COOR.RH"),
-                            ("TI@nggg.com", "9dm1n01%", "Administrador", "TI"),
-                            ("USUARIO3@nggg.com", "User.123", "Colaborador", "USUARIO 3"),
-                            ("GER.ADMON@nggg.com", "G3r.Adm0n", "Administrador", "GER.ADMON"),
-                            ("GERENCIA@nggg.com", "123tamarin", "Administrador", "GERENCIA")
+                            ("COOR.RH@nggg.com", "C0r.Rh23", "Colaborador", "COOR.RH",4),
+                            ("TI@nggg.com", "9dm1n01%", "Administrador", "TI", 5),
+                            ("USUARIO3@nggg.com", "User.123", "Colaborador", "USUARIO 3", 3),
+                            ("GER.ADMON@nggg.com", "G3r.Adm0n", "Administrador", "GER.ADMON", 6),
+                            ("GERENCIA@nggg.com", "123tamarin", "Administrador", "GERENCIA", 2)
                         };
 
-                    foreach (var (email, password, role, userName) in users)
+                    foreach (var (email, password, role, userName, id_usuario) in users)
                     {
                         if (UserManager.FindByEmail(email) == null)
                         {
-                            var user = new ApplicationUser { UserName = userName, Email = email };
+                            var user = new ApplicationUser { UserName = userName, Email = email, id_usuario = id_usuario };
                             var result = UserManager.Create(user, password);
-                            if (result.Succeeded)
-                            {
-                                UserManager.AddToRole(user.Id, role);
-                            }
+                            //if (result.Succeeded)
+                            //{
+                            //    UserManager.AddToRole(user.Id, role);
+                            //}
                         }
                     }
 

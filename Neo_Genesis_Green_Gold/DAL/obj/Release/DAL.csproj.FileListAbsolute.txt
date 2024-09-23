@@ -7,3 +7,12 @@ E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.csproj.CoreCompileIn
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.csproj.Up2Date
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.dll
 E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.pdb
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\bin\Release\DAL.dll
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\bin\Release\DAL.pdb
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\bin\Release\Entity.dll
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\bin\Release\Entity.pdb
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.csproj.AssemblyReference.cache
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.csproj.Up2Date
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.dll
+C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Release\DAL.pdb
