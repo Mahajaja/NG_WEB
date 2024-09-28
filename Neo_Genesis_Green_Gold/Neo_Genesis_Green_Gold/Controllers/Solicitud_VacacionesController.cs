@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Neo_Genesis_Green_Gold.Controllers
 {
+    [Authorize]
     public class Solicitud_VacacionesController : Controller
     {
         // GET: Solicitud_Vacaciones

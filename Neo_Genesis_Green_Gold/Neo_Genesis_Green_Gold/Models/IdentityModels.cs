@@ -10,7 +10,7 @@ namespace Neo_Genesis_Green_Gold.Models
     public class ApplicationUser : IdentityUser
     {
         // Este campo es el nuevo campo autoincremental
-        public int id_usuario { get; set; }
+       // public int id_usuario { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

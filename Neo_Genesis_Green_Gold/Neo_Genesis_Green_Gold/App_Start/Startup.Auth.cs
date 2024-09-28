@@ -17,6 +17,7 @@ namespace Neo_Genesis_Green_Gold
         // Para obtener más información sobre cómo configurar la autenticación, visite https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+          
             // Configure el contexto de base de datos, el administrador de usuarios y el administrador de inicios de sesión para usar una única instancia por solicitud
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -66,13 +67,14 @@ namespace Neo_Genesis_Green_Gold
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-            CreateRolesAndUsers();
+            //CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()
         {
             try
             {
+                Console.WriteLine("Creando roles y usuarios...");
                 ApplicationDbContext context = new ApplicationDbContext();
                 //db = new LeadMeDbContext();
 
@@ -83,6 +85,30 @@ namespace Neo_Genesis_Green_Gold
                 {
                     var role = new IdentityRole();
                     role.Name = UserRoles.SuperAdmin;
+                    roleManager.Create(role);
+                }
+                if (!roleManager.RoleExists(UserRoles.Administrador))
+                {
+                    var role = new IdentityRole();
+                    role.Name = UserRoles.Administrador;
+                    roleManager.Create(role);
+                }
+                if (!roleManager.RoleExists(UserRoles.Gerente))
+                {
+                    var role = new IdentityRole();
+                    role.Name = UserRoles.Gerente;
+                    roleManager.Create(role);
+                }
+                if (!roleManager.RoleExists(UserRoles.Colaborador))
+                {
+                    var role = new IdentityRole();
+                    role.Name = UserRoles.Colaborador;
+                    roleManager.Create(role);
+                }
+                if (!roleManager.RoleExists(UserRoles.Lector))
+                {
+                    var role = new IdentityRole();
+                    role.Name = UserRoles.Lector;
                     roleManager.Create(role);
                 }
 
@@ -100,27 +126,86 @@ namespace Neo_Genesis_Green_Gold
                         {
                             var result1 = UserManager.AddToRole(user.Id, UserRoles.SuperAdmin);
                         }
+                    }                    
+
+                }
+                if (roleManager.RoleExists(UserRoles.Gerente))
+                {
+                    string userEmail = "GERENCIA@nggg.com";
+                    string userPassword = "123tamarin";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "GERENCIA", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Gerente);
+                        }
+                    }
+                }
+
+                if (roleManager.RoleExists(UserRoles.Colaborador))
+                {
+                    string userEmail = "USUARIO3@nggg.com";
+                    string userPassword = "User.123";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "USUARIO3", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Colaborador);
+                        }
                     }
 
-                    var users = new List<(string email, string password, string role, string userName, int id_usuario)>
-                        {
-                            ("COOR.RH@nggg.com", "C0r.Rh23", "Colaborador", "COOR.RH",4),
-                            ("TI@nggg.com", "9dm1n01%", "Administrador", "TI", 5),
-                            ("USUARIO3@nggg.com", "User.123", "Colaborador", "USUARIO 3", 3),
-                            ("GER.ADMON@nggg.com", "G3r.Adm0n", "Administrador", "GER.ADMON", 6),
-                            ("GERENCIA@nggg.com", "123tamarin", "Administrador", "GERENCIA", 2)
-                        };
-
-                    foreach (var (email, password, role, userName, id_usuario) in users)
+                    userEmail = "COOR.RH@nggg.com";
+                    userPassword = "C0r.Rh23";
+                    if (UserManager.FindByEmail(userEmail) == null)
                     {
-                        if (UserManager.FindByEmail(email) == null)
+                        var user = new ApplicationUser { UserName = "COOR.RH", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
                         {
-                            var user = new ApplicationUser { UserName = userName, Email = email, id_usuario = id_usuario };
-                            var result = UserManager.Create(user, password);
-                            //if (result.Succeeded)
-                            //{
-                            //    UserManager.AddToRole(user.Id, role);
-                            //}
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Colaborador);
+                        }
+                    }
+                }
+
+                if (roleManager.RoleExists(UserRoles.Administrador))
+                {
+                    string userEmail = "TI@nggg.com";
+                    string userPassword = "9dm1n01%";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "TI", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Administrador);
+                        }
+                    }
+
+                    userEmail = "PRODUCCION@nggg.com";
+                    userPassword = "Produc_24";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "PRODUCCION", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Administrador);
+                        }
+                    }
+
+                    userEmail = "GESTION@nggg.com";
+                    userPassword = "G3stion_24";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "GESTION", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Administrador);
                         }
                     }
 

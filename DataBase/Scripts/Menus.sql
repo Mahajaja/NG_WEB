@@ -53,5 +53,5 @@ DECLARE @IDUSUARIO NVARCHAR(450) = (SELECT Id FROM AspNetUsers WHERE Email = 'sp
 -- Insertamos el acceso del usuario 'spadmin@nggg.com' a todos los menús
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 SELECT ID_Menu, @IDUSUARIO FROM Menu;
-
+GO
 

@@ -917,11 +917,7 @@ small {
 }
 
 
-/*.ibox-content h3 {
-    white-space: nowrap !important;*/ /* Evita que el texto salte a la siguiente línea */
-    /*overflow: hidden !important;*/ /* Oculta el texto que se desborda fuera del contenedor */
-    /*text-overflow: ellipsis !important;*/ /* Muestra "..." al final del texto desbordado */
-/*}*/
+
 
 .button-link {
     display: block;
@@ -955,11 +951,14 @@ small {
 .main-menu {
    border:none;
 }
+
 .ibox-content-2 {
-    /*margin-bottom: 20px;*/ /* Espaciado entre las filas */
-    /*position: relative;*/ /* Necesario para usar z-index */
     transition: background-color 0.3s ease; /* Transición suave del color */
-    border:none;
+    border: none;
+    white-space: nowrap; /* Evita el ajuste de línea, todo queda en una línea */
+    overflow: hidden; /* Oculta el contenido que desborda el ancho */
+    text-overflow: ellipsis; /* Muestra "..." cuando el texto es demasiado largo */
+    width: 100%; /* O un ancho específico */
 }
 
     .ibox-content-2:hover {
@@ -969,6 +968,18 @@ small {
         /*transform: none;*/ /* No escalar el elemento */
         /*box-shadow: none;*/ /* No añadir sombra que cambie el tamaño */
     }
+@media (max-width: 768px) {
+    .ibox-content-2 {
+        font-size: 14px; /* Cambiar el tamaño de la fuente para pantallas pequeñas */
+        padding: 10px; /* Reducir el padding si es necesario */
+    }
+}
+
+@media (max-width: 480px) {
+    .ibox-content-2 {
+        font-size: 12px; /* Aún más pequeño para pantallas móviles */
+    }
+}
 
     /*.ibox-content-2 img, .ibox-content-2 i {
         max-width: 100%;*/ /* Asegura que las imágenes o íconos no excedan el tamaño */
@@ -998,6 +1009,7 @@ small {
         width: 25% !important;
     }
 }
+
 
     /* Hover effect */
     /*.iboxShadow:hover {

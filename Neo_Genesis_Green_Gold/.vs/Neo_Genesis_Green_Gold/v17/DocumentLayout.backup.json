@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\viewmodels\\menuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\viewmodels\\menuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\app_start\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\app_start\\identityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\dal\\menu_usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|solutionrelative:dal\\menu_usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\bll\\menu_usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|solutionrelative:bll\\menu_usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\entity\\menue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|solutionrelative:entity\\menue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,68 +34,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 399,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 399,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IdentityConfig.cs",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\IdentityConfig.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T23:33:30.415Z",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-28T14:45:12.541Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IdentityModels.cs",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Models\\IdentityModels.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Title": "MenuViewModel.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\ViewModels\\MenuViewModel.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\ViewModels\\MenuViewModel.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\ViewModels\\MenuViewModel.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\ViewModels\\MenuViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T23:24:07.277Z",
+              "WhenOpened": "2024-09-28T17:27:26.673Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AccountViewModels.cs",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\AccountViewModels.cs",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Models\\AccountViewModels.cs",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Models\\AccountViewModels.cs",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Models\\AccountViewModels.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "MenuE.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Entity\\MenuE.cs",
+              "RelativeDocumentMoniker": "Entity\\MenuE.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Entity\\MenuE.cs",
+              "RelativeToolTip": "Entity\\MenuE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T23:23:57.699Z",
+              "WhenOpened": "2024-09-28T16:08:47.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Menu_UsuarioBLL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Menu_UsuarioBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\Menu_UsuarioBLL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Menu_UsuarioBLL.cs",
+              "RelativeToolTip": "BLL\\Menu_UsuarioBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T16:00:07.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Menu_UsuarioDAL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Menu_UsuarioDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\Menu_UsuarioDAL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Menu_UsuarioDAL.cs",
+              "RelativeToolTip": "DAL\\Menu_UsuarioDAL.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAUwHsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T15:07:49.582Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Startup.Auth.cs",
-              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\App_Start\\Startup.Auth.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAowHkAAABHAAAAAAAAAA==",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAqwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T23:09:02.166Z",
+              "WhenOpened": "2024-09-28T14:46:05.895Z",
               "EditorCaption": ""
             }
           ]
