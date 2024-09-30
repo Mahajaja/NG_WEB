@@ -551,9 +551,74 @@ END
 GO
 
 
+CREATE TABLE TipoEstatus (
+    ID_TipoEstatus INT IDENTITY(1,1) PRIMARY KEY,  -- ID autoincremental para el Tipo de Estatus
+    TipoEstatus NVARCHAR(100) NOT NULL,            -- Nombre o descripción del estatus
+    IsActivo BIT NOT NULL DEFAULT 1,               -- Indica si el estatus está activo (1 = Activo, 0 = Inactivo)
+    FechaInserto DATETIME NOT NULL DEFAULT GETDATE() -- Fecha de inserción del registro
+);
 
+INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
+VALUES ('Solicitud_Vacaciones', 1, GETDATE());
+
+
+CREATE TABLE Estatus (
+    ID_Estatus INT IDENTITY(1,1) PRIMARY KEY,          -- ID autoincremental para cada estatus
+    ID_TipoEstatus INT NOT NULL,                        -- Llave foránea de la tabla TipoEstatus
+    Estatus NVARCHAR(100) NOT NULL,                    -- Nombre o descripción del estatus
+    Color_Fondo NVARCHAR(20) NULL,                     -- Color de fondo (puede ser un código hexadecimal o nombre del color)
+    Color_Texto NVARCHAR(20) NULL,                     -- Color del texto (puede ser un código hexadecimal o nombre del color)
+    IsActivo BIT NOT NULL DEFAULT 1,                   -- Indica si el estatus está activo
+    FechaInserto DATETIME NOT NULL DEFAULT GETDATE(),  -- Fecha de inserción del registro
+    CONSTRAINT FK_TipoEstatus FOREIGN KEY (ID_TipoEstatus) REFERENCES TipoEstatus(ID_TipoEstatus) -- Llave foránea
+);
+
+-- Insertar "EN REVISION"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Solicitud_Vacaciones'), 
+    'EN REVISION', 
+    '#fbbc04',   -- Aquí puedes agregar el color de fondo
+    '#000000',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "ACEPTADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Solicitud_Vacaciones'), 
+    'ACEPTADA', 
+    '#34a853',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "RECHAZADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Solicitud_Vacaciones'), 
+    'RECHAZADA', 
+    '#980000',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Añadir la columna ID_Estatus a la tabla VACACIONES
+ALTER TABLE VACACIONES
+ADD ID_Estatus INT;
+
+-- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
+ALTER TABLE VACACIONES
+ADD CONSTRAINT FK_Vacaciones_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
+
+SELECT * FROM VACACIONES
 --SELECT * FROM AspNetUsers
 --SELECT * FROM USUARIO
 --UPDATE AspNetUsers
 --SET UserName = 'spadmin'
 --WHERE Id = 'd36b7f68-6eff-412e-a52c-593ed30c6d44'
+
+sp_helptext SP_InsertVacacion

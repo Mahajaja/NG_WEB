@@ -1,54 +1,53 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\",
+  "WorkspaceRootPath": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\entity\\vacaciones_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|solutionrelative:entity\\vacaciones_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\dal\\vacaciones_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\dal\\vacaciones_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|solutionrelative:dal\\vacaciones_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\bll\\vacaciones_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\entity\\vacaciones_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|solutionrelative:entity\\vacaciones_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|c:\\dev\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\bll\\vacaciones_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|solutionrelative:bll\\vacaciones_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\bll\\diasinhabiles_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\bll\\diasinhabiles_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|solutionrelative:bll\\diasinhabiles_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\dal\\diasinhabiles_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\dal\\diasinhabiles_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|solutionrelative:dal\\diasinhabiles_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\entity\\dias_inhabiles_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|solutionrelative:entity\\dias_inhabiles_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\bll\\menu_usuario_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\bll\\menu_usuario_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|solutionrelative:bll\\menu_usuario_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\bll\\aspnetusers_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\bll\\aspnetusers_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52D0BC11-592D-4149-AEF8-1F4F45B6FBCC}|BLL\\BLL.csproj|solutionrelative:bll\\aspnetusers_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\dal\\ubicacion_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\dal\\ubicacion_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43775E90-B92A-4678-9BED-EC2041DECADC}|DAL\\DAL.csproj|solutionrelative:dal\\ubicacion_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Dias_inhabiles_E.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +57,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 399,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,26 +65,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Vacaciones_E.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Vacaciones_E.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Entity\\Vacaciones_E.cs",
               "RelativeDocumentMoniker": "Entity\\Vacaciones_E.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Vacaciones_E.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Entity\\Vacaciones_E.cs",
               "RelativeToolTip": "Entity\\Vacaciones_E.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-30T17:56:00.689Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Vacaciones_DAL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\Vacaciones_DAL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Vacaciones_DAL.cs",
               "RelativeDocumentMoniker": "DAL\\Vacaciones_DAL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\Vacaciones_DAL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Vacaciones_DAL.cs",
               "RelativeToolTip": "DAL\\Vacaciones_DAL.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAQwNoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCQAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-30T17:55:36.569Z",
               "EditorCaption": ""
@@ -94,131 +93,119 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Vacaciones_BLL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\Vacaciones_BLL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Vacaciones_BLL.cs",
               "RelativeDocumentMoniker": "BLL\\Vacaciones_BLL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\Vacaciones_BLL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Vacaciones_BLL.cs",
               "RelativeToolTip": "BLL\\Vacaciones_BLL.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAqwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T17:55:27.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T17:55:27.034Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "DiasInhabiles_BLL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\DiasInhabiles_BLL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\DiasInhabiles_BLL.cs",
               "RelativeDocumentMoniker": "BLL\\DiasInhabiles_BLL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\DiasInhabiles_BLL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\DiasInhabiles_BLL.cs",
               "RelativeToolTip": "BLL\\DiasInhabiles_BLL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T17:00:34.078Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T17:00:34.078Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "DiasInhabiles_DAL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\DiasInhabiles_DAL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\DiasInhabiles_DAL.cs",
               "RelativeDocumentMoniker": "DAL\\DiasInhabiles_DAL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\DiasInhabiles_DAL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\DiasInhabiles_DAL.cs",
               "RelativeToolTip": "DAL\\DiasInhabiles_DAL.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAgwFMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T17:00:13.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T17:00:13.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dias_inhabiles_E.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Dias_inhabiles_E.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Dias_inhabiles_E.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T16:58:58.528Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Dias_inhabiles_E.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Dias_inhabiles_E.cs",
-              "RelativeDocumentMoniker": "Entity\\Dias_inhabiles_E.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Dias_inhabiles_E.cs",
-              "RelativeToolTip": "Entity\\Dias_inhabiles_E.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T16:58:58.528Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "Menu_Usuario_BLL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\Menu_Usuario_BLL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Menu_Usuario_BLL.cs",
               "RelativeDocumentMoniker": "BLL\\Menu_Usuario_BLL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\Menu_Usuario_BLL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\Menu_Usuario_BLL.cs",
               "RelativeToolTip": "BLL\\Menu_Usuario_BLL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T16:54:34.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T16:54:34.694Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
               "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
               "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAFUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-30T02:44:24.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Solicitud_VacacionesController.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
               "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
               "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs*",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs*",
               "ViewState": "AgIAAGAAAAAAAAAAAAAQwI8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T14:21:15.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T14:21:15.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AspNetUsers_BLL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\AspNetUsers_BLL.cs",
+              "RelativeDocumentMoniker": "BLL\\AspNetUsers_BLL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\BLL\\AspNetUsers_BLL.cs",
+              "RelativeToolTip": "BLL\\AspNetUsers_BLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T15:03:34.564Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "AspNetUsers_BLL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\AspNetUsers_BLL.cs",
-              "RelativeDocumentMoniker": "BLL\\AspNetUsers_BLL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\BLL\\AspNetUsers_BLL.cs",
-              "RelativeToolTip": "BLL\\AspNetUsers_BLL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
+              "Title": "Ubicacion_DAL.cs",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Ubicacion_DAL.cs",
+              "RelativeDocumentMoniker": "DAL\\Ubicacion_DAL.cs",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\DAL\\Ubicacion_DAL.cs",
+              "RelativeToolTip": "DAL\\Ubicacion_DAL.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAC0AAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T15:03:34.564Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T15:17:06.689Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Ubicacion_DAL.cs",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\Ubicacion_DAL.cs",
-              "RelativeDocumentMoniker": "DAL\\Ubicacion_DAL.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\DAL\\Ubicacion_DAL.cs",
-              "RelativeToolTip": "DAL\\Ubicacion_DAL.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAC0AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T15:17:06.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Dev\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-30T15:25:19.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T15:25:19.57Z"
             }
           ]
         }
