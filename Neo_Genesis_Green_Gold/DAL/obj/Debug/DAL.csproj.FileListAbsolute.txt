@@ -16,3 +16,12 @@ C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.
 C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.csproj.Up2Date
 C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.dll
 C:\Dev\NG_WEB\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.pdb
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\bin\Debug\DAL.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\bin\Debug\DAL.pdb
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\bin\Debug\Entity.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\bin\Debug\Entity.pdb
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.csproj.Up2Date
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.dll
+E:\Dev_GG\NG_WEB\Neo_Genesis_Green_Gold\Neo_Genesis_Green_Gold\DAL\obj\Debug\DAL.pdb

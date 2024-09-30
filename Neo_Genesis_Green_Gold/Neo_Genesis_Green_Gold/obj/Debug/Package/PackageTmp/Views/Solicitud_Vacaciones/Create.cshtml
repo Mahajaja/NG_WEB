@@ -1,0 +1,147 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.SolicitudVacacionesViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span class="menu-title">RECURSOS HUMANOS / SOLICITUD DE VACACIONES / NUEVA SOLICITUD</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+
+        <div class="form-group row text-center">
+            <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
+            <div class="col-sm-12">
+                <img src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle " />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <hr />
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">UBICACION</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" value="@Model.Ubicacion" disabled />
+            </div>
+
+            <label class="col-sm-2 col-form-label">EMPLEADO</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="empleadoSelect" onchange="loadDiasDisponibles(this.value)">
+                    <option value="">Seleccionar Empleado</option>
+                    @foreach (var empleado in Model.List_Empleados)
+                    {
+                        <option value="@empleado.IdEmpleado">@empleado.Nombre @empleado.ApellidoPaterno</option>
+                    }
+                </select>
+            </div>
+
+            <label class="col-sm-2 col-form-label">Dias Disponibles</label>
+            <div class="col-sm-2">
+                <input type="text" id="diasDisponibles" class="form-control" value="0" disabled />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">INICIO DE VACACIONES</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="inicioVacaciones" onchange="calcularVacaciones()" />
+            </div>
+
+            <label class="col-sm-2 col-form-label">TERMINO DE VACACIONES</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="terminoVacaciones" onchange="calcularVacaciones()" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <hr />
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Días a tomar</label>
+            <div class="col-sm-2">
+                <input type="text" id="diasATomar" class="form-control" value="0" disabled />
+            </div>
+
+            <label class="col-sm-2 col-form-label">Fecha de incorporación</label>
+            <div class="col-sm-2">
+                <input type="date" id="fechaIncorporacion" class="form-control" disabled />
+            </div>
+
+            <label class="col-sm-2 col-form-label">Días restantes</label>
+            <div class="col-sm-2">
+                <input type="text" id="diasRestantes" class="form-control" value="0" disabled />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadDiasDisponibles(idEmpleado) {
+        if (idEmpleado) {
+            $.ajax({
+                url: '@Url.Action("GetDiasDisponibles", "Solicitud_Vacaciones")',
+                type: 'GET',
+                data: { idEmpleado: idEmpleado },
+                success: function (data) {
+                    $('#diasDisponibles').val(data.diasDisponibles);
+
+                    if (data.diasDisponibles == 0) {
+                        $('#inicioVacaciones').prop('disabled', true);
+                        $('#terminoVacaciones').prop('disabled', true);
+                    } else {
+                        $('#inicioVacaciones').prop('disabled', false);
+                        $('#terminoVacaciones').prop('disabled', false);
+                    }
+                },
+                error: function () {
+                    alert('Ocurrió un error al cargar los días disponibles.');
+                }
+            });
+        } else {
+            $('#diasDisponibles').val(0);
+            $('#inicioVacaciones').prop('disabled', true);
+            $('#terminoVacaciones').prop('disabled', true);
+        }
+    }
+
+    function calcularVacaciones() {
+        var inicio = $('#inicioVacaciones').val();
+        var termino = $('#terminoVacaciones').val();
+        var diasDisponibles = parseInt($('#diasDisponibles').val());
+
+        if (inicio && termino) {
+            $.ajax({
+                url: '@Url.Action("CalcularDiasInhabiles", "Solicitud_Vacaciones")',
+                type: 'GET',
+                data: { inicio: inicio, termino: termino },
+                success: function (data) {
+                    var diasATomar = data.diasTotales - data.diasInhabiles;
+                    $('#diasATomar').val(diasATomar);
+                    $('#diasRestantes').val(diasDisponibles - diasATomar);
+
+                    // Calcular fecha de incorporación
+                    $('#fechaIncorporacion').val(data.fechaIncorporacion);
+                },
+                error: function () {
+                    alert('Ocurrió un error al calcular las vacaciones.');
+                }
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        $('#inicioVacaciones').prop('disabled', true);
+        $('#terminoVacaciones').prop('disabled', true);
+    });
+</script>

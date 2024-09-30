@@ -10,18 +10,21 @@ GO
 
 -- Crea el Stored Procedure nuevamente
 CREATE PROCEDURE sp_GetSubMenusByParentID
-    @ID_PadreMenu INT
+    @ID_PadreMenu INT,
+    @ID_Usuario NVARCHAR(128) -- Especificamos el tamaño del NVARCHAR
 AS
 BEGIN
     SELECT 
-        ID_Menu, 
-        Nombre_Menu, 
-        ID_PadreMenu, 
-        Fecha_Inserto, 
-        Controlador, 
-        Accion,
-        Icono -- Añadimos el campo Icono
-    FROM Menu
-    WHERE ID_PadreMenu = @ID_PadreMenu
+        M.ID_Menu, 
+        M.Nombre_Menu, 
+        M.ID_PadreMenu, 
+        M.Fecha_Inserto, 
+        M.Controlador, 
+        M.Accion,
+        M.Icono -- Añadimos el campo Icono
+    FROM Menu M
+    INNER JOIN Menu_Usuario MU ON M.ID_Menu = MU.ID_Menu
+    WHERE M.ID_PadreMenu = @ID_PadreMenu 
+    AND MU.ID_Usuario = @ID_Usuario
 END
 GO

@@ -42,8 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu_UsuarioBLL.cs" />
+    <Compile Include="AspNetUsers_BLL.cs" />
+    <Compile Include="DiasInhabiles_BLL.cs" />
+    <Compile Include="Empleados_BLL.cs" />
+    <Compile Include="Menu_Usuario_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ubicacion_BLL.cs" />
+    <Compile Include="Vacaciones_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

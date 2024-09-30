@@ -45,9 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu_UsuarioDAL.cs" />
+    <Compile Include="DiasInhabiles_DAL.cs" />
+    <Compile Include="Empleados_DAL.cs" />
+    <Compile Include="Menu_Usuario_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AspNetUsers_DAL.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="Ubicacion_DAL.cs" />
+    <Compile Include="Vacaciones_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

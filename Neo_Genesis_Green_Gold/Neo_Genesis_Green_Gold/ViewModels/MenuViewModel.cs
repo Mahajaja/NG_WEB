@@ -12,6 +12,8 @@ namespace Neo_Genesis_Green_Gold.ViewModels
         public int? ID_PadreMenu { get; set; }
         public DateTime Fecha_Inserto { get; set; }
         public string Icono { get; set; }
+        public string Controlador { get; set; }
+        public string Accion { get; set; }
         // Lista de submenús
         public List<MenuViewModel> SubMenus { get; set; }
 

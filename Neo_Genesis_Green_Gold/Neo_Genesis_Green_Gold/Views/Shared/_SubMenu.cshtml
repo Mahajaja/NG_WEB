@@ -1,0 +1,33 @@
+﻿@model List<Neo_Genesis_Green_Gold.ViewModels.MenuViewModel>
+
+<script>
+    $("#back-to-main").click(function () {
+        // Ocultar submenús
+        $(".submenu").hide();
+        // Mostrar el menú principal
+        $(".main-menu").show();
+        // Limpiar el título del menú
+        $("#menu-title").text("");
+    });
+</script>
+
+<div class="ibox-content col-sm-12 marginTop5">
+    <button class="btn btn-success" id="back-to-main">
+        <i class="fa fa-arrow-left"></i>
+    </button>
+    <span id="menu-title" class="menu-title">@ViewBag.MenuTitle</span>
+</div>
+
+@foreach (var submenu in Model)
+{
+    <div class="col-sm-4 ibox-content ibox-content-2 widget iboxShadow">
+        <a href="/@submenu.Controlador/@submenu.Accion" class="button-link">
+            <center>
+                <div class="m-b-md">
+                    <i class="fa @submenu.Icono fa-4x"></i> <!-- Icono dinámico -->
+                    <h3 class="font-bold no-margins">@submenu.Nombre_Menu</h3>
+                </div>
+            </center>
+        </a>
+    </div>
+}

@@ -23,7 +23,6 @@ VALUES
 ('311cccc6-0a27-4f15-b856-1f03df84cff3', 'SuperAdmin');
 GO
 
-SELECT * FROM USUARIO
 
 -- Crear tabla AspNetUsers
 CREATE TABLE AspNetUsers (
@@ -140,7 +139,7 @@ GO
 USE NEO_GENESIS
 GO
 
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Icono) VALUES ('Almacén', NULL, 'fa-archive');  -- Icono de archivo para Almacén
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Icono) VALUES ('Almacén', NULL, 'fa-boxes-stacked');  -- Icono de archivo para Almacén
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Icono) VALUES ('Compras', NULL, 'fa-shopping-cart');  -- Icono de carrito de compras para Compras
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Icono) VALUES ('Certificaciones', NULL, 'fa-certificate');  -- Icono de certificado para Certificaciones
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Icono) VALUES ('Comprobación de gastos', NULL, 'fa-money');  -- Icono de cheque para Comprobación de Gastos
@@ -258,8 +257,12 @@ GO
 -- Insertamos el acceso del usuario al menú de Recursos Humanos
 DECLARE @IDUSUARIO NVARCHAR(450) = (SELECT Id FROM AspNetUsers WHERE Email = 'COOR.RH@nggg.com');
 DECLARE @ID_MENU INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Recursos Humanos');
+DECLARE @ID_MENU_Solicitud_Vacaciones INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de Vacaciones');
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 VALUES (@ID_MENU, @IDUSUARIO);
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
 GO
 
 
@@ -325,9 +328,227 @@ REFERENCES AspNetUsers(id_usuario);
 
 go
 
+USE NEO_GENESIS
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetSubMenusByParentID')
+BEGIN
+    DROP PROCEDURE sp_GetSubMenusByParentID
+END
+GO
+
+-- Crea el Stored Procedure nuevamente
+CREATE PROCEDURE sp_GetSubMenusByParentID
+    @ID_PadreMenu INT,
+    @ID_Usuario NVARCHAR(128) -- Especificamos el tamaño del NVARCHAR
+AS
+BEGIN
+    SELECT 
+        M.ID_Menu, 
+        M.Nombre_Menu, 
+        M.ID_PadreMenu, 
+        M.Fecha_Inserto, 
+        M.Controlador, 
+        M.Accion,
+        M.Icono -- Añadimos el campo Icono
+    FROM Menu M
+    INNER JOIN Menu_Usuario MU ON M.ID_Menu = MU.ID_Menu
+    WHERE M.ID_PadreMenu = @ID_PadreMenu 
+    AND MU.ID_Usuario = @ID_Usuario
+END
+GO
 
 
 
+USE NEO_GENESIS
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetMenusByUserID')
+BEGIN
+    DROP PROCEDURE sp_GetMenusByUserID
+END
+GO
+
+-- Crea el Stored Procedure nuevamente
+CREATE PROCEDURE sp_GetMenusByUserID
+    @ID_Usuario NVARCHAR(450)
+AS
+BEGIN
+    -- Manejo de errores
+    BEGIN TRY
+        -- Verificamos si el usuario tiene menús asignados
+        IF EXISTS (SELECT 1 FROM Menu_Usuario WHERE ID_Usuario = @ID_Usuario)
+        BEGIN
+            -- Seleccionamos los menús a los que tiene acceso el usuario
+            SELECT M.ID_Menu, 
+                   M.Nombre_Menu, 
+                   M.ID_PadreMenu, 
+                   M.Fecha_Inserto
+            FROM Menu M
+            INNER JOIN Menu_Usuario MU ON M.ID_Menu = MU.ID_Menu
+            WHERE MU.ID_Usuario = @ID_Usuario
+            ORDER BY M.ID_PadreMenu, M.ID_Menu; -- Ordenar por menú padre y luego por ID de menú
+        END
+        ELSE
+        BEGIN
+            -- Si no tiene menús asignados, devolvemos un mensaje indicando eso
+            PRINT 'El usuario no tiene menús asignados.'
+        END
+    END TRY
+    BEGIN CATCH
+        -- En caso de error, devolvemos información relevante sobre el problema
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage;
+    END CATCH
+END
+GO
+
+
+USE NEO_GENESIS
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetMenusAndSubMenusByUserID')
+BEGIN
+    DROP PROCEDURE sp_GetMenusAndSubMenusByUserID
+END
+GO
+
+-- Crea el Stored Procedure nuevamente
+CREATE PROCEDURE sp_GetMenusAndSubMenusByUserID
+    @ID_Usuario NVARCHAR(450) -- Ajusta el tipo de datos si es necesario
+AS
+BEGIN
+    -- Manejo de errores
+    BEGIN TRY
+        -- Selección de menús y submenús asociados al usuario
+        SELECT 
+            M.ID_Menu, 
+            M.Nombre_Menu, 
+            M.ID_PadreMenu, 
+            M.Fecha_Inserto,
+            M.Controlador,   -- Incluir el controlador
+            M.Accion,        -- Incluir la acción
+            M.Icono          -- Incluir el icono si existe
+        FROM 
+            Menu M
+        INNER JOIN 
+            Menu_Usuario MU ON M.ID_Menu = MU.ID_Menu
+        WHERE 
+            MU.ID_Usuario = @ID_Usuario;
+    END TRY
+    BEGIN CATCH
+        -- Captura y manejo de errores
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage;
+    END CATCH
+END
+GO
+
+CREATE TABLE Dias_inhabiles (
+    ID_Dia_inhabil INT IDENTITY(1,1) PRIMARY KEY,  -- ID autoincremental para cada día inhábil
+    Fecha_inhabil DATE NOT NULL,                   -- Fecha que se considera inhábil
+    Descripcion NVARCHAR(255) NULL,                -- Descripción del motivo (opcional)
+    Fecha_inserto DATETIME DEFAULT GETDATE(),      -- Fecha y hora de inserción del registro
+    id_usuario INT NOT NULL                        -- ID del usuario que inserta el registro
+);
+
+USE [NEO_GENESIS]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetMenusAndSubMenusByUserID')
+BEGIN
+    DROP PROCEDURE sp_GetMenusAndSubMenusByUserID
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_CheckDiaInhabil]    Script Date: 04/10/2024 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_CheckDiaInhabil]
+    @Fecha DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si la fecha existe en la tabla Dias_inhabiles
+    IF EXISTS (SELECT 1 FROM Dias_inhabiles WHERE fecha_inhabil = @Fecha)
+        SELECT CAST(1 AS BIT) AS Existe; -- Retorna TRUE (1)
+    ELSE
+        SELECT CAST(0 AS BIT) AS Existe; -- Retorna FALSE (0)
+END
+GO
+
+
+USE [NEO_GENESIS]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_CheckDiaInhabil]    Script Date: 04/10/2024 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_CheckDiaInhabil_Rango]
+    @FechaInicio DATE,
+    @FechaFin DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si hay algún día inhábil en el rango de fechas
+    IF EXISTS (SELECT 1 FROM Dias_inhabiles WHERE fecha_inhabil BETWEEN @FechaInicio AND @FechaFin)
+        SELECT CAST(1 AS BIT) AS Existe; -- Retorna TRUE (1) si existe algún día inhábil
+    ELSE
+        SELECT CAST(0 AS BIT) AS Existe; -- Retorna FALSE (0) si no existe ningún día inhábil
+END
+GO
+
+USE [NEO_GENESIS]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_CheckDiaInhabil_Rango]    Script Date: 04/10/2024 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_CheckDiaInhabil_Rango_Weekend]
+    @FechaInicio DATE,
+    @FechaFin DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Contar los días inhábiles registrados en la tabla Dias_inhabiles
+    DECLARE @DiasInhabiles INT;
+    DECLARE @Domingos INT;
+
+    -- Contar los días inhábiles en la tabla entre el rango
+    SELECT @DiasInhabiles = COUNT(*)
+    FROM Dias_inhabiles
+    WHERE fecha_inhabil BETWEEN @FechaInicio AND @FechaFin;
+
+    -- Contar los domingos en el rango de fechas
+    SELECT @Domingos = COUNT(*)
+    FROM (
+        SELECT @FechaInicio AS Fecha
+        UNION ALL
+        SELECT DATEADD(DAY, number, @FechaInicio)
+        FROM master..spt_values
+        WHERE type = 'P' AND number <= DATEDIFF(DAY, @FechaInicio, @FechaFin)
+    ) AS RangoFechas
+    WHERE DATENAME(WEEKDAY, Fecha) = 'Sunday';
+
+    -- Retornar el total de días inhábiles + domingos
+    SELECT @DiasInhabiles + @Domingos AS DiasInhabilesTotal;
+END
+GO
 
 
 
