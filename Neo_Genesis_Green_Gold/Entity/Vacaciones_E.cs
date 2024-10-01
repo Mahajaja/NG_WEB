@@ -21,6 +21,8 @@ namespace Entity
         public int DiasRestantes { get; set; }
         public string Observaciones { get; set; }
         public int IdUsuario { get; set; }
+        public int IdEstatus { get; set; }
+
     }
 }
  
