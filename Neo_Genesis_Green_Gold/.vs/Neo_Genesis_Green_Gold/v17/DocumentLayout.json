@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\solicitud_vacacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\solicitud_vacaciones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\entity\\vacaciones_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 399,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -157,26 +157,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Create.cshtml",
               "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
               "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
               "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
               "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Vacaciones\\Create.cshtml",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-30T02:44:24.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Solicitud_VacacionesController.cs",
               "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
               "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
-              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs*",
-              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs*",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAQwI8AAAAAAAAAAAAAAA==",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_VacacionesController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAQwG0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-30T14:21:15.441Z",
               "EditorCaption": ""
