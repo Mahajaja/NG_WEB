@@ -1,4 +1,4 @@
-USE NEO_GENESIS
+USE db_aad2f8_neogenesis
 GO
 
 -- Verificar si el procedimiento almacenado ya existe y eliminarlo
