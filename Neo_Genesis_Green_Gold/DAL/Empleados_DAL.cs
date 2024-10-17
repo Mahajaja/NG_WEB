@@ -23,13 +23,13 @@ namespace DAL
             {
                 sqlHelper.OpenConnection();  // Abre la conexión a la base de datos
 
-                // Configura el comando para ejecutar la consulta
-                sqlHelper.Command.CommandText = "SELECT * FROM EMPLEADO WHERE id_empleado = @IdEmpleado";
-                sqlHelper.Command.CommandType = CommandType.Text;
+                // Configura el comando para ejecutar el stored procedure
+                sqlHelper.Command.CommandText = "SP_GetEmpleadoById";  // Nombre del stored procedure
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;  // Indicar que es un stored procedure
                 sqlHelper.Command.Parameters.Clear();
-                sqlHelper.Command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
+                sqlHelper.Command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);  // Añadir el parámetro
 
-                // Ejecuta la consulta y lee los resultados
+                // Ejecuta el stored procedure y lee los resultados
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -104,24 +104,11 @@ namespace DAL
                             TipoContrato = reader["tipo_contrato"].ToString(),
                             AsignacionEquipo = reader["asignacion_equipo"].ToString(),
                             AsignacionVehiculo = reader["asignacion_vehiculo"].ToString(),
-                            ImgEmpleado = reader["img_empleado"].ToString(),
+                            Img_empleado_nombre = reader["Img_empleado_nombre"].ToString(),  // Aquí se utiliza Img_empleado_nombre del SP
                             ImgContrato = reader["img_contrato"].ToString(),
                             IdUsuario = Convert.ToInt32(reader["id_usuario"]),
                             Vacaciones = Convert.ToInt32(reader["vacaciones"]),
-                            //AntiguedadAno = Convert.ToInt32(reader["antiguedad_año"]),
-                            //ImgActa = reader["img_acta"].ToString(),
-                            //ImgCurp = reader["img_curp"].ToString(),
-                            //ImgRFC = reader["img_rfc"].ToString(),
-                            //ImgNSS = reader["img_nss"].ToString(),
-                            //ImgCertificado = reader["img_certificado"].ToString(),
-                            //ImgCV = reader["img_cv"].ToString(),
-                            //ImgRecomendacion = reader["img_recomendacion"].ToString(),
-                            //ImgPsico = reader["img_psico"].ToString(),
-                            //ImgDomicilio = reader["img_domicilio"].ToString(),
                             FirmaDigital = reader["firma_digital"].ToString()
-                            //DescripcionSalud = reader["descripcion_salud"].ToString(),
-                            //NoResguardo = reader["no_resguardo"].ToString(),
-                            //VehiculoAsignado = reader["vehiculo_asignado"].ToString()
                         };
                     }
                 }
@@ -138,6 +125,7 @@ namespace DAL
             return empleado;
         }
 
+
         // Método para obtener la lista de empleados por idUbicacion
         public List<Empleados_E> GetEmpleadosByUbicacion(int idUbicacion)
         {
@@ -147,7 +135,10 @@ namespace DAL
                 sqlHelper.OpenConnection();  // Abre la conexión a la base de datos
 
                 // Configura el comando para ejecutar la consulta
-                sqlHelper.Command.CommandText = "SELECT * FROM EMPLEADO WHERE id_ubicacion = @IdUbicacion";
+                sqlHelper.Command.CommandText = "SELECT *," +
+                    "CASE WHEN CHARINDEX('\\', img_empleado) > 0 THEN RIGHT(img_empleado, CHARINDEX('\\', REVERSE(img_empleado)) - 1)" +
+                    " ELSE ISNULL(img_empleado, '') END AS Img_empleado_nombre" +
+                    " FROM EMPLEADO WHERE id_ubicacion = @IdUbicacion";
                 sqlHelper.Command.CommandType = CommandType.Text;
                 sqlHelper.Command.Parameters.Clear();
                 sqlHelper.Command.Parameters.AddWithValue("@IdUbicacion", idUbicacion);
@@ -163,6 +154,7 @@ namespace DAL
                             Nombre = reader["nombre"].ToString(),
                             ApellidoPaterno = reader["apellido_paterno"].ToString(),
                             ApellidoMaterno = reader["apellido_materno"].ToString(),
+                            Img_empleado_nombre = reader["Img_empleado_nombre"].ToString(),
                             // ... mapeo de las demás propiedades que consideres necesarias
                         };
 

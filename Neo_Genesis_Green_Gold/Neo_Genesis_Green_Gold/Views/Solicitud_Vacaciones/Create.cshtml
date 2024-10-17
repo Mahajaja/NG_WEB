@@ -21,7 +21,7 @@
             <div class="form-group row text-center">
                 <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
                 <div class="col-sm-12">
-                    <img src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle " />
+                    <img id="imgEmpleado" src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle" />
                 </div>
             </div>
 
@@ -41,9 +41,13 @@
                         <option value="">Seleccionar Empleado</option>
                         @foreach (var empleado in Model.List_Empleados)
                         {
-                            <option value="@empleado.IdEmpleado">@empleado.Nombre @empleado.ApellidoPaterno</option>
+                            <option value="@empleado.IdEmpleado" data-img="@empleado.Img_empleado_nombre">
+                                @empleado.Nombre @empleado.ApellidoPaterno
+                            </option>
                         }
                     </select>
+
+
                 </div>
 
                 <label class="col-sm-2 col-form-label">Dias Disponibles</label>
@@ -70,17 +74,23 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Días a tomar</label>
                 <div class="col-sm-2">
-                    <input type="text" id="diasATomar" name="DiasVacacion" class="form-control" value="0" disabled />
+                    <input type="text" id="diasATomar" class="form-control" value="0" disabled />
+                    <!-- Campo oculto para enviar el valor de Días a tomar -->
+                    <input type="hidden" id="diasATomarHidden" name="DiasVacacion" />
                 </div>
 
                 <label class="col-sm-2 col-form-label">Fecha de incorporación</label>
                 <div class="col-sm-2">
-                    <input type="date" id="fechaIncorporacion" name="FechaIncorporacion" class="form-control" disabled />
+                    <input type="date" id="fechaIncorporacion" class="form-control" disabled />
+                    <!-- Campo oculto para enviar el valor de Fecha de incorporación -->
+                    <input type="hidden" id="fechaIncorporacionHidden" name="FechaIncorporacion" />
                 </div>
 
                 <label class="col-sm-2 col-form-label">Días restantes</label>
                 <div class="col-sm-2">
-                    <input type="text" id="diasRestantes" name="DiasRestantes" class="form-control" value="0" disabled />
+                    <input type="text" id="diasRestantes" class="form-control" value="0" disabled />
+                    <!-- Campo oculto para enviar el valor de días restantes -->
+                    <input type="hidden" id="diasRestantesHidden" name="DiasRestantes" />
                 </div>
             </div>
 
@@ -98,63 +108,82 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    function loadDiasDisponibles(idEmpleado) {
+    $(document).ready(function () {
+        $('#inicioVacaciones').prop('disabled', true);
+        $('#terminoVacaciones').prop('disabled', true);
+    });
+
+   function loadDiasDisponibles(idEmpleado) {
+    var selectedOption = $('#empleadoSelect').find('option:selected');
+       var selectedOption = $('#empleadoSelect').find('option:selected');
+       var imgEmpleado = '/Content/IMG_Empleados/' + selectedOption.data('img');
+
+       if (selectedOption.data('img')) {
+           $('#imgEmpleado').attr('src', imgEmpleado);  // Usar la variable imgEmpleado directamente
+       } else {
+           $('#imgEmpleado').attr('src', '/Content/IMG/Default/user.png');  // Imagen por defecto
+       }
+
+
         if (idEmpleado) {
             $.ajax({
                 url: '@Url.Action("GetDiasDisponibles", "Solicitud_Vacaciones")',
                 type: 'GET',
                 data: { idEmpleado: idEmpleado },
                 success: function (data) {
-                    $('#diasDisponibles').val(data.diasDisponibles);
+                $('#diasDisponibles').val(data.diasDisponibles);
 
-                    if (data.diasDisponibles == 0) {
-                        $('#inicioVacaciones').prop('disabled', true);
-                        $('#terminoVacaciones').prop('disabled', true);
-                    } else {
-                        $('#inicioVacaciones').prop('disabled', false);
-                        $('#terminoVacaciones').prop('disabled', false);
-                    }
+                if (data.diasDisponibles == 0) {
+                $('#inicioVacaciones').prop('disabled', true);
+                $('#terminoVacaciones').prop('disabled', true);
+                } else {
+                $('#inicioVacaciones').prop('disabled', false);
+                $('#terminoVacaciones').prop('disabled', false);
+                }
                 },
                 error: function () {
-                    alert('Ocurrió un error al cargar los días disponibles.');
+                alert('Ocurrió un error al cargar los días disponibles.');
                 }
-            });
-        } else {
-            $('#diasDisponibles').val(0);
-            $('#inicioVacaciones').prop('disabled', true);
-            $('#terminoVacaciones').prop('disabled', true);
-        }
-    }
+                });
+                } else {
+                $('#diasDisponibles').val(0);
+                $('#inicioVacaciones').prop('disabled', true);
+                $('#terminoVacaciones').prop('disabled', true);
+                }
+                }
 
-    function calcularVacaciones() {
-        var inicio = $('#inicioVacaciones').val();
-        var termino = $('#terminoVacaciones').val();
-        var diasDisponibles = parseInt($('#diasDisponibles').val());
 
-        if (inicio && termino) {
-            $.ajax({
+
+                function calcularVacaciones() {
+                var inicio = $('#inicioVacaciones').val();
+                var termino = $('#terminoVacaciones').val();
+                var diasDisponibles = parseInt($('#diasDisponibles').val());
+
+                if (inicio && termino) {
+                $.ajax({
                 url: '@Url.Action("CalcularDiasInhabiles", "Solicitud_Vacaciones")',
                 type: 'GET',
                 data: { inicio: inicio, termino: termino },
                 success: function (data) {
-                    var diasATomar = data.diasTotales - data.diasInhabiles;
-                    $('#diasATomar').val(diasATomar);
-                    $('#diasRestantes').val(diasDisponibles - diasATomar);
+                var diasATomar = data.diasTotales - data.diasInhabiles;
+                $('#diasATomar').val(diasATomar);
+                $('#diasATomarHidden').val(diasATomar);  // Asignar a campo oculto
+                $('#diasRestantes').val(diasDisponibles - diasATomar);
+                $('#diasRestantesHidden').val($('#diasRestantes').val());  // Asignar a campo oculto
 
-                    // Calcular fecha de incorporación
-                    $('#fechaIncorporacion').val(data.fechaIncorporacion);
+                // Calcular fecha de incorporación
+                $('#fechaIncorporacion').val(data.fechaIncorporacion);
+                $('#fechaIncorporacionHidden').val(data.fechaIncorporacion);  // Asignar a campo oculto
                 },
                 error: function () {
-                    alert('Ocurrió un error al calcular las vacaciones.');
+                alert('Ocurrió un error al calcular las vacaciones.');
                 }
-            });
-        }
-    }
+                });
+                }
+                }
 
-    $(document).ready(function() {
-        $('#inicioVacaciones').prop('disabled', true);
-        $('#terminoVacaciones').prop('disabled', true);
-    });
+
 </script>

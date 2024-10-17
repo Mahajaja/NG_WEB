@@ -1,0 +1,150 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.Horas_Extra_ViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span class="menu-title">RECURSOS HUMANOS / SOLICITUD DE VACACIONES / HORAS EXTRA</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        @using (Html.BeginForm("Create", "HorasExtra", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <!-- Campo oculto para almacenar las imágenes en Base64 -->
+            <input type="hidden" id="imagen1Base64" name="Evidencia1" />
+            <input type="hidden" id="imagen2Base64" name="Evidencia2" />
+
+            <div class="form-group row text-center">
+                <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
+                <div class="col-sm-12">
+                    <img id="imgEmpleado" src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">EMPLEADO</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadDiasDisponibles(this.value)" required>
+                        <option value="">Seleccionar Empleado</option>
+                        @foreach (var empleado in Model.List_Empleados)
+                        {
+                            <option value="@empleado.IdEmpleado" data-img="@empleado.Img_empleado_nombre">
+                                @empleado.Nombre @empleado.ApellidoPaterno
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">FECHA COMPENSACION</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="inicioVacaciones" name="FechaInicio" onchange="calcularVacaciones()" required />
+                </div>
+                <label class="col-sm-2 col-form-label">HORAS EXTRA</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="horasExtraSelect" name="HorasExtra" required>
+                        <option value="">Seleccionar Horas Extra</option>
+                        <!-- Opciones del 1 al 20 -->
+                        @for (int i = 1; i <= 20; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <!-- Cuadro para subir la primera evidencia -->
+                <label class="col-sm-2 col-form-label">Subir evidencia 1</label>
+                <div class="col-sm-4">
+                    <div id="uploadBox1" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                        <span id="uploadText1">Subir evidencia 1</span>
+                        <img id="imagenPreview1" src="#" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%; display: none;">
+                    </div>
+                    <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)">
+                </div>
+
+                <!-- Cuadro para subir la segunda evidencia -->
+                <label class="col-sm-2 col-form-label">Subir evidencia 2</label>
+                <div class="col-sm-4">
+                    <div id="uploadBox2" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                        <span id="uploadText2">Subir evidencia 2</span>
+                        <img id="imagenPreview2" src="#" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%; display: none;">
+                    </div>
+                    <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 2)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="col-form-label">Motivo de compensación / Horas Extras</label>
+                    <textarea class="form-control" name="MotivoCompensacion" rows="3"></textarea>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="col-form-label">Observaciones</label>
+                    <textarea class="form-control" name="Observaciones" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+            <div class="form-group row text-center">
+                <button type="submit" class="btn btn-primary">Guardar Solicitud</button>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById('uploadBox1').addEventListener('click', function () {
+        document.getElementById('imagenInput1').click();
+    });
+
+    document.getElementById('uploadBox2').addEventListener('click', function () {
+        document.getElementById('imagenInput2').click();
+    });
+
+    function convertImageToBase64(event, number) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagenPreview' + number);
+            var text = document.getElementById('uploadText' + number);
+            var base64Field = document.getElementById('imagen' + number + 'Base64');
+
+            output.src = reader.result;
+            output.style.display = 'block';
+            text.style.display = 'none';
+            base64Field.value = reader.result; // Guardar en el campo oculto
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function loadDiasDisponibles(idEmpleado) {
+        var selectedOption = $('#empleadoSelect option:selected');
+        var imgEmpleado = '/Content/IMG_Empleados/' + selectedOption.data('img');
+
+        if (selectedOption.data('img')) {
+            $('#imgEmpleado').attr('src', imgEmpleado);
+        } else {
+            $('#imgEmpleado').attr('src', '/Content/IMG/Default/user.png');
+        }
+    }
+</script>

@@ -45,10 +45,13 @@
     <Compile Include="AspNetUsers_E.cs" />
     <Compile Include="Dias_inhabiles_E.cs" />
     <Compile Include="Empleados_E.cs" />
+    <Compile Include="Horas_Extras_E.cs" />
+    <Compile Include="Incidencia_E.cs" />
     <Compile Include="Menu_E.cs" />
     <Compile Include="Menu_Usuario_E.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Puesto_E.cs" />
+    <Compile Include="SolicitudesVacacionesViewModel.cs" />
     <Compile Include="Ubicacion_E.cs" />
     <Compile Include="Vacaciones_E.cs" />
   </ItemGroup>

@@ -22,19 +22,20 @@ namespace Neo_Genesis_Green_Gold.Controllers
         {
             try
             {
-                // Obtener la lista de todas las solicitudes de vacaciones
-                List<Vacaciones_E> listaVacaciones = _vacacionesBll.ObtenerTodasLasVacaciones();
+                // Obtener la lista de todas las solicitudes de vacaciones con el formato adecuado
+                List<SolicitudesVacacionesViewModel> listaVacaciones = _vacacionesBll.GetVacacionesConFormato();
 
                 // Pasar la lista a la vista
                 return View(listaVacaciones);
             }
             catch (Exception ex)
             {
-                // Manejo de errores (podrías registrar el error y mostrar un mensaje adecuado)
+                // Manejo de errores
                 ViewBag.ErrorMessage = "Hubo un error al cargar las solicitudes de vacaciones.";
-                return View(new List<Vacaciones_E>());
+                return View(new List<SolicitudesVacacionesViewModel>());
             }
         }
+
 
         // GET: Solicitud_Vacaciones/Details/5
         public ActionResult Details(int id)
@@ -48,15 +49,27 @@ namespace Neo_Genesis_Green_Gold.Controllers
         {
             try
             {
-                // Obtener los días de vacaciones disponibles del empleado
-                int diasDisponibles = _empleadobll.GetEmpleadoById(idEmpleado).Vacaciones;
+                // Llamar al método GetEmpleadoById para obtener los detalles del empleado
+                var empleado = _empleadobll.GetEmpleadoById(idEmpleado);
+
+                // Asegurarse de que el objeto empleado no sea null
+                if (empleado == null)
+                {
+                    return Json(new { diasDisponibles = 0, error = "Empleado no encontrado" }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Obtener los días de vacaciones disponibles
+                int diasDisponibles = empleado.Vacaciones;
+
                 return Json(new { diasDisponibles = diasDisponibles }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
+                // Manejo de errores: devolver 0 como valor de días disponibles y el mensaje de error
                 return Json(new { diasDisponibles = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
 
         [HttpGet]
         public JsonResult CalcularDiasInhabiles(DateTime inicio, DateTime termino)
@@ -90,21 +103,27 @@ namespace Neo_Genesis_Green_Gold.Controllers
         }
 
 
-        // GET: Solicitud_Vacaciones/Create
         public ActionResult Create()
         {
             int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
             int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
-            //Cuando entremos aquí debemos de tomar el id_empleado de la tabla AspNet
+
+            // Crear el ViewModel y cargar los datos necesarios
             SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
             solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
             solicitudViewModel.List_Empleados = new List<Empleados_E>();
-            solicitudViewModel.List_Empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+
+            // Cargar la lista de empleados y procesar el nombre de la imagen
+            var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+            foreach (var empleado in empleados)
+            {
+                empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
+                solicitudViewModel.List_Empleados.Add(empleado);
+            }
 
             return View(solicitudViewModel);
         }
 
-        // POST: Solicitud_Vacaciones/Create
         // POST: Solicitud_Vacaciones/Create
         [HttpPost]
         public ActionResult Create(Vacaciones_E vacacion)
@@ -118,8 +137,11 @@ namespace Neo_Genesis_Green_Gold.Controllers
                 vacacion.FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd");
                 vacacion.HoraRegistro = DateTime.Now.ToString("HH:mm:ss");
 
+                // Verificar si Observaciones es NULL y asignar una cadena vacía
+                vacacion.Observaciones = vacacion.Observaciones ?? string.Empty;
+
                 // Obtener el usuario actual
-                vacacion.IdUsuario = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
+                vacacion.IdUsuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId());
 
                 // Llamar a la capa de negocio para insertar la nueva solicitud de vacaciones
                 int resultado = _vacacionesBll.CrearVacacion(vacacion);
@@ -138,7 +160,16 @@ namespace Neo_Genesis_Green_Gold.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = "Hubo un error: " + ex.Message;
-                return View(vacacion);
+
+                int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
+                int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
+                //Cuando entremos aquí debemos de tomar el id_empleado de la tabla AspNet
+                SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
+                solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+                solicitudViewModel.List_Empleados = new List<Empleados_E>();
+                solicitudViewModel.List_Empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+
+                return View(solicitudViewModel);
             }
         }
 

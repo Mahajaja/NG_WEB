@@ -73,4 +73,6 @@ public class Vacaciones_BLL
 
         return _vacacionesDal.DeleteVacacion(idVacacion);
     }
+    public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato()
+    { return _vacacionesDal.GetVacacionesConFormato(); }
 }

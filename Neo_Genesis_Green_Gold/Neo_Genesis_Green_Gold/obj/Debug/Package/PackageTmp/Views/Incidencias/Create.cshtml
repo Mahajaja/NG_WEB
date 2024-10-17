@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span class="menu-title">RECURSOS HUMANOS / SOLICITUD DE VACACIONES / INCIDENCIAS</span>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        @using (Html.BeginForm("#", "#", FormMethod.Post))
+        {
+            <div class="form-group row text-center">
+                <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
+                <div class="col-sm-12">
+                    <img id="imgEmpleado" src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <!-- Selector de EMPLEADO -->
+                <label class="col-sm-2 col-form-label">EMPLEADO</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadDiasDisponibles(this.value)">
+                        <option value="">Seleccionar Empleado</option>
+                    </select>
+                </div>
+
+                <!-- Texto TIPO REGISTRO y Radio Buttons -->
+                <label class="col-sm-2 col-form-label">TIPO REGISTRO</label>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipoRegistro" id="permiso" value="Permiso">
+                        <label class="form-check-label" for="permiso">Permiso</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipoRegistro" id="incidencia" value="Incidencia">
+                        <label class="form-check-label" for="incidencia">Incidencia</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- Selector para TIPO SANCION -->
+                <label class="col-sm-2 col-form-label">TIPO SANCION</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="tipoSancionSelect" name="TipoSancion">
+                        <option value="">Seleccionar Tipo Sanción</option>
+                        <option value="1">TIPO 1</option>
+                        <option value="2">TIPO 2</option>
+                    </select>
+                </div>
+
+                <!-- Selector para SANCION -->
+                <label class="col-sm-2 col-form-label">SANCION</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="sancionSelect" name="Sancion">
+                        <option value="">Seleccionar Sanción</option>
+                        <option value="1">SANCION 1</option>
+                        <option value="2">SANCION 2</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <!-- ¿Se descontarán días? -->
+                <label class="col-sm-2 col-form-label">¿Se descontarán días?</label>
+                <div class="col-sm-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="descontarDias" id="descontarSi" value="Si" checked>
+                        <label class="form-check-label" for="descontarSi">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="descontarDias" id="descontarNo" value="No">
+                        <label class="form-check-label" for="descontarNo">No</label>
+                    </div>
+                </div>
+
+                <!-- ¿Cuántos días? -->
+                <label class="col-sm-2 col-form-label">¿Cuántos días?</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" name="cuantosDias" placeholder="">
+                </div>
+
+                <!-- ¿Cuenta con goce de sueldo? -->
+                <label class="col-sm-2 col-form-label">¿Cuenta con goce de sueldo?</label>
+                <div class="col-sm-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="goceSueldo" id="goceSi" value="Si">
+                        <label class="form-check-label" for="goceSi">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="goceSueldo" id="goceNo" value="No" checked>
+                        <label class="form-check-label" for="goceNo">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Descripción de la incidencia -->
+                <label class="col-sm-2 col-form-label">DESCRIPCION INCIDENCIA</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="descripcionIncidencia" rows="3"></textarea>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">FECHA INICIO</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="inicioVacaciones" name="FechaInicio" onchange="calcularVacaciones()" />
+                </div>
+                <label class="col-sm-2 col-form-label">FECHA TERMINO</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="inicioVacaciones" name="FechaInicio" onchange="calcularVacaciones()" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+            <div class="form-group row text-center">
+                <button type="submit" class="btn btn-primary">Guardar Solicitud</button>
+            </div>
+        }
+    </div>
+</div>

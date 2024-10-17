@@ -171,6 +171,8 @@
     <Compile Include="Constants\UserRoles.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasExtraController.cs" />
+    <Compile Include="Controllers\IncidenciasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Solicitud_VacacionesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +188,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Horas_Extra_ViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\SolicitudVacacionesViewModel.cs" />
   </ItemGroup>
@@ -216,6 +219,64 @@
     <Content Include="Content\IMG\LOGIN.jpg" />
     <Content Include="Content\IMG\LOGIN2.JPG" />
     <Content Include="Content\IMG\Logos\GREEN GOLD.png" />
+    <Content Include="Content\IMG_Empleados\AGUILAR  TINOCO EFREN RH-62 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\AGUILAR ALVARADO ENRIQUE RH-34 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\AGUILAR ALVEZ JESUS BULMARO RH-53 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\AMEZCUA ALVAREZ JUAN ALEJANDRO RH-90 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\AMEZQUITA CRUZ  BALTAZAR RH-61 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ARREOLA ANGEL JUAN LUIS RH-81 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ARRIAGA LEMUS JOSE LUIS RH-71 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ARROYO GARNICA JANET RH-14 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ARROYO GARNICA JANET RH-30 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\AVALOS  FERNANDEZ  VERONICA RH-42 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\BLANCO  MARTINEZ JUAN PABLO RH-51 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\BOJORQUEZ SOTO YADIRA RH-26 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\BUCIO BUCIO RODRIGO RH-79 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\CARRILLO PALEO JESUS EMANUEL RH-38 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\CASTRO CALDERON MARLEN AMAIRANI RH-48 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\CHAVEZ GUZMAN JOEL RH-13 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\CORNEJO MEDINA JESUS RH-63 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\EQUIHUA  LINARES JACQUELINE RH-45 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ESCAMILLA  CISNEROS ALBERTO RH-76 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ESPINOZA HERRERA JOHNNI ALEJANDRO RH-83 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ESTRADA  CONTRERAS ORLANDO RH-68 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ESTRADA TELLEZ JORGE ANTONIO RH-54 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ESTRADA ZAMUDIO GIOVANNI RH-7 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA BERBER SANDRA EDITH RH-88 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA BERBER SANDRA EDITH RH-89 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA MANRIQUEZ MIGUEL ANGEL RH-84 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA MANRIQUEZ RIGOBERTO RH-88 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA MENDOZA JOSE HUGO RH-70 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GOMEZ GARCIA APOLINAR RH-86 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GUADALUPE MANDUJANO.png" />
+    <Content Include="Content\IMG_Empleados\HERNANDEZ  REYES CARLOS DANIEL RH-78 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\HERNANDEZ GARCIA JESUS RH-36 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\HERNANDEZ GONZALEZ JULIO CESAR RH-77 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\HERRERA  ORNELAS ALAN RH-60 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\HERRERA  ORNELAS LUIS FERNANDO RH-58 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\LINARES REYES ERNESTO EDUARDO RH-49 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\MANDUJANO RESENDIZ JOSE GUADALUPE RH-65 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\MARTINEZ OCHOA ROBERTO RH-55 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\MOLINA ROSALES JUAN FRANCISCO RH-74 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\MURILLO  MARTINEZ ABRAHAM RH-37 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\MURILLO CAMACHO JONATHAN ABRAHAM RH-64 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\PAGUA ALVAREZ JUAN MANUEL RH-50 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\PAGUA GALVEZ ROBERTO MANUEL RH-82 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\RH-8-Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ROJAS MIRANDA JOSE MANUEL RH-73 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ROSAS VILLANUEVA LUIS ANTONIO RH-67 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\RUIZ ROSAS GONZALO RH-69 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SALAMANCA  FLORES FELIPE RH-85 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SANCHEZ  FLORES YADIRA RH-46 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SERVIN DIONICIO JOSE ARMANDO RH-91 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SERVIN TINOCO MARTIN RH-66 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SIXTOS RESENDEZ  PLUTARCO RH-87 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SOBERANO URIBE SERGIO RH-80 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\SOSA ESPINOZA JOSE AQUILES RH-72 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\TAFOLLA CORTES FRANCISCO DANIEL RH-75 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\TREJO RENTERIA ARTURO RH-31 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\VENCES RODRIGUEZ OMAR RH-52 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ZAVALA  GARCIA JOSE ALFREDO RH-35 Foto.jpg" />
     <Content Include="Content\jquery.min.js" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -288,9 +349,14 @@
     <Content Include="Views\Solicitud_Vacaciones\Index.cshtml" />
     <Content Include="Views\Solicitud_Vacaciones\Create.cshtml" />
     <Content Include="Views\Shared\_SubMenu.cshtml" />
+    <Content Include="Views\HorasExtra\Create.cshtml" />
+    <Content Include="Views\Incidencias\Create.cshtml" />
+    <Content Include="Views\Incidencias\Index.cshtml" />
+    <Content Include="Views\HorasExtra\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Evidencias\Horas_Extra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

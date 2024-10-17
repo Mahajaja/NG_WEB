@@ -93,6 +93,8 @@ namespace Entity
         public string DescripcionSalud { get; set; }
         public string NoResguardo { get; set; }
         public string VehiculoAsignado { get; set; }
+        public string Img_empleado_nombre { get; set; }
+
     }
 
 }

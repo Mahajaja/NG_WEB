@@ -30,7 +30,6 @@ namespace DAL
                 sqlHelper.Command.Parameters.AddWithValue("@FolioRegistro", vacacion.FolioRegistro);
                 sqlHelper.Command.Parameters.AddWithValue("@FechaRegistro", vacacion.FechaRegistro);
                 sqlHelper.Command.Parameters.AddWithValue("@HoraRegistro", vacacion.HoraRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@IdUbicacion", vacacion.IdUbicacion);
                 sqlHelper.Command.Parameters.AddWithValue("@IdEmpleado", vacacion.IdEmpleado);
                 sqlHelper.Command.Parameters.AddWithValue("@FechaInicio", vacacion.FechaInicio);
                 sqlHelper.Command.Parameters.AddWithValue("@FechaFin", vacacion.FechaFin);
@@ -214,5 +213,50 @@ namespace DAL
                 sqlHelper.CloseConnection(); // Cerrar la conexión
             }
         }
+
+        // Método para obtener todas las vacaciones con formato de fecha (dd/MM/yyyy)
+        public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato()
+        {
+            List<SolicitudesVacacionesViewModel> vacaciones = new List<SolicitudesVacacionesViewModel>();
+
+            try
+            {
+                sqlHelper.OpenConnection(); // Abre la conexión
+
+                // Configura el comando para ejecutar el procedimiento almacenado
+                sqlHelper.Command.CommandText = "SP_GetVacacionesConFormato";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+
+                // Ejecutar y leer los datos
+                using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        SolicitudesVacacionesViewModel vacacion = new SolicitudesVacacionesViewModel
+                        {
+                            id_vacacion = Convert.ToInt32(reader["id_vacacion"]),
+                            Nombre = reader["nombre"].ToString(),  // Asume que tienes esta propiedad en Vacaciones_E
+                            FechaInicio = reader["fecha_inicio"].ToString(),
+                            FechaIncorporacion = reader["fecha_incorporacion"].ToString(),
+                            DiasSolicitados = Convert.ToInt32(reader["dias_vacacion"]),
+                            Estatus = reader["Estatus"].ToString()  // Asume que tienes esta propiedad en Vacaciones_E
+                        };
+                        vacaciones.Add(vacacion);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las vacaciones con formato: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection(); // Cerrar la conexión
+            }
+
+            return vacaciones;
+        }
+
     }
 }

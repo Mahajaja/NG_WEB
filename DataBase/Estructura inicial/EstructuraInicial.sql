@@ -1,3 +1,11 @@
+/*
+================================================================================================================================================
+ESTRUCTURA DE BASE DE DATOS
+================================================================================================================================================
+*/
+
+
+
 --USE db_aad2f8_neogenesis
 USE NEO_GENESIS
 GO
@@ -223,9 +231,9 @@ INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES 
 -- Recursos Humanos Submenús
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Alta del Empleado', @ID_PADRE_RecursosHumanos, '', '', 'fa-user-plus');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Vacaciones', @ID_PADRE_RecursosHumanos, 'Solicitud_Vacaciones', 'Index', 'fa-calendar');
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Incidencias', @ID_PADRE_RecursosHumanos, '', '', 'fa-exclamation-circle');
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Incidencias', @ID_PADRE_RecursosHumanos, 'Incidencias', 'Index', 'fa-exclamation-circle');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Préstamos', @ID_PADRE_RecursosHumanos, '', '', 'fa-hand-holding-usd');
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Horas Extras', @ID_PADRE_RecursosHumanos, '', '', 'fa-clock');
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Horas Extras', @ID_PADRE_RecursosHumanos, 'HorasExtra', 'Index', 'fa-clock');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Asistencia', @ID_PADRE_RecursosHumanos, '', '', 'fa-calendar-check');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Asignación de Equipo', @ID_PADRE_RecursosHumanos, '', '', 'fa-laptop');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Justificante Laboral', @ID_PADRE_RecursosHumanos, '', '', 'fa-file-alt');
@@ -258,14 +266,21 @@ GO
 DECLARE @IDUSUARIO NVARCHAR(450) = (SELECT Id FROM AspNetUsers WHERE Email = 'COOR.RH@nggg.com');
 DECLARE @ID_MENU INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Recursos Humanos');
 DECLARE @ID_MENU_Solicitud_Vacaciones INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de Vacaciones');
+DECLARE @ID_MENU_Incidencias INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Incidencias');
+DECLARE @ID_MENU_Horas_Extra INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Horas Extras');
+
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 VALUES (@ID_MENU, @IDUSUARIO);
 
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Incidencias, @IDUSUARIO);
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Horas_Extra, @IDUSUARIO);
 GO
-
-
 
 /*ACCESO A TODOS LOS MENUS PARA SP*/
 DECLARE @IDUSUARIO NVARCHAR(450) = (SELECT Id FROM AspNetUsers WHERE Email = 'spadmin@nggg.com');
@@ -275,58 +290,48 @@ INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 SELECT ID_Menu, @IDUSUARIO FROM Menu;
 GO
 
---------------------------- MODIFICANDO LLAVES FORANEAS ---------------------------------
+
 USE NEO_GENESIS
 GO
---EMPLEADO
-ALTER TABLE EMPLEADO
-DROP CONSTRAINT FK__EMPLEADO__id_usu__74794A92;
-go
 
-CREATE UNIQUE INDEX UX_id_usuario_ASPNETUser ON AspNetUsers(id_usuario);
-go
-ALTER TABLE EMPLEADO
-ADD CONSTRAINT FK_id_usuario_ASPNETUser
-FOREIGN KEY (id_usuario) 
-REFERENCES AspNetUsers(id_usuario);
+-- Crear la tabla TipoEvidencias si no existe
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TipoEvidencias]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE TipoEvidencias
+    (
+        ID_TipoEvidencia INT IDENTITY(1,1) PRIMARY KEY,  -- Clave primaria autoincrementable
+        TipoEvidencia NVARCHAR(255) NOT NULL            -- Descripción del tipo de evidencia
+    );
+END;
+GO
+INSERT INTO TipoEvidencias (TipoEvidencia)
+VALUES ('HORAS_EXTRAS');
+GO
+-- Crear la tabla Evidencias con la llave foránea a TipoEvidencias
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Evidencias]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE Evidencias
+    (
+        ID_Evidencia INT IDENTITY(1,1) PRIMARY KEY,     -- Clave primaria autoincrementable
+        ID_Tabla INT NULL,								-- Relación con la tabla a la que va la evidencia
+        Evidencia_Base64 NVARCHAR(MAX) NOT NULL,        -- Evidencia en formato Base64
+        NombreArchivo NVARCHAR(255) NOT NULL,           -- Nombre del archivo asociado a la evidencia
+        id_usuario INT NOT NULL,                        -- Usuario que insertó la evidencia
+        FechaInserto DATETIME DEFAULT GETDATE(),        -- Fecha de inserción con valor por defecto la fecha actual
+        ID_TipoEvidencia INT NOT NULL,                  -- Llave foránea que referencia a TipoEvidencias
 
-go
+        -- Definir la restricción de llave foránea
+        CONSTRAINT FK_Evidencias_TipoEvidencias FOREIGN KEY (ID_TipoEvidencia)
+        REFERENCES TipoEvidencias(ID_TipoEvidencia)
+    );
+END;
+GO
 
---VACACIONES
-
-ALTER TABLE VACACIONES
-DROP CONSTRAINT FK__VACACIONE__id_us__65F62111;
-go
-
-ALTER TABLE VACACIONES
-ADD CONSTRAINT FK_id_usuario_ASPNETUser_VACACIONES
-FOREIGN KEY (id_usuario) 
-REFERENCES AspNetUsers(id_usuario);
-
-go
-
--- CATEGORIA
-ALTER TABLE CATEGORIA
-DROP CONSTRAINT FK__CATEGORIA__id_us__56B3DD81;
-go
-
-ALTER TABLE CATEGORIA
-ADD CONSTRAINT FK_id_usuario_ASPNETUser_CATEGORIA
-FOREIGN KEY (id_usuario) 
-REFERENCES AspNetUsers(id_usuario);
-go
-
--- SUBCATEGORIA
-ALTER TABLE SUBCATEGORIA
-DROP CONSTRAINT FK__SUBCATEGO__id_us__6225902D;
-go
-
-ALTER TABLE SUBCATEGORIA
-ADD CONSTRAINT FK_id_usuario_ASPNETUser_SUBCATEGORIA
-FOREIGN KEY (id_usuario) 
-REFERENCES AspNetUsers(id_usuario);
-
-go
+/*
+================================================================================================================================================
+STORED PROCEDURES
+================================================================================================================================================
+*/
 
 USE NEO_GENESIS
 GO
@@ -358,7 +363,6 @@ BEGIN
     AND MU.ID_Usuario = @ID_Usuario
 END
 GO
-
 
 
 USE NEO_GENESIS
@@ -405,6 +409,7 @@ BEGIN
     END CATCH
 END
 GO
+
 
 
 USE NEO_GENESIS
@@ -456,35 +461,49 @@ CREATE TABLE Dias_inhabiles (
     Fecha_inserto DATETIME DEFAULT GETDATE(),      -- Fecha y hora de inserción del registro
     id_usuario INT NOT NULL                        -- ID del usuario que inserta el registro
 );
-
-USE [NEO_GENESIS]
+GO
+USE NEO_GENESIS
 GO
 
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetMenusAndSubMenusByUserID')
 BEGIN
     DROP PROCEDURE sp_GetMenusAndSubMenusByUserID
 END
 GO
 
-/****** Object:  StoredProcedure [dbo].[SP_CheckDiaInhabil]    Script Date: 04/10/2024 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROCEDURE [dbo].[SP_CheckDiaInhabil]
-    @Fecha DATE
+-- Crea el Stored Procedure nuevamente
+CREATE PROCEDURE sp_GetMenusAndSubMenusByUserID
+    @ID_Usuario NVARCHAR(450) -- Ajusta el tipo de datos si es necesario
 AS
 BEGIN
-    SET NOCOUNT ON;
-
-    -- Verificar si la fecha existe en la tabla Dias_inhabiles
-    IF EXISTS (SELECT 1 FROM Dias_inhabiles WHERE fecha_inhabil = @Fecha)
-        SELECT CAST(1 AS BIT) AS Existe; -- Retorna TRUE (1)
-    ELSE
-        SELECT CAST(0 AS BIT) AS Existe; -- Retorna FALSE (0)
+    -- Manejo de errores
+    BEGIN TRY
+        -- Selección de menús y submenús asociados al usuario
+        SELECT 
+            M.ID_Menu, 
+            M.Nombre_Menu, 
+            M.ID_PadreMenu, 
+            M.Fecha_Inserto,
+            M.Controlador,   -- Incluir el controlador
+            M.Accion,        -- Incluir la acción
+            M.Icono          -- Incluir el icono si existe
+        FROM 
+            Menu M
+        INNER JOIN 
+            Menu_Usuario MU ON M.ID_Menu = MU.ID_Menu
+        WHERE 
+            MU.ID_Usuario = @ID_Usuario;
+    END TRY
+    BEGIN CATCH
+        -- Captura y manejo de errores
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage;
+    END CATCH
 END
 GO
+
 
 
 USE [NEO_GENESIS]
@@ -550,6 +569,107 @@ BEGIN
 END
 GO
 
+USE NEO_GENESIS
+GO
+
+-- Verificar si el procedimiento almacenado ya existe y eliminarlo
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'SP_GetEmpleadoById')
+BEGIN
+    DROP PROCEDURE SP_GetEmpleadoById
+END
+GO
+
+-- Crear el nuevo procedimiento almacenado
+CREATE PROCEDURE SP_GetEmpleadoById
+    @IdEmpleado INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Seleccionar los datos del empleado por su ID
+    SELECT 
+        ISNULL(id_empleado, 0) AS id_empleado,
+        ISNULL(folio_registro, '') AS folio_registro,
+        ISNULL(hora_registro, '') AS hora_registro,
+        ISNULL(fecha_registro, '') AS fecha_registro,
+        ISNULL(empleado, 0) AS empleado,
+        ISNULL(fecha_ingreso, '') AS fecha_ingreso,
+        ISNULL(apellido_paterno, '') AS apellido_paterno,
+        ISNULL(apellido_materno, '') AS apellido_materno,
+        ISNULL(nombre, '') AS nombre,
+        ISNULL(fecha_nacimiento, '') AS fecha_nacimiento,
+        ISNULL(genero, '') AS genero,
+        ISNULL(domicilio, '') AS domicilio,
+        ISNULL(colonia, '') AS colonia,
+        ISNULL(cp, '') AS cp,
+        ISNULL(municipio, '') AS municipio,
+        ISNULL(peso, '') AS peso,
+        ISNULL(estatura, '') AS estatura,
+        ISNULL(lugar_nacimiento, '') AS lugar_nacimiento,
+        ISNULL(nacionalidad, '') AS nacionalidad,
+        ISNULL(telefono, '') AS telefono,
+        ISNULL(celular, '') AS celular,
+        ISNULL(correo, '') AS correo,
+        ISNULL(estado_civil, '') AS estado_civil,
+        ISNULL(curp, '') AS curp,
+        ISNULL(rfc, '') AS rfc,
+        ISNULL(seguro, '') AS seguro,
+        ISNULL(nss, '') AS nss,
+        ISNULL(licencia, '') AS licencia,
+        ISNULL(clase, '') AS clase,
+        ISNULL(no_licencia, '') AS no_licencia,
+        ISNULL(vigencia, '') AS vigencia,
+        ISNULL(afore, '') AS afore,
+        ISNULL(discapacidad, '') AS discapacidad,
+        ISNULL(descripcion_discap, '') AS descripcion_discap,
+        ISNULL(estado_salud, '') AS estado_salud,
+        ISNULL(nivel_estudios, '') AS nivel_estudios,
+        ISNULL(carrera, '') AS carrera,
+        ISNULL(titulacion, '') AS titulacion,
+        ISNULL(cedula, '') AS cedula,
+        ISNULL(nombre_contacto, '') AS nombre_contacto,
+        ISNULL(parentesco_contacto, '') AS parentesco_contacto,
+        ISNULL(celular_contacto, '') AS celular_contacto,
+        ISNULL(domicilio_contacto, '') AS domicilio_contacto,
+        ISNULL(cp_contacto, '') AS cp_contacto,
+        ISNULL(nombre_contacto2, '') AS nombre_contacto2,
+        ISNULL(parentesco_contacto2, '') AS parentesco_contacto2,
+        ISNULL(celular_contacto2, '') AS celular_contacto2,
+        ISNULL(domicilio_contacto2, '') AS domicilio_contacto2,
+        ISNULL(cp_contacto2, '') AS cp_contacto2,
+        ISNULL(nombre_contacto3, '') AS nombre_contacto3,
+        ISNULL(parentesco_contacto3, '') AS parentesco_contacto3,
+        ISNULL(celular_contacto3, '') AS celular_contacto3,
+        ISNULL(domicilio_contacto3, '') AS domicilio_contacto3,
+        ISNULL(cp_contacto3, '') AS cp_contacto3,
+        ISNULL(id_puesto, 0) AS id_puesto,
+        ISNULL(id_departamento, 0) AS id_departamento,
+        ISNULL(id_ubicacion, 0) AS id_ubicacion,
+        ISNULL(id_empresa, 0) AS id_empresa,
+        ISNULL(horario_entrada, '') AS horario_entrada,
+        ISNULL(horario_salida, '') AS horario_salida,
+        ISNULL(tipo_pago, '') AS tipo_pago,
+        ISNULL(tipo_periodo, '') AS tipo_periodo,
+        ISNULL(sueldo_neto, '') AS sueldo_neto,
+        ISNULL(salario, '') AS salario,
+        ISNULL(tipo_contrato, '') AS tipo_contrato,
+        ISNULL(asignacion_equipo, '') AS asignacion_equipo,
+        ISNULL(asignacion_vehiculo, '') AS asignacion_vehiculo,
+        ISNULL(id_usuario, 0) AS id_usuario,
+        ISNULL(vacaciones, 0) AS vacaciones,
+        ISNULL(firma_digital, '') AS firma_digital,
+        ISNULL(img_contrato, '') AS img_contrato,
+        CASE 
+            WHEN CHARINDEX('\', img_empleado) > 0 
+            THEN RIGHT(img_empleado, CHARINDEX('\', REVERSE(img_empleado)) - 1)
+            ELSE ISNULL(img_empleado, '') 
+        END AS Img_empleado_nombre
+    FROM EMPLEADO
+    WHERE id_empleado = @IdEmpleado;
+END
+GO
+
+
 
 CREATE TABLE TipoEstatus (
     ID_TipoEstatus INT IDENTITY(1,1) PRIMARY KEY,  -- ID autoincremental para el Tipo de Estatus
@@ -561,6 +681,11 @@ CREATE TABLE TipoEstatus (
 INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
 VALUES ('Solicitud_Vacaciones', 1, GETDATE());
 
+INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
+VALUES ('Horas_Extra', 1, GETDATE());
+
+INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
+VALUES ('Incidencias', 1, GETDATE());
 
 CREATE TABLE Estatus (
     ID_Estatus INT IDENTITY(1,1) PRIMARY KEY,          -- ID autoincremental para cada estatus
@@ -606,6 +731,73 @@ VALUES (
     GETDATE()
 );
 
+
+-- Insertar "EN REVISION" - HORAS EXTRA
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Horas_Extra'), 
+    'EN REVISION', 
+    '#fbbc04',   -- Aquí puedes agregar el color de fondo
+    '#000000',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "ACEPTADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Horas_Extra'), 
+    'ACEPTADA', 
+    '#34a853',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "RECHAZADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Horas_Extra'), 
+    'RECHAZADA', 
+    '#980000',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "EN REVISION" - INCIDENCIAS
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Incidencias'), 
+    'EN REVISION', 
+    '#fbbc04',   -- Aquí puedes agregar el color de fondo
+    '#000000',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "ACEPTADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Incidencias'), 
+    'ACEPTADA', 
+    '#34a853',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "RECHAZADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Incidencias'), 
+    'RECHAZADA', 
+    '#980000',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+GO
 -- Añadir la columna ID_Estatus a la tabla VACACIONES
 ALTER TABLE VACACIONES
 ADD ID_Estatus INT;
@@ -613,12 +805,264 @@ ADD ID_Estatus INT;
 -- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
 ALTER TABLE VACACIONES
 ADD CONSTRAINT FK_Vacaciones_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
+GO
 
-SELECT * FROM VACACIONES
---SELECT * FROM AspNetUsers
---SELECT * FROM USUARIO
---UPDATE AspNetUsers
---SET UserName = 'spadmin'
---WHERE Id = 'd36b7f68-6eff-412e-a52c-593ed30c6d44'
+-- Añadir la columna ID_Estatus a la tabla HORAS_EXTRA
+ALTER TABLE HORAS_EXTRAS
+ADD ID_Estatus INT;
 
-sp_helptext SP_InsertVacacion
+-- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
+ALTER TABLE HORAS_EXTRAS
+ADD CONSTRAINT FK_HorasExtras_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
+GO
+
+ALTER TABLE HORAS_EXTRAS
+DROP COLUMN img_hraExtra;
+GO
+
+
+-- Añadir la columna ID_Estatus a la tabla Incidencias
+ALTER TABLE INCIDENCIA
+ADD ID_Estatus INT;
+
+-- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
+ALTER TABLE HORAS_EXTRAS
+ADD CONSTRAINT FK_Incidencia_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
+GO
+
+USE NEO_GENESIS
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'SP_InsertVacacion')
+BEGIN
+    DROP PROCEDURE SP_InsertVacacion
+END
+GO
+
+CREATE PROCEDURE SP_InsertVacacion
+    @FolioRegistro CHAR(20),
+    @FechaRegistro CHAR(10),
+    @HoraRegistro CHAR(8),
+    @IdEmpleado INT,
+    @FechaInicio CHAR(10),
+    @FechaFin CHAR(10),
+    @DiasVacacion INT,
+    @FechaIncorporacion CHAR(10),
+    @DiasRestantes INT,
+    @Observaciones NVARCHAR(MAX),
+    @IdUsuario INT
+AS
+BEGIN
+	DECLARE @IDEstatus INT = (SELECT ID_Estatus FROM Estatus E
+							INNER JOIN TipoEstatus TE ON E.ID_TipoEstatus = TE.ID_TipoEstatus
+							WHERE TE.TipoEstatus = 'Solicitud_Vacaciones' AND E.Estatus = 'EN REVISION');
+	DECLARE @IDUbicacion_empl INT = (SELECT id_ubicacion FROM EMPLEADO WHERE id_empleado = @IdEmpleado);
+    INSERT INTO VACACIONES(folio_registro, fecha_registro, hora_registro, id_ubicacion, id_empleado, fecha_inicio, fecha_fin, dias_vacacion, fecha_incorporacion, 
+							dias_restantes, observaciones, id_usuario, ID_Estatus)
+    VALUES (@FolioRegistro, @FechaRegistro, @HoraRegistro, @IDUbicacion_empl, @IdEmpleado, @FechaInicio, @FechaFin, @DiasVacacion, @FechaIncorporacion, 
+			@DiasRestantes, @Observaciones, @IdUsuario, @IDEstatus);
+    
+    -- Return the last inserted ID (optional)
+    SELECT SCOPE_IDENTITY();
+END
+GO
+
+USE NEO_GENESIS
+GO
+
+-- Borrar el procedimiento almacenado si ya existe
+IF OBJECT_ID('SP_ObtenerHorasExtras', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE SP_ObtenerHorasExtras;
+END
+GO
+
+-- Crear el nuevo procedimiento almacenado
+CREATE PROCEDURE SP_ObtenerHorasExtras
+AS
+BEGIN
+    -- Ejecutar la consulta deseada
+    SELECT * 
+    FROM HORAS_EXTRAS HE
+    INNER JOIN EMPLEADO E ON HE.id_empleado = E.id_empleado;
+END
+GO
+
+
+USE NEO_GENESIS
+GO
+
+-- Borrar el procedimiento almacenado si ya existe
+IF OBJECT_ID('SP_ObtenerIncidencias', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE SP_ObtenerIncidencias;
+END
+GO
+
+-- Crear el nuevo procedimiento almacenado
+CREATE PROCEDURE SP_ObtenerIncidencias
+AS
+BEGIN
+    -- Consulta para obtener todas las incidencias junto con los datos del empleado
+    SELECT * 
+    FROM INCIDENCIA I
+    INNER JOIN EMPLEADO E ON I.id_empleado = E.id_empleado;
+END
+GO
+
+USE NEO_GENESIS
+GO
+
+IF OBJECT_ID('SP_Insertar_HorasExtra', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE SP_Insertar_HorasExtra;
+END
+GO
+
+CREATE PROCEDURE SP_Insertar_HorasExtra
+    @IDEMPLEADO INT,
+    @IDRESPONSABLE INT,
+    @FechaCompensacion DATE,
+    @HorasPorPagar INT,
+    @MotivoHorasExtra NVARCHAR(MAX) NULL,
+    @Observaciones NVARCHAR(MAX) NULL,
+    @IDUSUARIO INT,
+    @Evidencia1 NVARCHAR(MAX) NULL,     -- Primera imagen en Base64
+    @Evidencia2 NVARCHAR(MAX) NULL      -- Segunda imagen en Base64
+AS
+BEGIN
+    DECLARE @CostoHoraExtra FLOAT;
+    DECLARE @CostoHoraDoble FLOAT;
+    DECLARE @CostoHoraTriple FLOAT;
+    DECLARE @HoraTriple INT = 0;
+    DECLARE @TotalHoraDoble FLOAT;
+    DECLARE @TotalHoraTriple FLOAT = 0;
+    DECLARE @TotalAPagar FLOAT;
+    DECLARE @FolioRegistro NVARCHAR(50);
+    DECLARE @IDHoraExtra INT;
+    DECLARE @FechaActual DATE = GETDATE();
+    DECLARE @HoraActual TIME = CONVERT(TIME, GETDATE());
+    DECLARE @ID_Estatus INT;
+
+    -- Obtener el siguiente ID_HoraExtra
+    SELECT @IDHoraExtra = ISNULL(MAX(id_horaExtra), 0) + 1 FROM HORAS_EXTRAS;
+
+    -- Generar el folio
+    SET @FolioRegistro = 'HE_' + CAST(@IDHoraExtra AS NVARCHAR(10));
+
+    -- Obtener el costo por hora del empleado
+    SELECT @CostoHoraExtra = salario FROM EMPLEADO WHERE id_empleado = @IDEMPLEADO;
+
+    -- Calcular el costo por hora doble
+    IF @HorasPorPagar <= 9
+    BEGIN
+        SET @CostoHoraDoble = @CostoHoraExtra * 2;
+        SET @TotalHoraDoble = @CostoHoraDoble * @HorasPorPagar;
+        SET @TotalHoraTriple = 0;
+    END
+    ELSE
+    BEGIN
+        SET @CostoHoraDoble = @CostoHoraExtra * 2;
+        SET @TotalHoraDoble = @CostoHoraDoble * 9;
+
+        -- Calcular las horas triples
+        SET @HoraTriple = @HorasPorPagar - 9;
+        SET @CostoHoraTriple = @CostoHoraExtra * 3;
+        SET @TotalHoraTriple = @CostoHoraTriple * @HoraTriple;
+    END
+
+    -- Calcular el total a pagar
+    SET @TotalAPagar = @TotalHoraDoble + @TotalHoraTriple;
+
+    -- Obtener el ID_Estatus correspondiente
+    SELECT @ID_Estatus = E.ID_Estatus
+    FROM Estatus E
+    INNER JOIN TipoEstatus TE ON E.ID_TipoEstatus = TE.ID_TipoEstatus
+    WHERE TE.TipoEstatus = 'Horas_Extra' AND E.Estatus = 'EN REVISION';
+
+    -- Insertar en la tabla HORAS_EXTRAS
+    INSERT INTO HORAS_EXTRAS (
+        folio_registro,
+        fecha_registro,
+        hora_registro,
+        id_empleado,
+        id_responsable,
+        fecha_compensacion,
+        horas_porPagar,
+        costo_horaExtra,
+        costo_horaDoble,
+        costo_horaTriple,
+        hora_triple,
+        total_horaDoble,
+        total_horaTriple,
+        total_aPagar,
+        motivo_hraExtra,
+        observaciones,
+        id_usuario,
+        ID_Estatus
+    )
+    VALUES (
+        @FolioRegistro,
+        @FechaActual,
+        @HoraActual,
+        @IDEMPLEADO,
+        @IDRESPONSABLE,
+        @FechaCompensacion,
+        @HorasPorPagar,
+        @CostoHoraExtra,
+        @CostoHoraDoble,
+        @CostoHoraTriple,
+        @HoraTriple,
+        @TotalHoraDoble,
+        @TotalHoraTriple,
+        @TotalAPagar,
+        @MotivoHorasExtra,
+        @Observaciones,
+        @IDUSUARIO,
+        @ID_Estatus
+    );
+
+    -- Insertar las evidencias en la tabla Evidencias solo si no son NULL
+	
+    -- Evidencia 1
+    IF @Evidencia1 IS NOT NULL
+    BEGIN
+        INSERT INTO Evidencias (ID_Tabla, Evidencia_Base64, ID_TipoEvidencia, NombreArchivo, id_usuario, FechaInserto)
+        VALUES (
+            @IDHoraExtra,
+            @Evidencia1,
+            (SELECT ID_TipoEvidencia FROM TIPOEVIDENCIAS WHERE TipoEvidencia = 'HORAS_EXTRAS'),
+            (
+                SELECT CAST(GETDATE() AS NVARCHAR(20)) + 
+                '_' + TipoEvidencia + '_'  + '.jpeg'
+                FROM TipoEvidencias 
+                WHERE TipoEvidencia = 'HORAS_EXTRAS'
+            ),
+            @IDUSUARIO,
+            GETDATE()
+        );
+    END
+
+    -- Evidencia 2
+    IF @Evidencia2 IS NOT NULL
+    BEGIN
+        INSERT INTO Evidencias (ID_Tabla, Evidencia_Base64, ID_TipoEvidencia, NombreArchivo, id_usuario, FechaInserto)
+        VALUES (
+            @IDHoraExtra,
+            @Evidencia2,
+            (SELECT ID_TipoEvidencia FROM TIPOEVIDENCIAS WHERE TipoEvidencia = 'HORAS_EXTRAS'),
+            (
+                SELECT CAST(GETDATE() AS NVARCHAR(20)) + 
+                '_' + TipoEvidencia + '_' + '.jpeg'
+                FROM TipoEvidencias
+                WHERE TipoEvidencia = 'HORAS_EXTRAS'
+            ),
+            @IDUSUARIO,
+            GETDATE()
+        );
+    END
+END
+GO
+SELECT * FROM HORAS_EXTRAS
+

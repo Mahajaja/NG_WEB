@@ -15,5 +15,10 @@ namespace BLL
         {
             return _usuariosDal.GetIdEmpleadoByUserId(id);
         }
+
+        public int GetIdUsuarioByUserId(string id)
+        {
+            return _usuariosDal.GetIdUsuarioByUserId(id);
+        }
     }
 }

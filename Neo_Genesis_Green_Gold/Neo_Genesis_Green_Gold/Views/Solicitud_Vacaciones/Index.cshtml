@@ -1,4 +1,4 @@
-﻿@model List<Entity.Vacaciones_E> 
+﻿@model List<Entity.SolicitudesVacacionesViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -23,12 +23,11 @@
         <thead>
             <tr>
                 <th><CENTER>#</CENTER></th>
-                <th>UBICACION</th>
                 <th>EMPLEADO</th>
                 <th>INICIO</th>
-                <th>FIN</th>
-                <th>DIAS</th>
                 <th>INCORPORACION</th>
+                <th>DIAS SOLICITADOS</th>
+                <th>ESTATUS</th>
                 <th>ACCIONES</th>
             </tr>
         </thead>
@@ -40,17 +39,16 @@
                 {
                     <tr>
                         <td><center>@index</center></td>
-                        <td>@vacacion.IdUbicacion</td>
-                        <td>@vacacion.IdEmpleado</td> <!-- Podrías sustituir por el nombre del empleado -->
+                        <td>@vacacion.Nombre</td> <!-- Aquí se muestra el nombre del empleado -->
                         <td>@vacacion.FechaInicio</td>
-                        <td>@vacacion.FechaFin</td>
-                        <td>@vacacion.DiasVacacion</td>
                         <td>@vacacion.FechaIncorporacion</td>
+                        <td>@vacacion.DiasSolicitados</td>
+                        <td>@vacacion.Estatus</td>
 
                         <td class="">
                             <center>
-                                <a href="@Url.Action("Edit", "Solicitud_Vacaciones", new { id = vacacion.IdVacacion })" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                                <a href="@Url.Action("Delete", "Solicitud_Vacaciones", new { id = vacacion.IdVacacion })" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="@Url.Action("Edit", "Solicitud_Vacaciones", new { id = vacacion.id_vacacion })" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                                <a href="@Url.Action("Delete", "Solicitud_Vacaciones", new { id = vacacion.id_vacacion })" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                             </center>
                         </td>
                     </tr>
@@ -60,7 +58,7 @@
             else
             {
                 <tr>
-                    <td colspan="8"><center>No hay solicitudes de vacaciones registradas.</center></td>
+                    <td colspan="7"><center>No hay solicitudes de vacaciones registradas.</center></td>
                 </tr>
             }
         </tbody>

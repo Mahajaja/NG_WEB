@@ -48,5 +48,42 @@ namespace DAL
                 sqlHelper.CloseConnection();  // Asegúrate de cerrar la conexión a la base de datos
             }
         }
+
+        public int GetIdUsuarioByUserId(string id)
+        {
+            try
+            {
+                sqlHelper.OpenConnection();  // Abre la conexión a la base de datos
+
+                // Configura el comando para ejecutar la consulta o procedimiento almacenado
+                sqlHelper.Command.CommandText = "SELECT id_usuario FROM AspNetUsers WHERE Id = @Id";
+                sqlHelper.Command.CommandType = CommandType.Text;
+                sqlHelper.Command.Parameters.Clear();
+                sqlHelper.Command.Parameters.AddWithValue("@Id", id);
+
+                // Ejecuta el comando y obtiene el resultado
+                object result = sqlHelper.Command.ExecuteScalar();
+
+                // Verifica si el resultado es nulo
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);  // Retorna el id_usuario como int
+                }
+                else
+                {
+                    return 0;  // Si no hay resultado, retorna 0 o puedes manejarlo de otra manera si es necesario
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el id_usuario: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection();  // Asegúrate de cerrar la conexión a la base de datos
+            }
+        }
+
+
     }
 }

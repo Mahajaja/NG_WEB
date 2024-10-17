@@ -23,8 +23,11 @@ CREATE PROCEDURE SP_InsertVacacion
     @IdUsuario INT
 AS
 BEGIN
-    INSERT INTO VACACIONES(folio_registro, fecha_registro, hora_registro, id_ubicacion, id_empleado, fecha_inicio, fecha_fin, dias_vacacion, fecha_incorporacion, dias_restantes, observaciones, id_usuario)
-    VALUES (@FolioRegistro, @FechaRegistro, @HoraRegistro, @IdUbicacion, @IdEmpleado, @FechaInicio, @FechaFin, @DiasVacacion, @FechaIncorporacion, @DiasRestantes, @Observaciones, @IdUsuario);
+	DECLARE @IDEstatus INT = (SELECT ID_Estatus FROM Estatus E
+							INNER JOIN TipoEstatus TE ON E.ID_TipoEstatus = TE.ID_TipoEstatus
+							WHERE TE.TipoEstatus = 'Solicitud_Vacaciones' AND E.Estatus = 'EN REVISION')
+    INSERT INTO VACACIONES(folio_registro, fecha_registro, hora_registro, id_ubicacion, id_empleado, fecha_inicio, fecha_fin, dias_vacacion, fecha_incorporacion, dias_restantes, observaciones, id_usuario, ID_Estatus)
+    VALUES (@FolioRegistro, @FechaRegistro, @HoraRegistro, @IdUbicacion, @IdEmpleado, @FechaInicio, @FechaFin, @DiasVacacion, @FechaIncorporacion, @DiasRestantes, @Observaciones, @IdUsuario, @IDEstatus);
     
     -- Return the last inserted ID (optional)
     SELECT SCOPE_IDENTITY();

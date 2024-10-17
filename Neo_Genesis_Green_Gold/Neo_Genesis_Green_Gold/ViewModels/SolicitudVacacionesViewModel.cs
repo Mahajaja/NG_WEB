@@ -8,7 +8,7 @@ namespace Neo_Genesis_Green_Gold.ViewModels
 {
     public class SolicitudVacacionesViewModel
     {
-        public string LinkFoto { get; set; }
+        public string Img_empleado_nombre { get; set; }
         public int DiasDisponibles { get; set; }
         public string Ubicacion { get; set; }
         public int DiasTomar {  get; set; }
