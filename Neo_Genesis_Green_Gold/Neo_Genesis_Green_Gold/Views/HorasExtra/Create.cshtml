@@ -50,13 +50,12 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">FECHA COMPENSACION</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control" id="inicioVacaciones" name="FechaInicio" onchange="calcularVacaciones()" required />
+                    <input type="date" class="form-control" id="inicioVacaciones" name="FechaInicio" required />
                 </div>
                 <label class="col-sm-2 col-form-label">HORAS EXTRA</label>
                 <div class="col-sm-2">
                     <select class="form-control" id="horasExtraSelect" name="HorasExtra" required>
                         <option value="">Seleccionar Horas Extra</option>
-                        <!-- Opciones del 1 al 20 -->
                         @for (int i = 1; i <= 20; i++)
                         {
                             <option value="@i">@i</option>
@@ -74,27 +73,31 @@
                 <label class="col-sm-2 col-form-label">Subir evidencia 1</label>
                 <div class="col-sm-4">
                     <div id="uploadBox1" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
-                        <span id="uploadText1">Subir evidencia 1</span>
+                        <span id="uploadText1">Clic para subir evidencia 1</span>
                         <img id="imagenPreview1" src="#" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
-                    <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)">
+                    <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)" >
+                   
+                    <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn1" onclick="deleteEvidence(1)" style="display:none;">Borrar Evidencia 1</button>
                 </div>
 
                 <!-- Cuadro para subir la segunda evidencia -->
                 <label class="col-sm-2 col-form-label">Subir evidencia 2</label>
                 <div class="col-sm-4">
                     <div id="uploadBox2" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
-                        <span id="uploadText2">Subir evidencia 2</span>
+                        <span id="uploadText2">Clic para subir evidencia 2</span>
                         <img id="imagenPreview2" src="#" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
                     <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 2)">
+                    
+                    <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn2" onclick="deleteEvidence(2)" style="display:none;">Borrar Evidencia 2</button>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6">
                     <label class="col-form-label">Motivo de compensación / Horas Extras</label>
-                    <textarea class="form-control" name="MotivoCompensacion" rows="3"></textarea>
+                    <textarea class="form-control" name="MotivoCompensacion" rows="3" required></textarea>
                 </div>
 
                 <div class="col-sm-6">
@@ -107,13 +110,32 @@
                 <hr />
             </div>
             <div class="form-group row text-center">
-                <button type="submit" class="btn btn-primary">Guardar Solicitud</button>
+                <button type="submit" class="btn btn-success">Guardar Solicitud</button>
             </div>
         }
     </div>
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        $("#empleadoSelect").select2();
+
+        $('select').select2({
+            language: {
+
+                noResults: function () {
+
+                    return "No hay resultados";
+                },
+                searching: function () {
+
+                    return "Buscando..";
+                }
+            }
+        });
+    });
+
     document.getElementById('uploadBox1').addEventListener('click', function () {
         document.getElementById('imagenInput1').click();
     });
@@ -122,20 +144,50 @@
         document.getElementById('imagenInput2').click();
     });
 
+    // Convertir imagen a Base64 y actualizar vista previa
     function convertImageToBase64(event, number) {
         var reader = new FileReader();
         reader.onload = function () {
             var output = document.getElementById('imagenPreview' + number);
             var text = document.getElementById('uploadText' + number);
             var base64Field = document.getElementById('imagen' + number + 'Base64');
+            var deleteBtn = document.getElementById('borrarEvidenciaBtn' + number);
 
             output.src = reader.result;
             output.style.display = 'block';
             text.style.display = 'none';
             base64Field.value = reader.result; // Guardar en el campo oculto
+            deleteBtn.style.display = "inline-block"; // Mostrar botón para eliminar
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    // Función para eliminar la evidencia y reiniciar la vista previa
+    function deleteEvidence(number) {
+        var output = document.getElementById('imagenPreview' + number);
+        var text = document.getElementById('uploadText' + number);
+        var base64Field = document.getElementById('imagen' + number + 'Base64');
+        var deleteBtn = document.getElementById('borrarEvidenciaBtn' + number);
+
+        output.src = "#";
+        output.style.display = 'none';
+        text.style.display = 'inline-block';
+        base64Field.value = ""; // Limpiar el campo oculto
+        deleteBtn.style.display = "none"; // Ocultar botón de borrar
+    }
+
+    // Validación en la función de envío del formulario
+    $('form').on('submit', function (e) {
+        if (!$('#imagen1Base64').val()) {
+            e.preventDefault(); // Evita el envío del formulario
+            $('#uploadBox1').css('border', '2px solid red'); // Resalta en rojo
+            alert("Por favor, sube la primera evidencia antes de guardar."); // Muestra un mensaje de alerta
+            return false;
+        } else {
+            $('#uploadBox1').css('border', '2px dashed #ccc'); // Restablece borde si está lleno
+        }
+    });
+
 
     function loadDiasDisponibles(idEmpleado) {
         var selectedOption = $('#empleadoSelect option:selected');
@@ -147,4 +199,7 @@
             $('#imgEmpleado').attr('src', '/Content/IMG/Default/user.png');
         }
     }
+
+
+
 </script>

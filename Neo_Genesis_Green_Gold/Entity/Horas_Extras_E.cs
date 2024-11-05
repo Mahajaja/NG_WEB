@@ -28,6 +28,7 @@ namespace Entity
         public string img_hraExtra { get; set; }
         public int id_usuario { get; set; }
         public int ID_Estatus { get; set; }
+        public string Estatus { get; set; }
         public virtual Empleados_E empleado { get; set; }
     }
 

@@ -13,7 +13,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
     [Authorize]
     public class HorasExtraController : Controller
     {
-        Horas_Extra_BLL _horasExtra = new Horas_Extra_BLL();
+        private Horas_Extra_BLL _horasExtra = new Horas_Extra_BLL();
         private Empleados_BLL _empleadobll = new Empleados_BLL();
         private AspNetUsers_BLL _aspNetUser = new AspNetUsers_BLL();
         private Ubicacion_BLL _ubicacionBll = new Ubicacion_BLL();

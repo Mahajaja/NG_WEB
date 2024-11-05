@@ -102,7 +102,7 @@
             </div>
 
             <div class="form-group row text-center">
-                <button type="submit" class="btn btn-primary">Guardar Solicitud</button>
+                <button type="submit" class="btn btn-success">Guardar Solicitud</button>
             </div>
         }
     </div>
@@ -111,9 +111,25 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
     $(document).ready(function () {
         $('#inicioVacaciones').prop('disabled', true);
         $('#terminoVacaciones').prop('disabled', true);
+        $("#empleadoSelect").select2();
+
+        $('select').select2({
+            language: {
+
+                noResults: function () {
+
+                    return "No hay resultados";
+                },
+                searching: function () {
+
+                    return "Buscando..";
+                }
+            }
+        });
     });
 
    function loadDiasDisponibles(idEmpleado) {

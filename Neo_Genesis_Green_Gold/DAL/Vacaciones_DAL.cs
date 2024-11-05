@@ -240,7 +240,8 @@ namespace DAL
                             FechaInicio = reader["fecha_inicio"].ToString(),
                             FechaIncorporacion = reader["fecha_incorporacion"].ToString(),
                             DiasSolicitados = Convert.ToInt32(reader["dias_vacacion"]),
-                            Estatus = reader["Estatus"].ToString()  // Asume que tienes esta propiedad en Vacaciones_E
+                            Estatus = reader["Estatus"].ToString(),  // Asume que tienes esta propiedad en Vacaciones_E
+                            Observaciones = reader["observaciones"].ToString()  // Asume que tienes esta propiedad en Vacaciones_E
                         };
                         vacaciones.Add(vacacion);
                     }

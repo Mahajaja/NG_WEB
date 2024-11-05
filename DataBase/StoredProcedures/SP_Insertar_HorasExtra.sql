@@ -39,7 +39,8 @@ BEGIN
     SET @FolioRegistro = 'HE_' + CAST(@IDHoraExtra AS NVARCHAR(10));
 
     -- Obtener el costo por hora del empleado
-    SELECT @CostoHoraExtra = salario FROM EMPLEADO WHERE id_empleado = @IDEMPLEADO;
+    SELECT @CostoHoraExtra = salario / 7 FROM EMPLEADO WHERE id_empleado = @IDEMPLEADO;
+
 
     -- Calcular el costo por hora doble
     IF @HorasPorPagar <= 9
@@ -151,4 +152,3 @@ BEGIN
     END
 END
 GO
-SELECT * FROM HORAS_EXTRAS

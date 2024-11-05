@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\Dev_GG\Publicaciones</_PublishTargetUrl>
-    <History>True|2024-10-14T05:23:31.8248163Z||;True|2024-10-08T09:50:09.8183269-06:00||;True|2024-10-08T08:24:51.7114052-06:00||;True|2024-10-06T20:57:04.3780363-06:00||;True|2024-10-06T20:55:40.0321994-06:00||;True|2024-09-30T11:29:46.8168398-06:00||;True|2024-09-26T08:36:19.5477688-06:00||;True|2024-09-26T07:24:27.5988806-06:00||;True|2024-09-26T07:18:52.8700372-06:00||;True|2024-09-23T07:03:52.4350855-06:00||;True|2024-09-19T16:49:08.9810881-06:00||;True|2024-09-17T07:00:55.8323258-06:00||;True|2024-09-16T13:50:45.0064647-06:00||;True|2024-09-16T13:41:20.9983925-06:00||;True|2024-09-16T13:33:28.9180366-06:00||;True|2024-09-16T12:39:58.8944263-06:00||;True|2024-09-16T12:39:40.7188835-06:00||;</History>
+    <History>True|2024-10-25T14:55:38.1376107Z||;True|2024-10-23T08:09:40.6939022-06:00||;True|2024-10-21T08:48:59.3268340-06:00||;True|2024-10-21T08:13:22.5411718-06:00||;True|2024-10-13T23:23:31.8248163-06:00||;True|2024-10-08T09:50:09.8183269-06:00||;True|2024-10-08T08:24:51.7114052-06:00||;True|2024-10-06T20:57:04.3780363-06:00||;True|2024-10-06T20:55:40.0321994-06:00||;True|2024-09-30T11:29:46.8168398-06:00||;True|2024-09-26T08:36:19.5477688-06:00||;True|2024-09-26T07:24:27.5988806-06:00||;True|2024-09-26T07:18:52.8700372-06:00||;True|2024-09-23T07:03:52.4350855-06:00||;True|2024-09-19T16:49:08.9810881-06:00||;True|2024-09-17T07:00:55.8323258-06:00||;True|2024-09-16T13:50:45.0064647-06:00||;True|2024-09-16T13:41:20.9983925-06:00||;True|2024-09-16T13:33:28.9180366-06:00||;True|2024-09-16T12:39:58.8944263-06:00||;True|2024-09-16T12:39:40.7188835-06:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -16,22 +16,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 18:03:56</publishTime>
     </File>
     <File Include="bin/BLL.dll">
-      <publishTime>10/13/2024 23:18:25</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/BLL.pdb">
-      <publishTime>10/13/2024 23:18:25</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>10/13/2024 23:18:24</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>10/13/2024 23:18:24</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/Entity.dll">
-      <publishTime>10/13/2024 22:58:52</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/Entity.pdb">
-      <publishTime>10/13/2024 22:58:52</publishTime>
+      <publishTime>10/25/2024 08:52:58</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/29/2024 18:03:56</publishTime>
@@ -112,10 +112,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 18:03:57</publishTime>
     </File>
     <File Include="bin/Neo_Genesis_Green_Gold.dll">
-      <publishTime>10/13/2024 23:18:25</publishTime>
+      <publishTime>10/25/2024 08:52:59</publishTime>
     </File>
     <File Include="bin/Neo_Genesis_Green_Gold.pdb">
-      <publishTime>10/13/2024 23:18:25</publishTime>
+      <publishTime>10/25/2024 08:52:59</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>09/29/2024 18:03:57</publishTime>
@@ -406,7 +406,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 18:03:52</publishTime>
     </File>
     <File Include="Content/dataTables.bootstrap.min.css">
-      <publishTime>09/29/2024 18:03:52</publishTime>
+      <publishTime>07/26/2023 09:47:34</publishTime>
     </File>
     <File Include="Content/font-awesome.css">
       <publishTime>09/29/2024 18:03:52</publishTime>
@@ -501,6 +501,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/IMG_Empleados/GARCIA BERBER SANDRA EDITH RH-89 Foto.jpg">
       <publishTime>10/13/2024 17:08:00</publishTime>
     </File>
+    <File Include="Content/IMG_Empleados/GARCIA CORREA MAHADMA KARINA RH-10 Foto.jpg">
+      <publishTime>10/13/2024 17:08:00</publishTime>
+    </File>
     <File Include="Content/IMG_Empleados/GARCIA MANRIQUEZ MIGUEL ANGEL RH-84 Foto.jpg">
       <publishTime>10/13/2024 17:08:00</publishTime>
     </File>
@@ -549,11 +552,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/IMG_Empleados/MURILLO CAMACHO JONATHAN ABRAHAM RH-64 Foto.jpg">
       <publishTime>10/13/2024 17:08:00</publishTime>
     </File>
+    <File Include="Content/IMG_Empleados/ORNELAS MAGALLAN J. ENCARNACION RH-96 Foto.jpg">
+      <publishTime>10/13/2024 17:08:00</publishTime>
+    </File>
     <File Include="Content/IMG_Empleados/PAGUA ALVAREZ JUAN MANUEL RH-50 Foto.jpg">
       <publishTime>10/13/2024 17:08:01</publishTime>
     </File>
     <File Include="Content/IMG_Empleados/PAGUA GALVEZ ROBERTO MANUEL RH-82 Foto.jpg">
       <publishTime>10/13/2024 17:08:01</publishTime>
+    </File>
+    <File Include="Content/IMG_Empleados/PRUEBA P P RH-92 Foto.jpg">
+      <publishTime>10/13/2024 17:08:00</publishTime>
+    </File>
+    <File Include="Content/IMG_Empleados/PRUEBAS P P RH-92 Foto.jpg">
+      <publishTime>10/13/2024 17:08:00</publishTime>
+    </File>
+    <File Include="Content/IMG_Empleados/PUEBA  2  I I RH-93 Foto.jpg">
+      <publishTime>10/13/2024 17:08:00</publishTime>
     </File>
     <File Include="Content/IMG_Empleados/RH-8-Foto.jpg">
       <publishTime>10/06/2024 18:16:55</publishTime>
@@ -602,6 +617,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Content/jquery.min.js">
       <publishTime>09/29/2024 18:11:02</publishTime>
+    </File>
+    <File Include="Content/select2.min.css">
+      <publishTime>04/04/2024 07:25:13</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/29/2024 18:11:02</publishTime>
@@ -690,6 +708,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/jquery.dataTables.min.js">
       <publishTime>09/29/2024 18:11:02</publishTime>
     </File>
+    <File Include="Scripts/jquery.min.js">
+      <publishTime>07/26/2023 10:06:34</publishTime>
+    </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>09/29/2024 18:03:52</publishTime>
     </File>
@@ -704,6 +725,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>09/29/2024 18:03:52</publishTime>
+    </File>
+    <File Include="Scripts/select2.min.js">
+      <publishTime>08/11/2023 15:01:49</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>09/29/2024 18:03:52</publishTime>
@@ -751,16 +775,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 19:11:01</publishTime>
     </File>
     <File Include="Views/HorasExtra/Create.cshtml">
-      <publishTime>10/13/2024 23:20:09</publishTime>
+      <publishTime>10/21/2024 08:11:06</publishTime>
     </File>
     <File Include="Views/HorasExtra/Index.cshtml">
-      <publishTime>10/13/2024 17:48:52</publishTime>
+      <publishTime>10/21/2024 08:01:44</publishTime>
     </File>
     <File Include="Views/Incidencias/Create.cshtml">
-      <publishTime>10/07/2024 17:18:32</publishTime>
+      <publishTime>10/23/2024 07:18:13</publishTime>
     </File>
     <File Include="Views/Incidencias/Index.cshtml">
-      <publishTime>10/13/2024 18:22:47</publishTime>
+      <publishTime>10/23/2024 08:07:50</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>09/29/2024 18:03:52</publishTime>
@@ -787,7 +811,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 18:03:52</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/29/2024 18:34:58</publishTime>
+      <publishTime>10/21/2024 07:21:01</publishTime>
     </File>
     <File Include="Views/Shared/_Layout_Auth.cshtml">
       <publishTime>09/29/2024 18:03:52</publishTime>
@@ -798,11 +822,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Shared/_SubMenu.cshtml">
       <publishTime>09/29/2024 19:11:00</publishTime>
     </File>
+    <File Include="Views/Solicitud_Prestamo/Create.cshtml">
+      <publishTime>10/25/2024 08:50:29</publishTime>
+    </File>
+    <File Include="Views/Solicitud_Prestamo/Index.cshtml">
+      <publishTime>10/25/2024 08:41:28</publishTime>
+    </File>
     <File Include="Views/Solicitud_Vacaciones/Create.cshtml">
-      <publishTime>10/13/2024 22:58:47</publishTime>
+      <publishTime>10/20/2024 18:20:59</publishTime>
     </File>
     <File Include="Views/Solicitud_Vacaciones/Index.cshtml">
-      <publishTime>10/06/2024 20:02:32</publishTime>
+      <publishTime>10/21/2024 07:27:21</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>09/29/2024 18:03:52</publishTime>
@@ -811,7 +841,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2024 18:03:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/30/2024 11:29:44</publishTime>
+      <publishTime>10/25/2024 08:55:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

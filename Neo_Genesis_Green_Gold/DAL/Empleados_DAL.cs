@@ -108,7 +108,8 @@ namespace DAL
                             ImgContrato = reader["img_contrato"].ToString(),
                             IdUsuario = Convert.ToInt32(reader["id_usuario"]),
                             Vacaciones = Convert.ToInt32(reader["vacaciones"]),
-                            FirmaDigital = reader["firma_digital"].ToString()
+                            FirmaDigital = reader["firma_digital"].ToString(),
+                            Puesto = reader["Puesto"].ToString()
                         };
                     }
                 }
@@ -135,13 +136,17 @@ namespace DAL
                 sqlHelper.OpenConnection();  // Abre la conexión a la base de datos
 
                 // Configura el comando para ejecutar la consulta
-                sqlHelper.Command.CommandText = "SELECT *," +
-                    "CASE WHEN CHARINDEX('\\', img_empleado) > 0 THEN RIGHT(img_empleado, CHARINDEX('\\', REVERSE(img_empleado)) - 1)" +
-                    " ELSE ISNULL(img_empleado, '') END AS Img_empleado_nombre" +
-                    " FROM EMPLEADO WHERE id_ubicacion = @IdUbicacion";
+                sqlHelper.Command.CommandText = "SELECT E.*, " +
+     "CASE WHEN CHARINDEX('\\', img_empleado) > 0 THEN RIGHT(img_empleado, CHARINDEX('\\', REVERSE(img_empleado)) - 1) " +
+     "ELSE ISNULL(img_empleado, '') END AS Img_empleado_nombre, " +
+     "P.nombre AS Puesto " +
+     "FROM EMPLEADO E " +
+     "INNER JOIN PUESTO P ON E.id_puesto = P.id_puesto " +
+     "WHERE E.id_ubicacion = @IdUbicacion AND E.id_empleado != 25";
                 sqlHelper.Command.CommandType = CommandType.Text;
                 sqlHelper.Command.Parameters.Clear();
                 sqlHelper.Command.Parameters.AddWithValue("@IdUbicacion", idUbicacion);
+
 
                 // Ejecuta la consulta y lee los resultados
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
@@ -155,6 +160,7 @@ namespace DAL
                             ApellidoPaterno = reader["apellido_paterno"].ToString(),
                             ApellidoMaterno = reader["apellido_materno"].ToString(),
                             Img_empleado_nombre = reader["Img_empleado_nombre"].ToString(),
+                            Puesto = reader["Puesto"].ToString(),
                             // ... mapeo de las demás propiedades que consideres necesarias
                         };
 

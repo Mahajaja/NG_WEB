@@ -1,3 +1,4 @@
+--USE NEO_GENESIS
 USE db_aad2f8_neogenesis
 GO
 
@@ -21,9 +22,13 @@ BEGIN
         CONVERT(VARCHAR(10), V.fecha_inicio, 103) AS fecha_inicio,  -- Formato dd/MM/yyyy
         CONVERT(VARCHAR(10), V.fecha_incorporacion, 103) AS fecha_incorporacion,  -- Formato dd/MM/yyyy
         V.dias_vacacion, 
-        EST.Estatus
+        EST.Estatus,
+		V.observaciones
     FROM VACACIONES V
-    INNER JOIN EMPLEADO E ON V.id_empleado = E.id_empleado
-    INNER JOIN Estatus EST ON V.ID_Estatus = EST.ID_Estatus
+    left JOIN EMPLEADO E ON V.id_empleado = E.id_empleado
+    left JOIN Estatus EST ON V.ID_Estatus = EST.ID_Estatus
 END
 GO
+
+
+exec SP_GetVacacionesConFormato

@@ -1,0 +1,172 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.SolicitudMttoViewModel
+
+@{
+    ViewBag.Title = "Solicitud de Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ibox-content col-sm-12">
+    <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </button>
+    <h2>Solicitud de Mantenimiento</h2>
+</div>
+
+<div class="ibox-content col-sm-12 margintop1">
+    @using (Html.BeginForm("Create", "Solicitud_Mantenimiento", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <!-- Información General -->
+        <div class="form-group">
+            <h4>Información General</h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Fecha del Día</label>
+                    <input type="date" class="form-control" name="FechaRegistro" required />
+                </div>
+                <div class="col-sm-3">
+                    <label>Hora de Registro</label>
+                    <input type="time" class="form-control" name="HoraRegistro" required />
+                </div>
+                <div class="col-sm-3">
+                    <label>Ubicación</label>
+                    <select class="form-control" name="IdUbicacion" required>
+                        <option value="">Seleccionar Ubicación</option>
+                        @foreach (var ubicacion in Model.List_Ubicaciones)
+                        {
+                            <option value="@ubicacion.IdUbicacion">@ubicacion.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>¿Quién Reporta?</label>
+                    <select class="form-control" name="IdEmpleado" required>
+                        <option value="">Seleccionar Empleado</option>
+                        @foreach (var empleado in Model.List_Empleados)
+                        {
+                            <option value="@empleado.IdEmpleado">@empleado.Nombre @empleado.ApellidoPaterno</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Información del Servicio -->
+        <div class="form-group">
+            <h4>Información del Servicio</h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Equipo</label>
+                    <select class="form-control" name="IdMaquinaria" required>
+                        <option value="">Seleccionar Equipo</option>
+                        @foreach (var maquinaria in Model.List_Maquinarias)
+                        {
+                            <option value="@maquinaria.IdMaquinaria">@maquinaria.Modelo</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>Horómetro</label>
+                    <input type="number" class="form-control" name="Horometro" />
+                </div>
+                <div class="col-sm-3">
+                    <label>Fecha del Servicio</label>
+                    <input type="date" class="form-control" name="FechaServicio" required />
+                </div>
+                <div class="col-sm-3">
+                    <label>Fecha de Entrega</label>
+                    <input type="date" class="form-control" name="FechaEntrega" required />
+                </div>
+                <div class="col-sm-3">
+                    <label>Grado de Urgencia</label>
+                    <input type="text" class="form-control" name="GradoUrgencia" />
+                </div>
+                <div class="col-sm-3">
+                    <label>Responsable de Resolución</label>
+                    <select class="form-control" name="IdResponsable" required>
+                        <option value="">Seleccionar Responsable</option>
+                        @foreach (var responsable in Model.List_Responsables)
+                        {
+                            <option value="@responsable.IdEmpleado">@responsable.Nombre @responsable.ApellidoPaterno</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Costo y Proveedor -->
+        <div class="form-group">
+            <h4>Costo Reparación y Proveedor</h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Costo Aprox.</label>
+                    <input type="number" class="form-control" name="CostoReparacion" step="0.01" />
+                </div>
+                <div class="col-sm-3">
+                    <label>Proveedor Encargado de la Reparación</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Proveedor" id="servicioInterno" value="Servicio Interno" checked>
+                        <label class="form-check-label" for="servicioInterno">Servicio Interno</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Proveedor" id="servicioExterno" value="Servicio Externo">
+                        <label class="form-check-label" for="servicioExterno">Servicio Externo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Descripción del Problema -->
+        <div class="form-group">
+            <h4>Descripción del Problema del Equipo</h4>
+            <textarea class="form-control" name="DescripcionProblema" rows="3" required></textarea>
+        </div>
+
+        <hr />
+
+        <!-- Evidencia del Problema Reportado -->
+        <div class="form-group">
+            <h4>Evidencia del Problema Reportado</h4>
+            <div class="row">
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <div class="col-sm-3">
+                        <label>Foto Evidencia @i</label>
+                        <input type="file" id="evidenciaInput@i" name="Evidencia@i" accept="image/*" onchange="previewImage(event, @i)" style="display: none;">
+                        <div id="uploadBox@i" onclick="document.getElementById('evidenciaInput@i').click();" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <span id="uploadText@i">Clic para subir evidencia</span>
+                            <img id="imagenPreview@i" src="#" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 100%; display: none;">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Botón de Guardar -->
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    }
+</div>
+
+<script>
+    function previewImage(event, number) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagenPreview' + number);
+            var text = document.getElementById('uploadText' + number);
+
+            output.src = reader.result;
+            output.style.display = 'block';
+            text.style.display = 'none';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

@@ -1,0 +1,112 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.PrestamosViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span class="menu-title">RECURSOS HUMANOS / SOLICITUD PRESTAMO</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        @using (Html.BeginForm("Create", "Solicitud_Prestamo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group row text-center">
+                <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
+                <div class="col-sm-12">
+                    <img id="imgEmpleado" src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">EMPLEADO</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadImageEmpleado(this.value)">
+                        <option value="">Seleccionar Empleado</option>
+                        @foreach (var empleado in Model.List_Empleados)
+                        {
+                            <option value="@empleado.IdEmpleado" data-img="@empleado.Img_empleado_nombre">
+                                @empleado.Nombre @empleado.ApellidoPaterno
+                            </option>
+                        }
+                    </select>
+                </div>
+                <label class="col-sm-2 col-form-label">CANTIDAD SOLICITADA</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="CantidadSolicitada" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-sm-2 col-form-label">FECHA ENTREGA</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" id="Fechaentrega" name="Fechaentrega"  required />
+                </div>
+
+            </div>
+            
+            <div class="form-group row">
+                <hr />
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label class="col-form-label">Motivo del préstamo</label>
+                    <textarea class="form-control" name="MotivoPrestamo" rows="3" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+            <div class="form-group row text-center">
+                <button type="submit" class="btn btn-success">Guardar Solicitud</button>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#empleadoSelect").select2();
+
+        $('select').select2({
+            language: {
+
+                noResults: function () {
+
+                    return "No hay resultados";
+                },
+                searching: function () {
+
+                    return "Buscando..";
+                }
+            }
+        });
+    });
+
+    function loadImageEmpleado(idEmpleado) {
+        var selectedOption = $('#empleadoSelect option:selected');
+        var imgEmpleado = '/Content/IMG_Empleados/' + selectedOption.data('img');
+
+        if (selectedOption.data('img')) {
+            $('#imgEmpleado').attr('src', imgEmpleado);
+        } else {
+            $('#imgEmpleado').attr('src', '/Content/IMG/Default/user.png');
+        }
+    }
+</script>

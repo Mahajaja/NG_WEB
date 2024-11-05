@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">EMPLEADO</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadDiasDisponibles(this.value)" required>
+                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadDiasDisponibles(this.value)">
                         <option value="">Seleccionar Empleado</option>
                         @foreach (var empleado in Model.List_Empleados)
                         {
@@ -56,7 +56,6 @@
                 <div class="col-sm-2">
                     <select class="form-control" id="horasExtraSelect" name="HorasExtra" required>
                         <option value="">Seleccionar Horas Extra</option>
-                        <!-- Opciones del 1 al 20 -->
                         @for (int i = 1; i <= 20; i++)
                         {
                             <option value="@i">@i</option>
@@ -78,6 +77,8 @@
                         <img id="imagenPreview1" src="#" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
                     <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)">
+                   
+                    <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn1" onclick="deleteEvidence(1)" style="display:none;">Borrar Evidencia 1</button>
                 </div>
 
                 <!-- Cuadro para subir la segunda evidencia -->
@@ -88,13 +89,15 @@
                         <img id="imagenPreview2" src="#" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
                     <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 2)">
+                    
+                    <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn2" onclick="deleteEvidence(2)" style="display:none;">Borrar Evidencia 2</button>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6">
                     <label class="col-form-label">Motivo de compensación / Horas Extras</label>
-                    <textarea class="form-control" name="MotivoCompensacion" rows="3"></textarea>
+                    <textarea class="form-control" name="MotivoCompensacion" rows="3" required></textarea>
                 </div>
 
                 <div class="col-sm-6">
@@ -114,6 +117,25 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        $("#empleadoSelect").select2();
+
+        $('select').select2({
+            language: {
+
+                noResults: function () {
+
+                    return "No hay resultados";
+                },
+                searching: function () {
+
+                    return "Buscando..";
+                }
+            }
+        });
+    });
+
     document.getElementById('uploadBox1').addEventListener('click', function () {
         document.getElementById('imagenInput1').click();
     });
@@ -128,13 +150,36 @@
             var output = document.getElementById('imagenPreview' + number);
             var text = document.getElementById('uploadText' + number);
             var base64Field = document.getElementById('imagen' + number + 'Base64');
+            var uploadBtn = document.getElementById('subirEvidenciaBtn' + number);
+            var deleteBtn = document.getElementById('borrarEvidenciaBtn' + number);
 
             output.src = reader.result;
             output.style.display = 'block';
             text.style.display = 'none';
             base64Field.value = reader.result; // Guardar en el campo oculto
+
+            deleteBtn.style.display = "inline-block";
         };
         reader.readAsDataURL(event.target.files[0]);
+    }
+
+
+    function deleteEvidence(number) {
+        var output = document.getElementById('imagenPreview' + number);
+        var text = document.getElementById('uploadText' + number);
+        var base64Field = document.getElementById('imagen' + number + 'Base64');
+        var uploadBtn = document.getElementById('subirEvidenciaBtn' + number);
+        var deleteBtn = document.getElementById('borrarEvidenciaBtn' + number);
+
+        // Limpiar el archivo seleccionado
+        output.src = "#";
+        output.style.display = 'none';
+        text.style.display = 'inline-block';
+        base64Field.value = ""; // Limpiar el campo oculto
+
+    
+        // Ocultar el botón de borrar
+        deleteBtn.style.display = "none";
     }
 
     function loadDiasDisponibles(idEmpleado) {

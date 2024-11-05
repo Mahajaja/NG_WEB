@@ -173,7 +173,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorasExtraController.cs" />
     <Compile Include="Controllers\IncidenciasController.cs" />
+    <Compile Include="Controllers\Justificante_LaboralController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Solicitud_MantenimientoController.cs" />
+    <Compile Include="Controllers\Solicitud_PrestamoController.cs" />
     <Compile Include="Controllers\Solicitud_VacacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,7 +192,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Horas_Extra_ViewModel.cs" />
+    <Compile Include="ViewModels\IncidenciasViewModel.cs" />
+    <Compile Include="ViewModels\JustificanteViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\PrestamosViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudMttoViewModel.cs" />
     <Compile Include="ViewModels\SolicitudVacacionesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +251,7 @@
     <Content Include="Content\IMG_Empleados\ESTRADA ZAMUDIO GIOVANNI RH-7 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\GARCIA BERBER SANDRA EDITH RH-88 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\GARCIA BERBER SANDRA EDITH RH-89 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\GARCIA CORREA MAHADMA KARINA RH-10 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\GARCIA MANRIQUEZ MIGUEL ANGEL RH-84 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\GARCIA MANRIQUEZ RIGOBERTO RH-88 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\GARCIA MENDOZA JOSE HUGO RH-70 Foto.jpg" />
@@ -260,8 +268,12 @@
     <Content Include="Content\IMG_Empleados\MOLINA ROSALES JUAN FRANCISCO RH-74 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\MURILLO  MARTINEZ ABRAHAM RH-37 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\MURILLO CAMACHO JONATHAN ABRAHAM RH-64 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\ORNELAS MAGALLAN J. ENCARNACION RH-96 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\PAGUA ALVAREZ JUAN MANUEL RH-50 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\PAGUA GALVEZ ROBERTO MANUEL RH-82 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\PRUEBA P P RH-92 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\PRUEBAS P P RH-92 Foto.jpg" />
+    <Content Include="Content\IMG_Empleados\PUEBA  2  I I RH-93 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\RH-8-Foto.jpg" />
     <Content Include="Content\IMG_Empleados\ROJAS MIRANDA JOSE MANUEL RH-73 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\ROSAS VILLANUEVA LUIS ANTONIO RH-67 Foto.jpg" />
@@ -278,6 +290,7 @@
     <Content Include="Content\IMG_Empleados\VENCES RODRIGUEZ OMAR RH-52 Foto.jpg" />
     <Content Include="Content\IMG_Empleados\ZAVALA  GARCIA JOSE ALFREDO RH-35 Foto.jpg" />
     <Content Include="Content\jquery.min.js" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -306,11 +319,13 @@
     <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -353,6 +368,12 @@
     <Content Include="Views\Incidencias\Create.cshtml" />
     <Content Include="Views\Incidencias\Index.cshtml" />
     <Content Include="Views\HorasExtra\Index.cshtml" />
+    <Content Include="Views\Solicitud_Prestamo\Index.cshtml" />
+    <Content Include="Views\Solicitud_Prestamo\Create.cshtml" />
+    <Content Include="Views\Justificante_Laboral\Index.cshtml" />
+    <Content Include="Views\Justificante_Laboral\Create.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\Index.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

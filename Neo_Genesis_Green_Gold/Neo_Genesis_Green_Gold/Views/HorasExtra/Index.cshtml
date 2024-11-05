@@ -15,18 +15,19 @@
 </div>
 
 <div class="col-sm-12 form-group margintop1">
-    <a href="@Url.Action("Create","HorasExtra")" class="btn btn-success">Nueva Registro</a>
+    <a href="@Url.Action("Create","HorasExtra")" class="btn btn-success">Nuevo Registro</a>
 </div>
 
 <div id="table-container" class="col-sm-12 ibox-content ">
-    <table id="solicitudes" class="table table-striped table-bordered">
+    <table id="hrsExtra" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th><CENTER>#</CENTER></th>
                 <th>EMPLEADO</th>
                 <th>FECHA COMPENSACION</th>
-                <th>HORAS A PAGAR</th>                
-                <th>ACCIONES</th>
+                <th>HORAS A PAGAR</th>
+                <th>OBSERVACIONES</th>
+                <th>ESTATUS</th>
             </tr>
         </thead>
         <tbody>
@@ -40,13 +41,9 @@
                         <td>@horaextraM.empleado.Nombre @horaextraM.empleado.ApellidoPaterno</td> <!-- Aquí se muestra el nombre del empleado -->
                         <td>@horaextraM.fecha_compensacion</td>
                         <td>@horaextraM.horas_porPagar</td>
+                        <td>@horaextraM.observaciones</td>
+                        <td>@horaextraM.Estatus</td>
 
-                        <td class="">
-                            <center>
-                                <a href="@Url.Action("#", "#", new { id = horaextraM.id_horaExtra })" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                                <a href="@Url.Action("#", "#", new { id = horaextraM.id_horaExtra })" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            </center>
-                        </td>
                     </tr>
                     index++;
                 }
@@ -61,8 +58,11 @@
     </table>
 </div>
 
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
 <script>
-    var table = $('#solicitudes').DataTable({
+    var table = $('#hrsExtra').DataTable({
         language: {
             "decimal": "",
             "emptyTable": "No hay información",
@@ -82,6 +82,6 @@
                 "next": "Siguiente",
                 "previous": "Anterior"
             }
-        },
+        }
     });
 </script>

@@ -50,6 +50,7 @@ namespace DAL
                             descripcion = reader["descripcion"].ToString(),
                             goze = reader["goze"].ToString(),
                             horas = reader["horas"].ToString(),
+                            Estatus = reader["Estatus"].ToString(),
                             id_usuario = Convert.ToInt32(reader["id_usuario"]),
                             empleado = new Empleados_E
                             {
@@ -75,5 +76,47 @@ namespace DAL
 
             return incidencias;
         }
+
+        // Método para insertar una nueva incidencia que retorna true o false
+        public bool InsertarIncidencia(Incidencia_E incidencia)
+        {
+            try
+            {
+                sqlHelper.OpenConnection(); // Abre la conexión
+
+                // Configura el comando para ejecutar el procedimiento almacenado
+                sqlHelper.Command.CommandText = "SP_Insertar_Incidencia";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+
+                // Añadir los parámetros necesarios al stored procedure
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", incidencia.id_empleado);
+                sqlHelper.Command.Parameters.AddWithValue("@tipo_registro", incidencia.tipo_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@tipo_incidencia", incidencia.tipo_incidencia);
+                sqlHelper.Command.Parameters.AddWithValue("@tiempo_sancion", incidencia.tiempo_sancion);
+                sqlHelper.Command.Parameters.AddWithValue("@descuento_dia", incidencia.descuento_dia);
+                sqlHelper.Command.Parameters.AddWithValue("@dia", incidencia.dia);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_inicio", incidencia.fecha_inicio);
+                sqlHelper.Command.Parameters.AddWithValue("@descripcion", incidencia.descripcion);
+                sqlHelper.Command.Parameters.AddWithValue("@goze", incidencia.goze);
+                sqlHelper.Command.Parameters.AddWithValue("@horas", incidencia.horas);
+                sqlHelper.Command.Parameters.AddWithValue("@id_usuario", incidencia.id_usuario);
+
+                // Ejecutar el comando
+                int rowsAffected = sqlHelper.Command.ExecuteNonQuery();
+
+                // Retornar true si se insertó al menos una fila
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar la incidencia: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection(); // Cierra la conexión
+            }
+        }
+
     }
 }

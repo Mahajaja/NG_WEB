@@ -52,6 +52,7 @@ namespace DAL
                             total_aPagar = Convert.ToSingle(reader["total_aPagar"]),
                             motivo_hraExtra = reader["motivo_hraExtra"].ToString(),
                             observaciones = reader["observaciones"].ToString(),
+                            Estatus = reader["Estatus"].ToString(),
                             id_usuario = Convert.ToInt32(reader["id_usuario"]),
                             empleado = new Empleados_E
                             {

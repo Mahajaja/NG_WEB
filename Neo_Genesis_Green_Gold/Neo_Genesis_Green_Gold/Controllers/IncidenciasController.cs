@@ -1,17 +1,25 @@
 ﻿using BLL;
 using Entity;
+using Microsoft.AspNet.Identity;
+using Neo_Genesis_Green_Gold.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 
 namespace Neo_Genesis_Green_Gold.Controllers
 {
     [Authorize]
     public class IncidenciasController : Controller
     {
-        Incidencia_BLL _incidencia = new Incidencia_BLL();
+        private Incidencia_BLL _incidencia = new Incidencia_BLL();
+        private Empleados_BLL _empleadobll = new Empleados_BLL();
+        private AspNetUsers_BLL _aspNetUser = new AspNetUsers_BLL();
+        private Ubicacion_BLL _ubicacionBll = new Ubicacion_BLL();
+        private TiposIncidencias_BLL _tipoIncidencia = new TiposIncidencias_BLL();
+        private Sanciones_BLL _sanciones = new Sanciones_BLL();
         // GET: Incidencias
         public ActionResult Index()
         {
@@ -39,7 +47,26 @@ namespace Neo_Genesis_Green_Gold.Controllers
         // GET: Incidencias/Create
         public ActionResult Create()
         {
-            return View();
+            int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
+            int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
+
+            IncidenciasViewModel incidenciasVM = new IncidenciasViewModel();
+            incidenciasVM.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+            incidenciasVM.List_Empleados = new List<Empleados_E>();
+            incidenciasVM.List_Incidencias = new List<TiposIncidencias_E>();
+            incidenciasVM.List_Sanciones = new List<Sanciones_E>();
+
+            // Cargar la lista de empleados y procesar el nombre de la imagen
+            var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+            foreach (var empleado in empleados)
+            {
+                empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
+                incidenciasVM.List_Empleados.Add(empleado);
+            }
+            incidenciasVM.List_Incidencias = _tipoIncidencia.GetAllTiposIncidencias();
+            incidenciasVM.List_Sanciones = _sanciones.GetAllSanciones();
+
+            return View(incidenciasVM);
         }
 
         // POST: Incidencias/Create
@@ -48,15 +75,62 @@ namespace Neo_Genesis_Green_Gold.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                // Crear una nueva instancia de Incidencia_E
+                Incidencia_E nuevaIncidencia = new Incidencia_E
+                {
+                    id_empleado = Convert.ToInt32(collection["IdEmpleado"]),
+                    tipo_registro = collection["tipoRegistro"],
+                    tipo_incidencia = collection["TipoSancion"],
+                    tiempo_sancion = collection["Sancion"],
+                    descuento_dia = collection["descontarDias"],
+                    dia = collection["cuantosDias"],
+                    fecha_inicio = collection["FechaInicio"],
+                    descripcion = collection["descripcionIncidencia"],
+                    goze = collection["goceSueldo"],
+                    horas = collection["cuantosDias"], // Suponiendo que las horas coinciden con el número de días
+                    id_usuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId()) // Obtener el id del usuario autenticado
+                };
 
-                return RedirectToAction("Index");
+                // Insertar la nueva incidencia en la base de datos utilizando BLL
+                bool isInserted = _incidencia.InsertarIncidencia(nuevaIncidencia);
+
+                // Verificar si la inserción fue exitosa
+                if (isInserted)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Hubo un error al intentar guardar la incidencia.";
+                    return View();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.ErrorMessage = "Ocurrió un error al intentar crear la incidencia: " + ex.Message;
+                int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
+                int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
+
+                IncidenciasViewModel incidenciasVM = new IncidenciasViewModel();
+                incidenciasVM.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+                incidenciasVM.List_Empleados = new List<Empleados_E>();
+                incidenciasVM.List_Incidencias = new List<TiposIncidencias_E>();
+                incidenciasVM.List_Sanciones = new List<Sanciones_E>();
+
+                // Cargar la lista de empleados y procesar el nombre de la imagen
+                var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+                foreach (var empleado in empleados)
+                {
+                    empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
+                    incidenciasVM.List_Empleados.Add(empleado);
+                }
+                incidenciasVM.List_Incidencias = _tipoIncidencia.GetAllTiposIncidencias();
+                incidenciasVM.List_Sanciones = _sanciones.GetAllSanciones();
+
+                return View(incidenciasVM);
             }
         }
+
 
         // GET: Incidencias/Edit/5
         public ActionResult Edit(int id)
@@ -103,3 +177,5 @@ namespace Neo_Genesis_Green_Gold.Controllers
         }
     }
 }
+
+

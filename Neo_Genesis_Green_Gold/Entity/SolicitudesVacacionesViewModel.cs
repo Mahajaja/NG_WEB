@@ -13,6 +13,7 @@ namespace Entity
         public string FechaIncorporacion { get; set; }
         public int DiasSolicitados { get; set; }
         public string Estatus { get; set; }
+        public string Observaciones { get; set; }
         
     }
 }

@@ -1,19 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\controllers\\solicitud_mantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\controllers\\solicitud_mantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\entity\\maquinaria_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B14BD95-C49A-44B2-872E-9E49CC859847}|Entity\\Entity.csproj|solutionrelative:entity\\maquinaria_e.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\viewmodels\\solicitudmttoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\viewmodels\\solicitudmttoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|e:\\dev_gg\\ng_web\\neo_genesis_green_gold\\neo_genesis_green_gold\\neo_genesis_green_gold\\views\\solicitud_mantenimiento\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDB1A915-C9C0-4F89-A21B-4A99BA71B2DD}|Neo_Genesis_Green_Gold\\PL.csproj|solutionrelative:neo_genesis_green_gold\\views\\solicitud_mantenimiento\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 463,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 456,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Maquinaria_E.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Maquinaria_E.cs",
+              "RelativeDocumentMoniker": "Entity\\Maquinaria_E.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Entity\\Maquinaria_E.cs",
+              "RelativeToolTip": "Entity\\Maquinaria_E.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T03:59:47.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SolicitudMttoViewModel.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\ViewModels\\SolicitudMttoViewModel.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\ViewModels\\SolicitudMttoViewModel.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\ViewModels\\SolicitudMttoViewModel.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\ViewModels\\SolicitudMttoViewModel.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAmwFMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T03:56:56.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Mantenimiento\\Create.cshtml",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Mantenimiento\\Create.cshtml",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Views\\Solicitud_Mantenimiento\\Create.cshtml",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Views\\Solicitud_Mantenimiento\\Create.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-05T03:47:24.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Solicitud_MantenimientoController.cs",
+              "DocumentMoniker": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_MantenimientoController.cs",
+              "RelativeDocumentMoniker": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_MantenimientoController.cs",
+              "ToolTip": "E:\\Dev_GG\\NG_WEB\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Neo_Genesis_Green_Gold\\Controllers\\Solicitud_MantenimientoController.cs",
+              "RelativeToolTip": "Neo_Genesis_Green_Gold\\Controllers\\Solicitud_MantenimientoController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAxwCoAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T03:47:03.953Z",
+              "EditorCaption": ""
             }
           ]
         }

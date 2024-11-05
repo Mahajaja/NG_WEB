@@ -28,7 +28,7 @@
                 <th>INCORPORACION</th>
                 <th>DIAS SOLICITADOS</th>
                 <th>ESTATUS</th>
-                <th>ACCIONES</th>
+                <th>OBSERVACIONES</th>
             </tr>
         </thead>
         <tbody>
@@ -44,13 +44,8 @@
                         <td>@vacacion.FechaIncorporacion</td>
                         <td>@vacacion.DiasSolicitados</td>
                         <td>@vacacion.Estatus</td>
+                        <td>@vacacion.Observaciones</td>
 
-                        <td class="">
-                            <center>
-                                <a href="@Url.Action("Edit", "Solicitud_Vacaciones", new { id = vacacion.id_vacacion })" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                                <a href="@Url.Action("Delete", "Solicitud_Vacaciones", new { id = vacacion.id_vacacion })" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            </center>
-                        </td>
                     </tr>
                     index++;
                 }
@@ -65,27 +60,48 @@
     </table>
 </div>
 
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+
 <script>
-    var table = $('#solicitudes').DataTable({
-        language: {
-            "decimal": "",
-            "emptyTable": "No hay información",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        },
+    $(document).ready(function () {
+        $('#solicitudes').DataTable({
+            //processing: true,
+            //"serverSide": true, // Habilita la paginación en el servidor
+            //"ajax": {
+            //    "url": "/Registros/ObtenerDatos", // URL de la acción que obtiene los datos paginados
+            //    "type": "POST",
+            //    "data": function (d) {
+            //        // Envía parámetros adicionales, como búsqueda personalizada, si es necesario
+            //        d.searchValue = $('#searchInput').val(); // Ejemplo: búsqueda personalizada
+            //    }
+            //},
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+        });
     });
+
 </script>
+
+

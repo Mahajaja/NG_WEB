@@ -110,7 +110,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
 
             // Crear el ViewModel y cargar los datos necesarios
             SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
-            solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+            solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Nombre;
             solicitudViewModel.List_Empleados = new List<Empleados_E>();
 
             // Cargar la lista de empleados y procesar el nombre de la imagen

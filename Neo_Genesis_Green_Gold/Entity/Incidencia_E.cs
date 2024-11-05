@@ -21,6 +21,7 @@ namespace Entity
         public string goze { get; set; }
         public string horas { get; set; }
         public int id_usuario { get; set; }
+        public string Estatus { get; set; }
 
         // Relación con la entidad Empleados_E
         public virtual Empleados_E empleado { get; set; }

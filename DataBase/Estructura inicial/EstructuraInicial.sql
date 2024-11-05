@@ -209,7 +209,7 @@ INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES 
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Documentos Oficiales', @ID_PADRE_Institucional, '', '', 'fa-file-alt');
 
 -- Mantenimiento Submenús
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de mantenimiento', @ID_PADRE_Mantenimiento, '', '', 'fa-wrench');
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de mantenimiento', @ID_PADRE_Mantenimiento, 'Solicitud_Mantenimiento', 'Index', 'fa-wrench');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Mantenimientos Generales', @ID_PADRE_Mantenimiento, '', '', 'fa-toolbox');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Mis Mantenimientos', @ID_PADRE_Mantenimiento, '', '', 'fa-screwdriver');
 
@@ -232,11 +232,11 @@ INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES 
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Alta del Empleado', @ID_PADRE_RecursosHumanos, '', '', 'fa-user-plus');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Vacaciones', @ID_PADRE_RecursosHumanos, 'Solicitud_Vacaciones', 'Index', 'fa-calendar');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Incidencias', @ID_PADRE_RecursosHumanos, 'Incidencias', 'Index', 'fa-exclamation-circle');
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Préstamos', @ID_PADRE_RecursosHumanos, '', '', 'fa-hand-holding-usd');
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Préstamos', @ID_PADRE_RecursosHumanos, 'Solicitud_Prestamo', 'Index', 'fa-hand-holding-usd');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Horas Extras', @ID_PADRE_RecursosHumanos, 'HorasExtra', 'Index', 'fa-clock');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Asistencia', @ID_PADRE_RecursosHumanos, '', '', 'fa-calendar-check');
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Asignación de Equipo', @ID_PADRE_RecursosHumanos, '', '', 'fa-laptop');
-INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Justificante Laboral', @ID_PADRE_RecursosHumanos, '', '', 'fa-file-alt');
+INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Solicitud de Justificante Laboral', @ID_PADRE_RecursosHumanos, 'Justificante_Laboral', 'Index', 'fa-file-alt');
 
 -- Vehículos Submenús
 INSERT INTO Menu (Nombre_Menu, ID_PadreMenu, Controlador, Accion, Icono) VALUES ('Revisión Trimestral', @ID_PADRE_Vehiculos, '', '', 'fa-calendar-check');
@@ -268,18 +268,37 @@ DECLARE @ID_MENU INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Recursos H
 DECLARE @ID_MENU_Solicitud_Vacaciones INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de Vacaciones');
 DECLARE @ID_MENU_Incidencias INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Incidencias');
 DECLARE @ID_MENU_Horas_Extra INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Horas Extras');
+DECLARE @ID_MENU_Solicitud_Prestamo INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de Préstamos');
+DECLARE @ID_MENU_Justificante_Laboral INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Justificante_Laboral');
+DECLARE @ID_PADRE_Mantenimiento INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Mantenimiento');
+DECLARE @ID_MENU_Solicitud_Mantenimiento INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de mantenimiento');
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU, @IDUSUARIO);
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU_Incidencias, @IDUSUARIO);
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU_Horas_Extra, @IDUSUARIO);
+--GO
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU_Solicitud_Prestamo, @IDUSUARIO);
+--GO
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_MENU_Justificante_Laboral, @IDUSUARIO);
+--GO
+
+--INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+--VALUES (@ID_PADRE_Mantenimiento, @IDUSUARIO);
+
 
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
-VALUES (@ID_MENU, @IDUSUARIO);
-
-INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
-VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
-
-INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
-VALUES (@ID_MENU_Incidencias, @IDUSUARIO);
-
-INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
-VALUES (@ID_MENU_Horas_Extra, @IDUSUARIO);
+VALUES (@ID_MENU_Solicitud_Mantenimiento, @IDUSUARIO);
 GO
 
 /*ACCESO A TODOS LOS MENUS PARA SP*/
@@ -687,6 +706,12 @@ VALUES ('Horas_Extra', 1, GETDATE());
 INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
 VALUES ('Incidencias', 1, GETDATE());
 
+INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
+VALUES ('Prestamo', 1, GETDATE());
+
+INSERT INTO TipoEstatus (TipoEstatus, IsActivo, FechaInserto)
+VALUES ('Justificante', 1, GETDATE());
+
 CREATE TABLE Estatus (
     ID_Estatus INT IDENTITY(1,1) PRIMARY KEY,          -- ID autoincremental para cada estatus
     ID_TipoEstatus INT NOT NULL,                        -- Llave foránea de la tabla TipoEstatus
@@ -798,6 +823,81 @@ VALUES (
     GETDATE()
 );
 GO
+
+
+-- Insertar "EN REVISION" - INCIDENCIAS
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Prestamo'), 
+    'EN REVISION', 
+    '#fbbc04',   -- Aquí puedes agregar el color de fondo
+    '#000000',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "ACEPTADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Prestamo'), 
+    'ACEPTADA', 
+    '#34a853',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "RECHAZADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Prestamo'), 
+    'RECHAZADA', 
+    '#980000',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+GO
+
+
+
+
+-- Insertar "EN REVISION" - INCIDENCIAS
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Justificante'), 
+    'EN REVISION', 
+    '#fbbc04',   -- Aquí puedes agregar el color de fondo
+    '#000000',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "ACEPTADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Justificante'), 
+    'ACEPTADO', 
+    '#34a853',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+
+-- Insertar "RECHAZADA"
+INSERT INTO Estatus (ID_TipoEstatus, Estatus, Color_Fondo, Color_Texto, IsActivo, FechaInserto)
+VALUES (
+    (SELECT ID_TipoEstatus FROM TipoEstatus WHERE TipoEstatus = 'Justificante'), 
+    'RECHAZADO', 
+    '#980000',   -- Aquí puedes agregar el color de fondo
+    '#ffffff',   -- Aquí puedes agregar el color de texto
+    1, 
+    GETDATE()
+);
+GO
+
+
+
 -- Añadir la columna ID_Estatus a la tabla VACACIONES
 ALTER TABLE VACACIONES
 ADD ID_Estatus INT;
@@ -826,8 +926,18 @@ ALTER TABLE INCIDENCIA
 ADD ID_Estatus INT;
 
 -- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
-ALTER TABLE HORAS_EXTRAS
+ALTER TABLE INCIDENCIA
 ADD CONSTRAINT FK_Incidencia_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
+GO
+
+
+-- Añadir la columna ID_Estatus a la tabla Incidencias
+ALTER TABLE JUSTIFICANTE
+ADD ID_Estatus INT;
+
+-- Establecer la columna ID_Estatus como una llave foránea que referencia a la tabla Estatus
+ALTER TABLE JUSTIFICANTE
+ADD CONSTRAINT FK_Justificante_Estatus FOREIGN KEY (ID_Estatus) REFERENCES Estatus(ID_Estatus);
 GO
 
 USE NEO_GENESIS
@@ -1064,5 +1174,10 @@ BEGIN
     END
 END
 GO
-SELECT * FROM HORAS_EXTRAS
+
+
+UPDATE INCIDENCIA
+SET ID_Estatus = 8
+GO
+
 

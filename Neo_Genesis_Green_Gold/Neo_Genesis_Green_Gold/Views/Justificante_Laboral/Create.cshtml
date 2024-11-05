@@ -1,0 +1,289 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.JustificanteViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <span class="menu-title">RECURSOS HUMANOS / JUSTIFICANTE LABORAL</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        @using (Html.BeginForm("Create", "Justificante_Laboral", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group row text-center">
+                <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
+                <div class="col-sm-12">
+                    <img id="imgEmpleado" src="~/Content/IMG/Default/user.png" alt="Fotografía del Trabajador" class="imgEmpleado img-fluid img-circle" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">EMPLEADO</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="empleadoSelect" name="IdEmpleado" onchange="loadImageEmpleado(this.value); mostrarPuesto(this)">
+                        <option value="">Seleccionar Empleado</option>
+                        @foreach (var empleado in Model.List_Empleados)
+                        {
+                            <option value="@empleado.IdEmpleado" data-img="@empleado.Img_empleado_nombre" data-puesto="@empleado.Puesto">
+                                @empleado.Nombre @empleado.ApellidoPaterno
+                            </option>
+                        }
+                    </select>
+                </div>
+                <label class="col-sm-2 col-form-label">PUESTO</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="puesto" name="Puesto" disabled />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Naturaleza del Permiso</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="NaturalezaPermiso" id="incapacidad" value="Incapacidad Médica" required>
+                        <label class="form-check-label" for="incapacidad">Incapacidad Médica</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="NaturalezaPermiso" id="personal" value="Personal">
+                        <label class="form-check-label" for="personal">Personal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="NaturalezaPermiso" id="trabajo" value="Trabajo">
+                        <label class="form-check-label" for="trabajo">Trabajo</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-form-label">Especificación del Permiso</label>
+                    <textarea class="form-control" name="EspesificacionPermiso" rows="3" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Permiso Solicitado</label>
+                <div class="col-sm-10 d-flex align-items-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PermisoSolicitado" id="inasistencia" value="Inasistencia">
+                        <label class="form-check-label" for="inasistencia">Inasistencia</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PermisoSolicitado" id="entrada_tarde" value="Entrar después de hora de Entrada">
+                        <label class="form-check-label" for="entrada_tarde">Entrar después de hora de Entrada</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PermisoSolicitado" id="falta_parcial" value="Falta Parcial">
+                        <label class="form-check-label" for="falta_parcial">Falta Parcial</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PermisoSolicitado" id="comida_tarde" value="Entrar después de hora de Comida">
+                        <label class="form-check-label" for="comida_tarde">Entrar después de hora de Comida</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PermisoSolicitado" id="permisoOtro" value="Otro">
+                        <label class="form-check-label" for="permisoOtro">Otro</label>
+                    </div>
+                    <input type="text" class="form-control ml-2" id="otroPermiso" name="OtroPermiso" style="display:none; width: auto;" placeholder="Especificar otro" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label">Fecha / Tiempo Permiso</label>
+                <div class="col-sm-12">
+                    <label class="col-sm-2 col-form-label">Fecha de Inicio de la Falta</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" id="FechaInicio" name="FechaInicio" />
+                    </div>
+                    <label class="col-sm-2 col-form-label">Fecha de Fin de la Falta</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" id="FechaFin" name="FechaFin" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label class="col-sm-2 col-form-label">No. Horas (Parcial)</label>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" id="NumeroHoras" name="NumeroHoras" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="col-form-label">Pago de Horas en Jornadas Laborales</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="PagoHoras" id="vacaciones" value="A cuenta de Vacaciones">
+                        <label class="form-check-label" for="vacaciones">A cuenta de Vacaciones</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="PagoHoras" id="reposicion" value="Reposición de Horas">
+                        <label class="form-check-label" for="reposicion">Reposición de Horas</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="PagoHoras" id="incapacidad" value="Incapacidad pagada por la empresa">
+                        <label class="form-check-label" for="incapacidad">Incapacidad pagada por la empresa</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="col-form-label">Sueldos</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Sueldos" id="con_goce" value="Con goce de sueldo">
+                        <label class="form-check-label" for="con_goce">Con goce de sueldo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Sueldos" id="sin_goce" value="Sin goce de sueldo">
+                        <label class="form-check-label" for="sin_goce">Sin goce de sueldo</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label">Institución que Emitió el Justificante</label>
+                <div class="col-sm-12 d-flex align-items-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Institucion" id="imss" value="IMSS">
+                        <label class="form-check-label" for="imss">IMSS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Institucion" id="issste" value="ISSSTE">
+                        <label class="form-check-label" for="issste">ISSSTE</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Institucion" id="privado" value="Privado">
+                        <label class="form-check-label" for="privado">Privado</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Institucion" id="institucionOtro" value="Otro">
+                        <label class="form-check-label" for="institucionOtro">Otro</label>
+                    </div>
+                    <input type="text" class="form-control ml-2" id="otroInstitucion" name="OtraInstitucion" style="display:none; width: auto;" placeholder="Especifique" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <hr />
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label class="col-form-label">Observaciones</label>
+                    <textarea class="form-control" name="Observaciones" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <hr />
+            </div>
+            <div class="form-group row text-center">
+                <button type="submit" class="btn btn-success">Guardar Solicitud</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#empleadoSelect").select2();
+
+        $('select').select2({
+            language: {
+
+                noResults: function () {
+
+                    return "No hay resultados";
+                },
+                searching: function () {
+
+                    return "Buscando..";
+                }
+            }
+        });
+    });
+
+
+    function mostrarPuesto(selectElement) {
+        // Obtener el puesto del empleado seleccionado
+        var puesto = selectElement.options[selectElement.selectedIndex].getAttribute("data-puesto");
+
+        // Establecer el puesto en el campo de texto
+        document.getElementById("puesto").value = puesto ? puesto : "";
+    }
+
+    function loadImageEmpleado(idEmpleado) {
+        var selectedOption = $('#empleadoSelect option:selected');
+        var imgEmpleado = '/Content/IMG_Empleados/' + selectedOption.data('img');
+
+        if (selectedOption.data('img')) {
+            $('#imgEmpleado').attr('src', imgEmpleado);
+        } else {
+            $('#imgEmpleado').attr('src', '/Content/IMG/Default/user.png');
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Mostrar el campo de texto solo si se selecciona "Otro" en Institución
+        document.getElementById("institucionOtro").addEventListener("change", function () {
+            document.getElementById("otroInstitucion").style.display = "inline-block";
+        });
+
+        // Ocultar el campo de texto si se selecciona otra opción en Institución
+        var institucionRadios = document.getElementsByName("Institucion");
+        institucionRadios.forEach(function (radio) {
+            radio.addEventListener("change", function () {
+                if (radio.id !== "institucionOtro") {
+                    document.getElementById("otroInstitucion").style.display = "none";
+                }
+            });
+        });
+
+        // Mostrar el campo de texto solo si se selecciona "Otro" en Permiso Solicitado
+        document.getElementById("permisoOtro").addEventListener("change", function () {
+            document.getElementById("otroPermiso").style.display = "inline-block";
+        });
+
+        // Ocultar el campo de texto si se selecciona otra opción en Permiso Solicitado
+        var permisoRadios = document.getElementsByName("PermisoSolicitado");
+        permisoRadios.forEach(function (radio) {
+            radio.addEventListener("change", function () {
+                if (radio.id !== "permisoOtro") {
+                    document.getElementById("otroPermiso").style.display = "none";
+                }
+            });
+        });
+    });
+
+</script>
+
+

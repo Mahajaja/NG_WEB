@@ -15,5 +15,11 @@ namespace BLL
         {
             return _incidencia.GetAllIncidencias();
         }
+
+        public bool InsertarIncidencia(Incidencia_E incidencia)
+        {
+            return _incidencia.InsertarIncidencia(incidencia);
+        }
+
     }
 }
