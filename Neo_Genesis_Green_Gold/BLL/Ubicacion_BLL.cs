@@ -15,5 +15,9 @@ namespace BLL
         {
             return ubicacionDal.GetUbicacionById(idUbicacion);
         }
+        public List<Ubicacion_E> GetAllUbicaciones(int id_empleado)
+        {
+            return ubicacionDal.GetAllUbicaciones(id_empleado);
+        }
     }
 }

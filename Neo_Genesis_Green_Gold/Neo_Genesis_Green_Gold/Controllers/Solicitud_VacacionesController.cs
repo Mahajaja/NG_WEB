@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using BLL;
 using Entity;
@@ -76,19 +77,23 @@ namespace Neo_Genesis_Green_Gold.Controllers
         {
             try
             {
-                // Obtener el número de días inhábiles entre las fechas
-                int diasInhabiles = _diasinhabiles.GetNumeroDiasInhabilesEnRango_weekend(inicio, termino);
+                if (inicio == default || termino == default || inicio > termino)
+                {
+                    throw new Exception("Las fechas proporcionadas no son válidas.");
+                }
 
-                // Calcular días totales
+                // Calcular días inhábiles y totales
+                int diasInhabiles = _diasinhabiles.GetNumeroDiasInhabilesEnRango_weekend(inicio, termino);
                 int diasTotales = (termino - inicio).Days + 1;
 
-                // Calcular fecha de incorporación (siguiente día hábil)
+                // Calcular fecha de incorporación (día hábil siguiente)
                 DateTime fechaIncorporacion = termino.AddDays(1);
                 while (_diasinhabiles.EsDiaInhabil(fechaIncorporacion) || fechaIncorporacion.DayOfWeek == DayOfWeek.Sunday)
                 {
                     fechaIncorporacion = fechaIncorporacion.AddDays(1);
                 }
 
+                // Retornar el cálculo
                 return Json(new
                 {
                     diasTotales = diasTotales,
@@ -103,15 +108,80 @@ namespace Neo_Genesis_Green_Gold.Controllers
         }
 
 
-        public ActionResult Create()
+
+        public ActionResult CrearFolio()
         {
+            try
+            {
+                Vacaciones_E vacacion = new Vacaciones_E
+                {
+                    fecha_registro = DateTime.Now.ToString("yyyy-MM-dd"),
+                    hora_registro = DateTime.Now.ToString("HH:mm:ss"),
+                    id_usuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId())
+                };
+
+                // Llama al BLL para crear la vacación y obtener el ID generado
+                int newIdVacaciones = _vacacionesBll.CrearVacacion(vacacion);
+
+                if (newIdVacaciones > 0) // Verificar si el ID es válido
+                {
+                    return RedirectToAction("Create", new { id = newIdVacaciones });
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "No se pudo crear el registro de vacaciones.";
+                    return RedirectToAction("Error"); // Redirige a una vista de error si falla
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                TempData["ErrorMessage"] = $"Ocurrió un error: {ex.Message}";
+                return RedirectToAction("Error"); // Redirige a una vista de error
+            }
+        }
+
+        public JsonResult GetEmpleadosByUbicacion(int idUbicacion)
+        {
+            try
+            {
+                var empleados = _empleadobll.GetEmpleadosByUbicacion(idUbicacion);
+                var empleadosData = empleados.Select(e => new
+                {
+                    IdEmpleado = e.IdEmpleado,
+                    Nombre = $"{e.Nombre} {e.ApellidoPaterno}",
+                    ImgEmpleado = e.Img_empleado_nombre
+                }).ToList();
+
+                return Json(new { success = true, empleados = empleadosData }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult Create(int id = 0)
+        {
+
+            
+
+
             int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
             int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
-
+            
             // Crear el ViewModel y cargar los datos necesarios
             SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
+            solicitudViewModel.Vacacion = new Vacaciones_E();
+            solicitudViewModel.Vacacion = _vacacionesBll.ObtenerVacacionPorId(id);
+            solicitudViewModel.Folio = _vacacionesBll.ObtenerVacacionPorId(id).folio_registro;
             solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Nombre;
             solicitudViewModel.List_Empleados = new List<Empleados_E>();
+            solicitudViewModel.MostrarUbicaciones = true;
+            solicitudViewModel.List_Ubicaciones = _ubicacionBll.GetAllUbicaciones(empleadoid); // Mostrar todas las ubicaciones
+            solicitudViewModel.List_Empleados = new List<Empleados_E>();
+           
 
             // Cargar la lista de empleados y procesar el nombre de la imagen
             var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
@@ -124,54 +194,72 @@ namespace Neo_Genesis_Green_Gold.Controllers
             return View(solicitudViewModel);
         }
 
-        // POST: Solicitud_Vacaciones/Create
         [HttpPost]
         public ActionResult Create(Vacaciones_E vacacion)
         {
             try
             {
-                // Generar el folio de registro (ejemplo: SV_ + un número autogenerado)
-                vacacion.FolioRegistro = "SV_" + new Random().Next(1000, 9999); // O puedes usar un valor autoincremental de la base de datos
-
-                // Asignar la fecha y hora de registro
-                vacacion.FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd");
-                vacacion.HoraRegistro = DateTime.Now.ToString("HH:mm:ss");
-
-                // Verificar si Observaciones es NULL y asignar una cadena vacía
-                vacacion.Observaciones = vacacion.Observaciones ?? string.Empty;
-
-                // Obtener el usuario actual
-                vacacion.IdUsuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId());
-
-                // Llamar a la capa de negocio para insertar la nueva solicitud de vacaciones
-                int resultado = _vacacionesBll.CrearVacacion(vacacion);
-
-                if (resultado > 0)
+                // Validar el objeto vacacion
+                if (!vacacion.id_ubicacion.HasValue || vacacion.id_ubicacion == 0)
                 {
-                    // Redirigir al índice si todo es correcto
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.ErrorMessage = "Hubo un error al guardar la solicitud de vacaciones.";
+                    ModelState.AddModelError("id_ubicacion", "Debe seleccionar una ubicación válida.");
                     return View(vacacion);
                 }
+
+                // Asignar la fecha y hora de registro actualizados
+                vacacion.fecha_registro = DateTime.Now.ToString("yyyy-MM-dd");
+                vacacion.hora_registro = DateTime.Now.ToString("HH:mm:ss");
+
+                // Verificar si Observaciones es NULL y asignar una cadena vacía
+                vacacion.observaciones = vacacion.observaciones ?? string.Empty;
+
+                // Obtener el usuario actual
+                vacacion.id_usuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId());
+                // Llamar a la capa de negocio para actualizar la solicitud de vacaciones
+                _vacacionesBll.UpdateVacacion(vacacion); // Método de actualización
+
+                // Redirigir al índice si todo es correcto
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Hubo un error: " + ex.Message;
-
                 int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
                 int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
-                //Cuando entremos aquí debemos de tomar el id_empleado de la tabla AspNet
+
+                // Crear el ViewModel y cargar los datos necesarios
                 SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
-                solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+                solicitudViewModel.Folio = _vacacionesBll.ObtenerVacacionPorId(vacacion.id_vacacion).folio_registro;
+                solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Nombre;
                 solicitudViewModel.List_Empleados = new List<Empleados_E>();
-                solicitudViewModel.List_Empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+
+                // Cargar la lista de empleados y procesar el nombre de la imagen
+                var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+                foreach (var empleado in empleados)
+                {
+                    empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
+                    solicitudViewModel.List_Empleados.Add(empleado);
+                }
 
                 return View(solicitudViewModel);
             }
         }
+
+
+        public ActionResult HandleCreateError(string message)
+        {
+            // Manejar la lógica de recuperación de datos para volver a la vista de creación
+            ViewBag.ErrorMessage = message;
+
+            int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
+            int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
+
+            SolicitudVacacionesViewModel solicitudViewModel = new SolicitudVacacionesViewModel();
+            solicitudViewModel.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
+            solicitudViewModel.List_Empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+
+            return View("Create", solicitudViewModel);
+        }
+
 
 
         // GET: Solicitud_Vacaciones/Edit/5

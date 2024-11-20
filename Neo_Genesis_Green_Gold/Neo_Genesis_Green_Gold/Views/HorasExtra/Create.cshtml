@@ -20,7 +20,13 @@
             <!-- Campo oculto para almacenar las imágenes en Base64 -->
             <input type="hidden" id="imagen1Base64" name="Evidencia1" />
             <input type="hidden" id="imagen2Base64" name="Evidencia2" />
-
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">FOLIO</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" value="@Model.Folio" disabled />
+                    <input type="hidden" value="@Model.ID_HoraExtra" name="ID_HoraExtra" id="ID_HoraExtra" />
+                </div>
+            </div>
             <div class="form-group row text-center">
                 <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
                 <div class="col-sm-12">
@@ -54,14 +60,9 @@
                 </div>
                 <label class="col-sm-2 col-form-label">HORAS EXTRA</label>
                 <div class="col-sm-2">
-                    <select class="form-control" id="horasExtraSelect" name="HorasExtra" required>
-                        <option value="">Seleccionar Horas Extra</option>
-                        @for (int i = 1; i <= 20; i++)
-                        {
-                            <option value="@i">@i</option>
-                        }
-                    </select>
+                    <input type="number" class="form-control" id="horasExtraInput" name="HorasExtra" min="0" max="30" required>
                 </div>
+
             </div>
 
             <div class="form-group row">
@@ -76,8 +77,8 @@
                         <span id="uploadText1">Clic para subir evidencia 1</span>
                         <img id="imagenPreview1" src="#" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
-                    <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)" >
-                   
+                    <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 1)">
+
                     <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn1" onclick="deleteEvidence(1)" style="display:none;">Borrar Evidencia 1</button>
                 </div>
 
@@ -89,7 +90,7 @@
                         <img id="imagenPreview2" src="#" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%; display: none;">
                     </div>
                     <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="convertImageToBase64(event, 2)">
-                    
+
                     <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn2" onclick="deleteEvidence(2)" style="display:none;">Borrar Evidencia 2</button>
                 </div>
             </div>

@@ -1,66 +1,47 @@
 USE NEO_GENESIS
-GO 
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_InsertarVacaciones')
+BEGIN
+    DROP PROCEDURE sp_InsertarVacaciones
+END
+GO
+
 CREATE PROCEDURE [dbo].[sp_InsertarVacaciones]
-    @folio_registro NVARCHAR(50),
     @fecha_registro DATE,
     @hora_registro TIME,
-    @id_ubicacion INT,
-    @id_empleado INT,
-    @fecha_inicio DATE,
-    @fecha_fin DATE,
-    @dias_vacacion INT,
-    @fecha_incorporacion DATE,
-    @dias_restantes INT,
-    @observaciones NVARCHAR(255),
     @id_usuario INT
 AS
 BEGIN
     BEGIN TRY
-        -- Validación de datos (ejemplo: fechas coherentes)
-        IF @fecha_fin < @fecha_inicio
-        BEGIN
-            RAISERROR('La fecha de fin no puede ser anterior a la fecha de inicio.', 16, 1)
-            RETURN
-        END
+        -- Generar el folio de registro basado en el próximo ID
+        DECLARE @nextId INT
+        SELECT @nextId = ISNULL(MAX(id_vacacion), 0) + 1 FROM [NEO_GENESIS].[dbo].[VACACIONES]
 
-        IF @dias_vacacion <= 0
-        BEGIN
-            RAISERROR('Los días de vacación deben ser mayores a 0.', 16, 1)
-            RETURN
-        END
+        DECLARE @folio_registro NVARCHAR(50)
+        SET @folio_registro = CONCAT('SV-', @nextId)
 
         -- Inserción del registro
         INSERT INTO [NEO_GENESIS].[dbo].[VACACIONES] (
             folio_registro,
             fecha_registro,
-            hora_registro,
-            id_ubicacion,
-            id_empleado,
-            fecha_inicio,
-            fecha_fin,
-            dias_vacacion,
-            fecha_incorporacion,
-            dias_restantes,
-            observaciones,
+            hora_registro,           
             id_usuario
         )
         VALUES (
             @folio_registro,
             @fecha_registro,
             @hora_registro,
-            @id_ubicacion,
-            @id_empleado,
-            @fecha_inicio,
-            @fecha_fin,
-            @dias_vacacion,
-            @fecha_incorporacion,
-            @dias_restantes,
-            @observaciones,
             @id_usuario
         )
-        
+
+        -- Obtener el ID del registro insertado
+        DECLARE @id_vacacion INT
+        SET @id_vacacion = SCOPE_IDENTITY()
+
         -- Confirmación de éxito
-        SELECT 'Registro insertado exitosamente.' AS Mensaje
+        SELECT 'Registro insertado exitosamente.' AS Mensaje, @folio_registro AS FolioGenerado, @id_vacacion AS ID_Vacacion
     END TRY
     BEGIN CATCH
         -- Manejo de errores

@@ -7,15 +7,15 @@
 
 <div class="row">
     <div class="ibox-content col-sm-12 marginTop5">
-        <button class="btn btn-success" id="back-to-main" onclick="window.history.back();">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("Index","Home")">
             <i class="fa fa-arrow-left"></i>
-        </button>
+        </a>
         <span class="menu-title">RECURSOS HUMANOS / SOLICITUD DE VACACIONES</span>
     </div>
 </div>
 
 <div class="col-sm-12 form-group margintop1">
-    <a href="@Url.Action("Create","Solicitud_Vacaciones")" class="btn btn-success">Nueva Solicitud</a>
+    <a href="@Url.Action("CrearFolio","Solicitud_Vacaciones")" class="btn btn-success">Nueva Solicitud</a>
 </div>
 
 <div id="table-container" class="col-sm-12 ibox-content ">

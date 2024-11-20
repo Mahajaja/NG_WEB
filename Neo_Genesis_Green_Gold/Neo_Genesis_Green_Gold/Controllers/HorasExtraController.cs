@@ -43,8 +43,41 @@ namespace Neo_Genesis_Green_Gold.Controllers
             return View();
         }
 
+        public ActionResult CrearFolio()
+        {
+            try
+            {
+                Horas_Extras_E horasextraModel = new Horas_Extras_E
+                {
+                    fecha_registro = DateTime.Now.ToString("yyyy-MM-dd"),
+                    hora_registro = DateTime.Now.ToString("HH:mm:ss"),
+                    id_usuario = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId())
+                };
+
+                // Llama al BLL para crear la vacación y obtener el ID generado
+                int newIdHorasExtra = _horasExtra.InsertHorasExtra(horasextraModel);
+
+                if (newIdHorasExtra > 0) // Verificar si el ID es válido
+                {
+                    return RedirectToAction("Create", new { id = newIdHorasExtra });
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "No se pudo crear el registro de vacaciones.";
+                    return RedirectToAction("Error"); // Redirige a una vista de error si falla
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                TempData["ErrorMessage"] = $"Ocurrió un error: {ex.Message}";
+                return RedirectToAction("Error"); // Redirige a una vista de error
+            }
+        }
+
+
         // GET: HorasExtra/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
             int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
@@ -53,7 +86,10 @@ namespace Neo_Genesis_Green_Gold.Controllers
             Horas_Extra_ViewModel horasExtraVM = new Horas_Extra_ViewModel();
             horasExtraVM.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
             horasExtraVM.List_Empleados = new List<Empleados_E>();
-
+            Horas_Extras_E horasextramodel = new Horas_Extras_E();
+            horasextramodel = _horasExtra.ObtenerHoraExtraPorId(id);
+            horasExtraVM.Folio = horasextramodel.folio_registro;
+            horasExtraVM.ID_HoraExtra = horasextramodel.id_horaExtra;
             // Cargar la lista de empleados y procesar el nombre de la imagen
             var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
             foreach (var empleado in empleados)
@@ -73,6 +109,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
                 int IDUserActual = _aspNetUser.GetIdUsuarioByUserId(User.Identity.GetUserId());
 
                 // Recoger los datos del formulario
+                int ID_HoraExtra = Convert.ToInt32(collection["ID_HoraExtra"]);
                 int idEmpleado = Convert.ToInt32(collection["IdEmpleado"]);
                 int idResponsable = IDUserActual;
                 DateTime fechaCompensacion = Convert.ToDateTime(collection["FechaInicio"]);
@@ -86,6 +123,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
                 // Crear el objeto Horas_Extras_E
                 Horas_Extras_E nuevaHoraExtra = new Horas_Extras_E
                 {
+                    id_horaExtra = ID_HoraExtra,
                     id_empleado = idEmpleado,
                     id_responsable = idResponsable,
                     fecha_compensacion = fechaCompensacion.ToString("yyyy-MM-dd"),
@@ -114,9 +152,9 @@ namespace Neo_Genesis_Green_Gold.Controllers
                 }
 
                 // Llamar a la función para insertar la hora extra y las evidencias en base64
-                int result = _horasExtra.InsertHorasExtra(nuevaHoraExtra, evidencia1Base64, evidencia2Base64);
+                bool result = _horasExtra.ActualizarHorasExtraConEvidencias(nuevaHoraExtra, evidencia1Base64, evidencia2Base64);
 
-                if (result > 0)
+                if (result == true)
                 {
                     return RedirectToAction("Index");
                 }

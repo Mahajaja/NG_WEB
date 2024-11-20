@@ -1,28 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entity
 {
     public class Vacaciones_E
     {
-        public int IdVacacion { get; set; }
-        public string FolioRegistro { get; set; }
-        public string FechaRegistro { get; set; }
-        public string HoraRegistro { get; set; }
-        public int IdUbicacion { get; set; }
-        public int IdEmpleado { get; set; }
-        public string FechaInicio { get; set; }
-        public string FechaFin { get; set; }
-        public int DiasVacacion { get; set; }
-        public string FechaIncorporacion { get; set; }
-        public int DiasRestantes { get; set; }
-        public string Observaciones { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdEstatus { get; set; }
-
+        public int id_vacacion { get; set; } // Cambiado a minúsculas para coincidir con la base de datos
+        public string folio_registro { get; set; }
+        public string fecha_registro { get; set; }
+        public string hora_registro { get; set; }
+        public int? id_ubicacion { get; set; } // Nullable si puede ser null
+        public int? id_empleado { get; set; }
+        public string fecha_inicio { get; set; }
+        public string fecha_fin { get; set; }
+        public int? dias_vacacion { get; set; }
+        public string fecha_incorporacion { get; set; }
+        public int? dias_restantes { get; set; }
+        public string observaciones { get; set; }
+        public int id_usuario { get; set; }
+        public int? ID_Estatus { get; set; } // Nullable si puede ser null
     }
 }
- 

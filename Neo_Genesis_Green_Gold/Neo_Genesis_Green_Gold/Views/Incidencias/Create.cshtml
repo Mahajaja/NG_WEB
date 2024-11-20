@@ -18,6 +18,14 @@
     <div class="ibox-content col-sm-12 margintop1">
         @using (Html.BeginForm("Create", "Incidencias", FormMethod.Post))
         {
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">FOLIO</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" value="@Model.IncidenciaModel.folio_incidencia" disabled />
+                    <input type="hidden" value="@Model.IncidenciaModel.id_incidencia" name="id_incidencia" id="id_incidencia"/>
+                </div>
+            </div>
+
             <div class="form-group row text-center">
                 <label class="col-sm-12 col-form-label">Fotografía del Trabajador</label>
                 <div class="col-sm-12">

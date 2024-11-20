@@ -8,19 +8,32 @@ public class Vacaciones_BLL
 
     public int CrearVacacion(Vacaciones_E vacacion)
     {
-        // Aquí puedes agregar validaciones de negocio antes de insertar en la base de datos
+        // Validación básica de null
         if (vacacion == null)
         {
             throw new ArgumentNullException(nameof(vacacion), "La vacación no puede ser nula.");
         }
 
-        if (vacacion.DiasVacacion <= 0)
+        // Validación de propiedades obligatorias
+        if (string.IsNullOrEmpty(vacacion.fecha_registro))
         {
-            throw new ArgumentException("Los días de vacación deben ser mayores que cero.");
+            throw new ArgumentException("La fecha de registro es obligatoria.", nameof(vacacion.fecha_registro));
         }
 
+        if (string.IsNullOrEmpty(vacacion.hora_registro))
+        {
+            throw new ArgumentException("La hora de registro es obligatoria.", nameof(vacacion.hora_registro));
+        }
+
+        if (vacacion.id_usuario <= 0)
+        {
+            throw new ArgumentException("El ID del usuario debe ser un valor válido.", nameof(vacacion.id_usuario));
+        }
+
+        // Si todas las validaciones pasan, llama a la capa DAL
         return _vacacionesDal.InsertVacacion(vacacion);
     }
+
 
     public Vacaciones_E ObtenerVacacionPorId(int idVacacion)
     {
@@ -44,35 +57,43 @@ public class Vacaciones_BLL
         return _vacacionesDal.GetAllVacaciones();
     }
 
-    public int ActualizarVacacion(Vacaciones_E vacacion)
+    // Método para actualizar una vacación desde la capa BLL
+    public void UpdateVacacion(Vacaciones_E vacacion)
     {
         if (vacacion == null)
         {
             throw new ArgumentNullException(nameof(vacacion), "La vacación no puede ser nula.");
         }
 
-        if (vacacion.IdVacacion <= 0)
+        if (vacacion.id_vacacion <= 0)
         {
-            throw new ArgumentException("El ID de la vacación no es válido.");
+            throw new ArgumentException("El ID de la vacación debe ser mayor a 0.", nameof(vacacion.id_vacacion));
         }
 
-        if (vacacion.DiasVacacion <= 0)
+        try
         {
-            throw new ArgumentException("Los días de vacación deben ser mayores que cero.");
-        }
+            int filasAfectadas = _vacacionesDal.UpdateVacacion(vacacion);
 
-        return _vacacionesDal.UpdateVacacion(vacacion);
+            if (filasAfectadas == 0)
+            {
+                throw new Exception("No se encontró el registro para actualizar.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error al actualizar la vacación en la capa BLL: " + ex.Message);
+        }
     }
 
-    public int EliminarVacacion(int idVacacion)
-    {
-        if (idVacacion <= 0)
-        {
-            throw new ArgumentException("El ID de vacación no es válido.");
-        }
+    //public int EliminarVacacion(int idVacacion)
+    //{
+    //    if (idVacacion <= 0)
+    //    {
+    //        throw new ArgumentException("El ID de vacación no es válido.");
+    //    }
 
-        return _vacacionesDal.DeleteVacacion(idVacacion);
-    }
+    //    return _vacacionesDal.DeleteVacacion(idVacacion);
+    //}
     public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato()
     { return _vacacionesDal.GetVacacionesConFormato(); }
 }

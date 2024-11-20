@@ -309,7 +309,47 @@ INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
 SELECT ID_Menu, @IDUSUARIO FROM Menu;
 GO
 
+USE NEO_GENESIS
+GO
 
+-- Permitir NULL en la columna fecha_inicio
+ALTER TABLE VACACIONES
+ALTER COLUMN fecha_inicio CHAR(10) NULL;
+
+-- Permitir NULL en la columna fecha_fin
+ALTER TABLE VACACIONES
+ALTER COLUMN fecha_fin CHAR(10) NULL;
+
+-- Permitir NULL en la columna fecha_incorporacion
+ALTER TABLE VACACIONES
+ALTER COLUMN fecha_incorporacion CHAR(10) NULL;
+GO
+
+USE NEO_GENESIS
+GO
+
+ALTER TABLE [dbo].[INCIDENCIA]
+ALTER COLUMN tipo_registro VARCHAR(10) NULL;
+GO
+
+
+USE NEO_GENESIS
+GO
+
+ALTER TABLE Horas_Extra
+ALTER COLUMN id_empleado INT NULL;
+
+ALTER TABLE Horas_Extra
+ALTER COLUMN motivo_hraExtra INT NULL;
+
+USE NEO_GENESIS;
+GO
+
+ALTER TABLE HORAS_EXTRAS
+ALTER COLUMN fecha_compensacion CHAR(10) NULL;
+ALTER TABLE HORAS_EXTRAS
+ALTER COLUMN motivo_hraExtra NVARCHAR(400) NULL;
+----------------------------------------------------------------------------------------------------------------------------------
 USE NEO_GENESIS
 GO
 

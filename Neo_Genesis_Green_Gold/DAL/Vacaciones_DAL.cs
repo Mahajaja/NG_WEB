@@ -20,27 +20,27 @@ namespace DAL
         {
             try
             {
-                sqlHelper.OpenConnection(); // Abre la conexión
+                sqlHelper.OpenConnection();
 
-                sqlHelper.Command.CommandText = "SP_InsertVacacion";
+                sqlHelper.Command.CommandText = "sp_InsertarVacaciones";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
-                // Añadir los parámetros al Stored Procedure
-                sqlHelper.Command.Parameters.AddWithValue("@FolioRegistro", vacacion.FolioRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaRegistro", vacacion.FechaRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@HoraRegistro", vacacion.HoraRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@IdEmpleado", vacacion.IdEmpleado);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaInicio", vacacion.FechaInicio);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaFin", vacacion.FechaFin);
-                sqlHelper.Command.Parameters.AddWithValue("@DiasVacacion", vacacion.DiasVacacion);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaIncorporacion", vacacion.FechaIncorporacion);
-                sqlHelper.Command.Parameters.AddWithValue("@DiasRestantes", vacacion.DiasRestantes);
-                sqlHelper.Command.Parameters.AddWithValue("@Observaciones", vacacion.Observaciones);
-                sqlHelper.Command.Parameters.AddWithValue("@IdUsuario", vacacion.IdUsuario);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_registro", vacacion.fecha_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@hora_registro", vacacion.hora_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@id_usuario", vacacion.id_usuario);
 
-                // Ejecuta el comando
-                return sqlHelper.Command.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["ID_Vacacion"]); // Asegúrate de que el alias coincida con el SP
+                    }
+                    else
+                    {
+                        throw new Exception("No se pudo obtener el ID de la vacación.");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -48,11 +48,12 @@ namespace DAL
             }
             finally
             {
-                sqlHelper.CloseConnection(); // Asegúrate de cerrar la conexión
+                sqlHelper.CloseConnection();
             }
         }
 
-        // Método para obtener una vacación por su ID
+
+
         public Vacaciones_E GetVacacionById(int idVacacion)
         {
             Vacaciones_E vacacion = null;
@@ -72,19 +73,20 @@ namespace DAL
                     {
                         vacacion = new Vacaciones_E
                         {
-                            IdVacacion = Convert.ToInt32(reader["IdVacacion"]),
-                            FolioRegistro = reader["FolioRegistro"].ToString(),
-                            FechaRegistro = reader["FechaRegistro"].ToString(),
-                            HoraRegistro = reader["HoraRegistro"].ToString(),
-                            IdUbicacion = Convert.ToInt32(reader["IdUbicacion"]),
-                            IdEmpleado = Convert.ToInt32(reader["IdEmpleado"]),
-                            FechaInicio = reader["FechaInicio"].ToString(),
-                            FechaFin = reader["FechaFin"].ToString(),
-                            DiasVacacion = Convert.ToInt32(reader["DiasVacacion"]),
-                            FechaIncorporacion = reader["FechaIncorporacion"].ToString(),
-                            DiasRestantes = Convert.ToInt32(reader["DiasRestantes"]),
-                            Observaciones = reader["Observaciones"].ToString(),
-                            IdUsuario = Convert.ToInt32(reader["IdUsuario"])
+                            id_vacacion = reader["id_vacacion"] != DBNull.Value ? Convert.ToInt32(reader["id_vacacion"]) : 0,
+                            folio_registro = reader["folio_registro"] != DBNull.Value ? reader["folio_registro"].ToString() : null,
+                            fecha_registro = reader["fecha_registro"] != DBNull.Value ? reader["fecha_registro"].ToString() : null,
+                            hora_registro = reader["hora_registro"] != DBNull.Value ? reader["hora_registro"].ToString() : null,
+                            id_ubicacion = reader["id_ubicacion"] != DBNull.Value ? Convert.ToInt32(reader["id_ubicacion"]) : (int?)null,
+                            id_empleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : (int?)null,
+                            fecha_inicio = reader["fecha_inicio"] != DBNull.Value ? reader["fecha_inicio"].ToString() : null,
+                            fecha_fin = reader["fecha_fin"] != DBNull.Value ? reader["fecha_fin"].ToString() : null,
+                            dias_vacacion = reader["dias_vacacion"] != DBNull.Value ? Convert.ToInt32(reader["dias_vacacion"]) : (int?)null,
+                            fecha_incorporacion = reader["fecha_incorporacion"] != DBNull.Value ? reader["fecha_incorporacion"].ToString() : null,
+                            dias_restantes = reader["dias_restantes"] != DBNull.Value ? Convert.ToInt32(reader["dias_restantes"]) : (int?)null,
+                            observaciones = reader["observaciones"] != DBNull.Value ? reader["observaciones"].ToString() : null,
+                            id_usuario = reader["id_usuario"] != DBNull.Value ? Convert.ToInt32(reader["id_usuario"]) : 0,
+                            ID_Estatus = reader["ID_Estatus"] != DBNull.Value ? Convert.ToInt32(reader["ID_Estatus"]) : (int?)null
                         };
                     }
                 }
@@ -100,6 +102,7 @@ namespace DAL
 
             return vacacion;
         }
+
 
         // Método para obtener todas las vacaciones
         public List<Vacaciones_E> GetAllVacaciones()
@@ -120,19 +123,19 @@ namespace DAL
                     {
                         Vacaciones_E vacacion = new Vacaciones_E
                         {
-                            IdVacacion = Convert.ToInt32(reader["IdVacacion"]),
-                            FolioRegistro = reader["FolioRegistro"].ToString(),
-                            FechaRegistro = reader["FechaRegistro"].ToString(),
-                            HoraRegistro = reader["HoraRegistro"].ToString(),
-                            IdUbicacion = Convert.ToInt32(reader["IdUbicacion"]),
-                            IdEmpleado = Convert.ToInt32(reader["IdEmpleado"]),
-                            FechaInicio = reader["FechaInicio"].ToString(),
-                            FechaFin = reader["FechaFin"].ToString(),
-                            DiasVacacion = Convert.ToInt32(reader["DiasVacacion"]),
-                            FechaIncorporacion = reader["FechaIncorporacion"].ToString(),
-                            DiasRestantes = Convert.ToInt32(reader["DiasRestantes"]),
-                            Observaciones = reader["Observaciones"].ToString(),
-                            IdUsuario = Convert.ToInt32(reader["IdUsuario"])
+                            id_vacacion = Convert.ToInt32(reader["IdVacacion"]),
+                            folio_registro = reader["FolioRegistro"].ToString(),
+                            fecha_registro = reader["FechaRegistro"].ToString(),
+                            hora_registro = reader["HoraRegistro"].ToString(),
+                            id_ubicacion = Convert.ToInt32(reader["IdUbicacion"]),
+                            id_empleado = Convert.ToInt32(reader["IdEmpleado"]),
+                            fecha_inicio = reader["FechaInicio"].ToString(),
+                            fecha_fin = reader["FechaFin"].ToString(),
+                            dias_vacacion = Convert.ToInt32(reader["DiasVacacion"]),
+                            fecha_incorporacion = reader["FechaIncorporacion"].ToString(),
+                            dias_restantes = Convert.ToInt32(reader["DiasRestantes"]),
+                            observaciones = reader["Observaciones"].ToString(),
+                            id_usuario = Convert.ToInt32(reader["IdUsuario"])
                         };
                         vacaciones.Add(vacacion);
                     }
@@ -150,34 +153,32 @@ namespace DAL
             return vacaciones;
         }
 
-        // Método para actualizar una vacación
         public int UpdateVacacion(Vacaciones_E vacacion)
         {
             try
             {
                 sqlHelper.OpenConnection(); // Abre la conexión
 
-                sqlHelper.Command.CommandText = "SP_UpdateVacacion";
+                sqlHelper.Command.CommandText = "sp_ActualizarVacaciones";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
                 // Añadir los parámetros al Stored Procedure
-                sqlHelper.Command.Parameters.AddWithValue("@IdVacacion", vacacion.IdVacacion);
-                sqlHelper.Command.Parameters.AddWithValue("@FolioRegistro", vacacion.FolioRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaRegistro", vacacion.FechaRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@HoraRegistro", vacacion.HoraRegistro);
-                sqlHelper.Command.Parameters.AddWithValue("@IdUbicacion", vacacion.IdUbicacion);
-                sqlHelper.Command.Parameters.AddWithValue("@IdEmpleado", vacacion.IdEmpleado);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaInicio", vacacion.FechaInicio);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaFin", vacacion.FechaFin);
-                sqlHelper.Command.Parameters.AddWithValue("@DiasVacacion", vacacion.DiasVacacion);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaIncorporacion", vacacion.FechaIncorporacion);
-                sqlHelper.Command.Parameters.AddWithValue("@DiasRestantes", vacacion.DiasRestantes);
-                sqlHelper.Command.Parameters.AddWithValue("@Observaciones", vacacion.Observaciones);
-                sqlHelper.Command.Parameters.AddWithValue("@IdUsuario", vacacion.IdUsuario);
+                sqlHelper.Command.Parameters.AddWithValue("@id_vacacion", vacacion.id_vacacion);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_registro", vacacion.fecha_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@hora_registro", vacacion.hora_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@id_ubicacion", vacacion.id_ubicacion ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", vacacion.id_empleado ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_inicio", vacacion.fecha_inicio ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_fin", vacacion.fecha_fin ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@dias_vacacion", vacacion.dias_vacacion ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_incorporacion", vacacion.fecha_incorporacion ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@dias_restantes", vacacion.dias_restantes ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@observaciones", vacacion.observaciones ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@id_usuario", vacacion.id_usuario);
 
                 // Ejecuta el comando
-                return sqlHelper.Command.ExecuteNonQuery();
+                return sqlHelper.Command.ExecuteNonQuery(); // Devuelve el número de filas afectadas
             }
             catch (Exception ex)
             {
@@ -185,9 +186,10 @@ namespace DAL
             }
             finally
             {
-                sqlHelper.CloseConnection(); // Cerrar la conexión
+                sqlHelper.CloseConnection(); // Cierra la conexión
             }
         }
+
 
         // Método para eliminar una vacación
         public int DeleteVacacion(int idVacacion)

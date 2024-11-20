@@ -14,6 +14,10 @@ namespace Neo_Genesis_Green_Gold.ViewModels
         public int DiasTomar {  get; set; }
         public string FechaIncorporacion { get; set; }
         public int DiasRestantes { get; set; }
+        public string Folio { get; set; }
         public List<Empleados_E> List_Empleados { get; set; }
+        public Vacaciones_E Vacacion { get; set; }
+        public List<Ubicacion_E> List_Ubicaciones { get; set; }
+        public bool MostrarUbicaciones { get; set; }
     }
 }

@@ -31,16 +31,24 @@
                     <!-- Email Field -->
                     <div class="mb-3">
                         @Html.LabelFor(m => m.Email, new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control blackInput" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control blackInput", @style = "text-transform: uppercase;" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
+
 
                     <!-- Password Field -->
                     <div class="mb-3">
                         @Html.LabelFor(m => m.Password, new { @class = "form-label" })
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control blackInput" })
+                        <div class="input-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control blackInput", id = "passwordField" })
+                            <button type="button" class="btn btn-outline-secondary toggle-password" id="togglePassword" style="cursor: pointer;">
+                                <i id="toggleIcon" class="fa fa-eye"></i> <!-- Icono de FontAwesome -->
+                            </button>
+                        </div>
+
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
+
 
                     <!-- Remember Me Checkbox -->
                     <div class="mb-3 form-check">
@@ -67,4 +75,17 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('passwordField');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Cambia el ícono de FontAwesome
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
+        });
+    </script>
 }
+

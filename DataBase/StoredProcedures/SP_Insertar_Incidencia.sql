@@ -1,67 +1,52 @@
-  
--- Creación del nuevo stored procedure para insertar en la tabla de incidencias  
-CREATE PROCEDURE SP_Insertar_Incidencia  
-    @id_empleado INT,  
-    @tipo_registro VARCHAR(50),  
-    @tipo_incidencia VARCHAR(50),  
-    @tiempo_sancion VARCHAR(50),  
-    @descuento_dia CHAR(5),  
-    @dia VARCHAR(10),  
-    @fecha_inicio CHAR(10),  
-    @descripcion NVARCHAR(MAX),  
-    @goze CHAR(1),  
-    @horas CHAR(5),  
-    @id_usuario INT  
-AS  
-BEGIN  
-    DECLARE @NuevoID INT;  
-    DECLARE @folio_incidencia CHAR(20);  
-    DECLARE @Estatus_Revision INT = (SELECT ID_Estatus FROM Estatus E   
-                                     INNER JOIN TipoEstatus TE ON E.ID_TipoEstatus = TE.ID_TipoEstatus  
-                                     WHERE TE.TipoEstatus = 'Incidencias' AND E.Estatus = 'EN REVISION');  
-  
-    DECLARE @IdUbicacion INT = (SELECT E.id_ubicacion FROM USUARIO U  
-        INNER JOIN EMPLEADO E ON U.id_empleado = E.id_empleado  
-        WHERE U.id_usuario = @id_usuario);  
-  
-  -- Obtener el próximo valor del id_incidencia (esto asume que id_incidencia es autoincremental)     SELECT @NuevoID = ISNULL(MAX(id_incidencia), 0) + 1 FROM INCIDENCIA;      -- Generar el folio_incidencia basado en el nuevo ID     SET @folio_incidencia 
-= 'INC-' + CAST(@NuevoID AS CHAR(10));  
-  
-    -- Insertamos los datos con la fecha y hora calculadas en el procedimiento  
-    INSERT INTO INCIDENCIA(  
-  folio_incidencia,  
-        hora_registro, -- Solo la hora  
-        fecha_registro, -- Solo la fecha  
-        id_ubicacion,  
-        id_empleado,  
-        tipo_registro,  
-        tipo_incidencia,  
-        tiempo_sancion,  
-        descuento_dia,  
-        dia,  
-        fecha_inicio,  
-        descripcion,  
-        goze,  
-        horas,  
-        id_usuario,  
-        ID_Estatus  
-    )  
-    VALUES (  
-  @folio_incidencia,  
-        CONVERT(CHAR(5), GETDATE(), 108), -- Solo la hora (HH:MM formato 24 horas)  
-        CONVERT(DATE, GETDATE()), -- Solo la fecha  
-        @IdUbicacion,  
-        @id_empleado,  
-        @tipo_registro,  
-        @tipo_incidencia,  
-        @tiempo_sancion,  
-        @descuento_dia,  
-        @dia,  
-        @fecha_inicio,  
-        @descripcion,  
-        @goze,  
-        @horas,  
-        @id_usuario,  
-        @Estatus_Revision  
-    );  
-END  
+USE NEO_GENESIS
+GO
+
+-- Verifica si el Stored Procedure existe, si es así, lo elimina
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_InsertarIncidencia')
+BEGIN
+    DROP PROCEDURE sp_InsertarIncidencia
+END
+GO
+
+CREATE PROCEDURE [dbo].[sp_InsertarIncidencia]
+    @fecha_registro DATE,
+    @hora_registro TIME,
+    @id_usuario INT
+AS
+BEGIN
+    BEGIN TRY
+        -- Generar el folio de registro basado en el próximo ID
+        DECLARE @nextId INT
+        SELECT @nextId = ISNULL(MAX(id_incidencia), 0) + 1 FROM [NEO_GENESIS].[dbo].[INCIDENCIA]
+
+        DECLARE @folio_registro NVARCHAR(50)
+        SET @folio_registro = CONCAT('INC-', @nextId)
+
+        -- Inserción del registro
+        INSERT INTO [NEO_GENESIS].[dbo].[INCIDENCIA] (
+            folio_incidencia,
+            fecha_registro,
+            hora_registro,
+            id_usuario
+        )
+        VALUES (
+            @folio_registro,
+            @fecha_registro,
+            @hora_registro,
+            @id_usuario
+        )
+
+        -- Obtener el ID del registro insertado
+        DECLARE @id_incidencia INT
+        SET @id_incidencia = SCOPE_IDENTITY()
+
+        -- Confirmación de éxito
+        SELECT 'Registro insertado exitosamente.' AS Mensaje, @folio_registro AS FolioGenerado, @id_incidencia AS ID_Incidencia
+    END TRY
+    BEGIN CATCH
+        -- Manejo de errores
+        DECLARE @ErrorMsg NVARCHAR(4000), @ErrorSeverity INT, @ErrorState INT
+        SELECT @ErrorMsg = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE()
+        RAISERROR(@ErrorMsg, @ErrorSeverity, @ErrorState)
+    END CATCH
+END

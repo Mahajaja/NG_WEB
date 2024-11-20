@@ -23,12 +23,10 @@ namespace DAL
             {
                 sqlHelper.OpenConnection(); // Abre la conexión
 
-                // Configura el comando para ejecutar el procedimiento almacenado
                 sqlHelper.Command.CommandText = "SP_ObtenerHorasExtras";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
-                // Ejecutar y leer los datos
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -36,31 +34,30 @@ namespace DAL
                         Horas_Extras_E horaExtra = new Horas_Extras_E
                         {
                             id_horaExtra = Convert.ToInt32(reader["id_horaExtra"]),
-                            folio_registro = reader["folio_registro"].ToString(),
-                            fecha_registro = reader["fecha_registro"].ToString(),
-                            hora_registro = reader["hora_registro"].ToString(),
-                            id_empleado = Convert.ToInt32(reader["id_empleado"]),
-                            id_responsable = Convert.ToInt32(reader["id_responsable"]),
-                            fecha_compensacion = reader["fecha_compensacion"].ToString(),
-                            costo_horaExtra = Convert.ToSingle(reader["costo_horaExtra"]),
-                            costo_horaDoble = Convert.ToSingle(reader["costo_horaDoble"]),
-                            horas_porPagar = Convert.ToInt32(reader["horas_porPagar"]),
-                            
-                            hora_triple = Convert.ToInt32(reader["hora_triple"]),
-                            total_horaDoble = Convert.ToSingle(reader["total_horaDoble"]),
-                            total_horaTriple = Convert.ToSingle(reader["total_horaTriple"]),
-                            total_aPagar = Convert.ToSingle(reader["total_aPagar"]),
-                            motivo_hraExtra = reader["motivo_hraExtra"].ToString(),
-                            observaciones = reader["observaciones"].ToString(),
-                            Estatus = reader["Estatus"].ToString(),
-                            id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                            folio_registro = reader["folio_registro"]?.ToString(),
+                            fecha_registro = reader["fecha_registro"]?.ToString(),
+                            hora_registro = reader["hora_registro"]?.ToString(),
+                            id_empleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : (int?)null,
+                            id_responsable = reader["id_responsable"] != DBNull.Value ? Convert.ToInt32(reader["id_responsable"]) : (int?)null,
+                            fecha_compensacion = reader["fecha_compensacion"]?.ToString(),
+                            costo_horaExtra = reader["costo_horaExtra"] != DBNull.Value ? Convert.ToSingle(reader["costo_horaExtra"]) : (float?)null,
+                            costo_horaDoble = reader["costo_horaDoble"] != DBNull.Value ? Convert.ToSingle(reader["costo_horaDoble"]) : (float?)null,
+                            horas_porPagar = reader["horas_porPagar"] != DBNull.Value ? Convert.ToInt32(reader["horas_porPagar"]) : (int?)null,
+                            hora_triple = reader["hora_triple"] != DBNull.Value ? Convert.ToInt32(reader["hora_triple"]) : (int?)null,
+                            total_horaDoble = reader["total_horaDoble"] != DBNull.Value ? Convert.ToSingle(reader["total_horaDoble"]) : (float?)null,
+                            total_horaTriple = reader["total_horaTriple"] != DBNull.Value ? Convert.ToSingle(reader["total_horaTriple"]) : (float?)null,
+                            total_aPagar = reader["total_aPagar"] != DBNull.Value ? Convert.ToSingle(reader["total_aPagar"]) : (float?)null,
+                            motivo_hraExtra = reader["motivo_hraExtra"]?.ToString(),
+                            observaciones = reader["observaciones"]?.ToString(),
+                            Estatus = reader["Estatus"]?.ToString(),
+                            id_usuario = reader["id_usuario"] != DBNull.Value ? Convert.ToInt32(reader["id_usuario"]) : (int?)null,
                             empleado = new Empleados_E
                             {
-                                IdEmpleado = Convert.ToInt32(reader["id_empleado"]),
-                                Nombre = reader["Nombre"].ToString(),
-                                ApellidoPaterno = reader["apellido_paterno"].ToString(),
-                                ApellidoMaterno = reader["apellido_materno"].ToString(),
-                                FechaNacimiento = reader["fecha_nacimiento"].ToString()
+                                IdEmpleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : 0,
+                                Nombre = reader["Nombre"]?.ToString(),
+                                ApellidoPaterno = reader["apellido_paterno"]?.ToString(),
+                                ApellidoMaterno = reader["apellido_materno"]?.ToString(),
+                                FechaNacimiento = reader["fecha_nacimiento"]?.ToString()
                             }
                         };
                         horasExtras.Add(horaExtra);
@@ -79,30 +76,33 @@ namespace DAL
             return horasExtras;
         }
 
-        public int InsertHorasExtra(Horas_Extras_E horaExtra, string evidencia1, string evidencia2)
+        // Método para insertar horas extra
+        public int InsertHorasExtra(Horas_Extras_E horaExtra)
         {
             try
             {
-                sqlHelper.OpenConnection(); // Abre la conexión
+                sqlHelper.OpenConnection();
 
-                // Configura el comando para ejecutar el procedimiento almacenado
-                sqlHelper.Command.CommandText = "SP_Insertar_HorasExtra";
+                sqlHelper.Command.CommandText = "sp_InsertarHorasExtra";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
-                // Añadir los parámetros necesarios para el SP
-                sqlHelper.Command.Parameters.AddWithValue("@IDEMPLEADO", horaExtra.id_empleado);
-                sqlHelper.Command.Parameters.AddWithValue("@IDRESPONSABLE", horaExtra.id_responsable);
-                sqlHelper.Command.Parameters.AddWithValue("@FechaCompensacion", horaExtra.fecha_compensacion);
-                sqlHelper.Command.Parameters.AddWithValue("@HorasPorPagar", horaExtra.horas_porPagar);
-                sqlHelper.Command.Parameters.AddWithValue("@MotivoHorasExtra", horaExtra.motivo_hraExtra);
-                sqlHelper.Command.Parameters.AddWithValue("@Observaciones", horaExtra.observaciones);
-                sqlHelper.Command.Parameters.AddWithValue("@IDUSUARIO", horaExtra.id_usuario);
-                sqlHelper.Command.Parameters.AddWithValue("@Evidencia1", evidencia1);
-                sqlHelper.Command.Parameters.AddWithValue("@Evidencia2", evidencia2);
+                // Solo enviar los parámetros necesarios para este SP
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_registro", horaExtra.fecha_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@hora_registro", horaExtra.hora_registro);
+                sqlHelper.Command.Parameters.AddWithValue("@id_usuario", horaExtra.id_usuario);
 
-                // Ejecuta el comando
-                return sqlHelper.Command.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["ID_HoraExtra"]); // Obtenemos el ID del registro insertado
+                    }
+                    else
+                    {
+                        throw new Exception("No se pudo obtener el ID de la hora extra insertada.");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -110,10 +110,105 @@ namespace DAL
             }
             finally
             {
-                sqlHelper.CloseConnection(); // Cierra la conexión
+                sqlHelper.CloseConnection();
             }
         }
 
 
+        public Horas_Extras_E ObtenerHoraExtraPorId(int idHoraExtra)
+        {
+            try
+            {
+                sqlHelper.OpenConnection();
+
+                sqlHelper.Command.CommandText = "SP_ObtenerHoraExtraPorId";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+                sqlHelper.Command.Parameters.AddWithValue("@id_horaExtra", idHoraExtra);
+
+                using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Horas_Extras_E
+                        {
+                            id_horaExtra = Convert.ToInt32(reader["id_horaExtra"]),
+                            folio_registro = reader["folio_registro"]?.ToString(),
+                            fecha_registro = reader["fecha_registro"]?.ToString(),
+                            hora_registro = reader["hora_registro"]?.ToString(),
+                            id_empleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : (int?)null,
+                            id_responsable = reader["id_responsable"] != DBNull.Value ? Convert.ToInt32(reader["id_responsable"]) : (int?)null,
+                            fecha_compensacion = reader["fecha_compensacion"]?.ToString(),
+                            costo_horaExtra = reader["costo_horaExtra"] != DBNull.Value ? Convert.ToSingle(reader["costo_horaExtra"]) : (float?)null,
+                            costo_horaDoble = reader["costo_horaDoble"] != DBNull.Value ? Convert.ToSingle(reader["costo_horaDoble"]) : (float?)null,
+                            horas_porPagar = reader["horas_porPagar"] != DBNull.Value ? Convert.ToInt32(reader["horas_porPagar"]) : (int?)null,
+                            costo_horaTriple = reader["costo_horaTriple"] != DBNull.Value ? Convert.ToSingle(reader["costo_horaTriple"]) : (float?)null,
+                            hora_triple = reader["hora_triple"] != DBNull.Value ? Convert.ToInt32(reader["hora_triple"]) : (int?)null,
+                            total_horaDoble = reader["total_horaDoble"] != DBNull.Value ? Convert.ToSingle(reader["total_horaDoble"]) : (float?)null,
+                            total_horaTriple = reader["total_horaTriple"] != DBNull.Value ? Convert.ToSingle(reader["total_horaTriple"]) : (float?)null,
+                            total_aPagar = reader["total_aPagar"] != DBNull.Value ? Convert.ToSingle(reader["total_aPagar"]) : (float?)null,
+                            motivo_hraExtra = reader["motivo_hraExtra"]?.ToString(),
+                            observaciones = reader["observaciones"]?.ToString(),
+                            id_usuario = reader["id_usuario"] != DBNull.Value ? Convert.ToInt32(reader["id_usuario"]) : (int?)null,
+                            ID_Estatus = reader["ID_Estatus"] != DBNull.Value ? Convert.ToInt32(reader["ID_Estatus"]) : (int?)null,
+                            empleado = new Empleados_E
+                            {
+                                Nombre = reader["NombreEmpleado"]?.ToString(),
+                                ApellidoPaterno = reader["ApellidoPaternoEmpleado"]?.ToString(),
+                                ApellidoMaterno = reader["ApellidoMaternoEmpleado"]?.ToString()
+                            }
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la hora extra: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection();
+            }
+        }
+
+        public bool ActualizarHorasExtraConEvidencias(Horas_Extras_E horaExtra, string evidencia1, string evidencia2)
+        {
+            try
+            {
+                sqlHelper.OpenConnection();
+
+                sqlHelper.Command.CommandText = "SP_Actualizar_HorasExtra";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+
+                // Parámetros
+                sqlHelper.Command.Parameters.AddWithValue("@id_horaExtra", horaExtra.id_horaExtra);
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", horaExtra.id_empleado);
+                sqlHelper.Command.Parameters.AddWithValue("@id_responsable", horaExtra.id_responsable);
+                sqlHelper.Command.Parameters.AddWithValue("@fecha_compensacion", horaExtra.fecha_compensacion);
+                sqlHelper.Command.Parameters.AddWithValue("@horas_porPagar", horaExtra.horas_porPagar);
+                sqlHelper.Command.Parameters.AddWithValue("@motivo_hraExtra", horaExtra.motivo_hraExtra);
+                sqlHelper.Command.Parameters.AddWithValue("@observaciones", horaExtra.observaciones ?? (object)DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@id_usuario", horaExtra.id_usuario);
+                sqlHelper.Command.Parameters.AddWithValue("@Evidencia1", (object)evidencia1 ?? DBNull.Value);
+                sqlHelper.Command.Parameters.AddWithValue("@Evidencia2", (object)evidencia2 ?? DBNull.Value);
+
+                int rowsAffected = sqlHelper.Command.ExecuteNonQuery();
+
+                return rowsAffected > 0; // Retorna true si se actualizó al menos una fila
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la hora extra con evidencias: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection();
+            }
+        }
     }
 }

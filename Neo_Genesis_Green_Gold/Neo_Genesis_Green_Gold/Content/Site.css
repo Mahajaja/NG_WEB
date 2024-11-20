@@ -1010,7 +1010,18 @@ small {
     }
 }
 
+.input-group {
+    display: flex;
+    align-items: center;
+}
 
+.toggle-password {
+    background-color: #3e3e3d !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 100%;
+    color: white !important;/* Se asegura de que el botón coincida con la altura del campo */
+}
     /* Hover effect */
     /*.iboxShadow:hover {
         transform: translateY(-5px);
