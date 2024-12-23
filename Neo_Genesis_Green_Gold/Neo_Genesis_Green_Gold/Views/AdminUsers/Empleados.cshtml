@@ -1,0 +1,87 @@
+﻿@model List<Entity.Empleados_E>
+
+@{
+    ViewBag.Title = "Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("Index", "AdminUsers")">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <span class="menu-title">ADMINISTRACIÓN / GESTIÓN DE EMPLEADOS</span>
+    </div>
+</div>
+
+<div id="table-container" class="col-sm-12 ibox-content">
+    <table id="empleados" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th><CENTER>#</CENTER></th>
+                <th>NOMBRE</th>
+                <th>APELLIDOS</th>
+                <th>PUESTO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                int index = 1;
+                foreach (var empleado in Model)
+                {
+                    <tr>
+                        <td><center>@index</center></td>
+                        <td>@empleado.Nombre</td>
+                        <td>@empleado.ApellidoPaterno @empleado.ApellidoMaterno</td>
+                        <td>@empleado.Puesto</td>
+                        <td>
+                            <a href="@Url.Action("UbicacionesEmpleado", "AdminUsers", new { Id = empleado.IdEmpleado })" class="btn btn-primary btn-sm">
+                                <i class="fa fa-map-pin"></i> UBICACIONES
+                            </a>
+                        </td>
+                    </tr>
+                    index++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No hay empleados registrados.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#empleados').DataTable({
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    });
+</script>

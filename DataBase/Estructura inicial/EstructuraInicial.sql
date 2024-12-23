@@ -272,33 +272,25 @@ DECLARE @ID_MENU_Solicitud_Prestamo INT = (SELECT ID_Menu FROM Menu WHERE Nombre
 DECLARE @ID_MENU_Justificante_Laboral INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Justificante_Laboral');
 DECLARE @ID_PADRE_Mantenimiento INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Mantenimiento');
 DECLARE @ID_MENU_Solicitud_Mantenimiento INT = (SELECT ID_Menu FROM Menu WHERE Nombre_Menu = 'Solicitud de mantenimiento');
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU, @IDUSUARIO);
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU_Incidencias, @IDUSUARIO);
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU_Horas_Extra, @IDUSUARIO);
---GO
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU_Solicitud_Prestamo, @IDUSUARIO);
---GO
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_MENU_Justificante_Laboral, @IDUSUARIO);
---GO
-
---INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
---VALUES (@ID_PADRE_Mantenimiento, @IDUSUARIO);
-
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU, @IDUSUARIO);
 
 INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
-VALUES (@ID_MENU_Solicitud_Mantenimiento, @IDUSUARIO);
+VALUES (@ID_MENU_Solicitud_Vacaciones, @IDUSUARIO);
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Incidencias, @IDUSUARIO);
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Horas_Extra, @IDUSUARIO);
+GO
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Solicitud_Prestamo, @IDUSUARIO);
+GO
+
+INSERT INTO Menu_Usuario (ID_Menu, ID_Usuario)
+VALUES (@ID_MENU_Justificante_Laboral, @IDUSUARIO);
 GO
 
 /*ACCESO A TODOS LOS MENUS PARA SP*/

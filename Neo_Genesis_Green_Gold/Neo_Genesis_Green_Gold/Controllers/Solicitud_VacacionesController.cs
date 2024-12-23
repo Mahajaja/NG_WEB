@@ -24,7 +24,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
             try
             {
                 // Obtener la lista de todas las solicitudes de vacaciones con el formato adecuado
-                List<SolicitudesVacacionesViewModel> listaVacaciones = _vacacionesBll.GetVacacionesConFormato();
+                List<SolicitudesVacacionesViewModel> listaVacaciones = _vacacionesBll.GetVacacionesConFormato(_aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId()));
 
                 // Pasar la lista a la vista
                 return View(listaVacaciones);
@@ -145,29 +145,31 @@ namespace Neo_Genesis_Green_Gold.Controllers
         {
             try
             {
+                // Obtén la lista de empleados por ubicación desde la capa de negocio
                 var empleados = _empleadobll.GetEmpleadosByUbicacion(idUbicacion);
+
+                // Transforma los datos para enviarlos como respuesta JSON
                 var empleadosData = empleados.Select(e => new
                 {
                     IdEmpleado = e.IdEmpleado,
-                    Nombre = $"{e.Nombre} {e.ApellidoPaterno}",
-                    ImgEmpleado = e.Img_empleado_nombre
+                    Nombre = $"{e.Nombre} {e.ApellidoPaterno} {e.ApellidoMaterno}".Trim(),
+                    ImgEmpleado = !string.IsNullOrEmpty(e.Img_empleado_nombre)
+                  ? $"/{e.Img_empleado_nombre}"
+                  : "/user.png"
                 }).ToList();
 
+                // Retorna la lista como JSON con éxito
                 return Json(new { success = true, empleados = empleadosData }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
+                // Manejo de errores: devuelve un mensaje con éxito = false
                 return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 
-
         public ActionResult Create(int id = 0)
         {
-
-            
-
-
             int empleadoid = _aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId());
             int idubicacion = _empleadobll.GetEmpleadoById(empleadoid).IdUbicacion;
             
@@ -285,24 +287,63 @@ namespace Neo_Genesis_Green_Gold.Controllers
         }
 
         // GET: Solicitud_Vacaciones/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ConfirmDelete(int id)
         {
-            return View();
+            ViewBag.id = id;
+            return View(); // Cargar la vista Delete.cshtml
         }
 
-        // POST: Solicitud_Vacaciones/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id_vacacion)
         {
             try
             {
-                // TODO: Add delete logic here
+                // Validar el ID
+                if (id_vacacion <= 0)
+                {
+                    TempData["ErrorMessage"] = "El ID del registro no es válido.";
+                    return RedirectToAction("Index");
+                }
 
+                // Llama al método de la capa BLL para eliminar el registro
+                _vacacionesBll.EliminarVacacion(id_vacacion);
+
+                // Mensaje de éxito
+                TempData["SuccessMessage"] = "El registro fue cancelado exitosamente.";
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Manejar errores
+                TempData["ErrorMessage"] = $"Hubo un error al cancelar el registro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+        [HttpGet]
+        public ActionResult CancelFolio(int idFolio)
+        {
+            try
+            {
+                if (idFolio <= 0)
+                {
+                    TempData["ErrorMessage"] = "El ID del folio no es válido.";
+                    return RedirectToAction("Index");
+                }
+
+                // Llama al método del BLL para eliminar el folio
+                _vacacionesBll.EliminarVacacion(idFolio);
+
+                TempData["SuccessMessage"] = "El folio fue cancelado exitosamente.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Hubo un error al cancelar el folio: {ex.Message}";
+                return RedirectToAction("Index");
             }
         }
 

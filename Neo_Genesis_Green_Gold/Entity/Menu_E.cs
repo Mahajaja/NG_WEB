@@ -12,6 +12,7 @@ namespace Entity
         public string Controlador { get; set; }
         public string Accion { get; set; }
         public string Icono { get; set; }
+        public bool EstaAsignado { get; set; }
         // Relación con Menu_Usuario
         public ICollection<Menu_Usuario_E> Menu_Usuarios { get; set; }
 

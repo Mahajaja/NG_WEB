@@ -21,7 +21,7 @@ namespace DAL
                 sqlHelper.OpenConnection();  // Abre la conexión a la base de datos
 
                 // Configura el comando para ejecutar el procedimiento almacenado o consulta
-                sqlHelper.Command.CommandText = "SELECT id_empleado FROM AspNetUsers WHERE Id = @Id";
+                sqlHelper.Command.CommandText = "SELECT U.id_empleado FROM AspNetUsers ASP INNER JOIN USUARIO U ON ASP.id_usuario = U.id_usuario WHERE ASP.Id = @Id";
                 sqlHelper.Command.CommandType = CommandType.Text;
                 sqlHelper.Command.Parameters.Clear();
                 sqlHelper.Command.Parameters.AddWithValue("@Id", id);

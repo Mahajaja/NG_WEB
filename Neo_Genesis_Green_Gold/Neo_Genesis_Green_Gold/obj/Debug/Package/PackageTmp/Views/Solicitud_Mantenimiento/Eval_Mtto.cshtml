@@ -1,0 +1,291 @@
+﻿@model Entity.CierreOrden_E
+@{
+    ViewBag.Title = "Eval_Mtto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("ConfirmDelete_Eval","Solicitud_Mantenimiento", new {id = Model.IdCierreOrden})">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <span class="menu-title">MANTENIMIENTO / SOLICITUD DE MANTENIMIENTO / EVALUACIÓN DE MANTENIMIENTO</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="ibox-content col-sm-12 ">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label>FOLIO DE CIERRE</label>
+                <input class="form-control" readonly value="@Model.FolioOrden" />
+            </div>
+            <div class="col-sm-4">
+                <label>FOLIO ASOCIADO ORDEN</label>
+                <input class="form-control" readonly value="@Model.Folio_orden" />
+            </div>
+            <div class="col-sm-4">
+                <label>RESPONSABLE A EVALUAR</label>
+                <input class="form-control" readonly value="@Model.Responsable" />
+                <input value="@Model.IdCierreOrden" hidden />
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.tipo_servicio.Equals("Servicio Interno"))
+{
+    <div class="row margintop1">
+
+        <div class="ibox-content col-lg-offset-2 col-sm-8 ">
+            @using (Html.BeginForm("Eval_Mtto", "Solicitud_Mantenimiento", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.IdCierreOrden)
+                <h2 class="text-center text-success"><b>Preguntas de Valoración</b></h2>
+                <form id="evaluation-form">
+                    <!-- Pregunta 1 -->
+                    <div class="form-group">
+                        <label>1. ¿Las herramientas de trabajo fueron las adecuadas?</label>
+                        <div class="margintop1">
+
+                            <label><input type="radio" name="q1" value="Si"> Sí</label>
+                            <label><input type="radio" name="q1" value="No"> No</label>
+                            <label><input type="radio" name="q1" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="form-group">
+                        <label>2. ¿La reparación quedó realizada como fue solicitada?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q2" value="Si"> Sí</label>
+                            <label><input type="radio" name="q2" value="No"> No</label>
+                            <label><input type="radio" name="q2" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="form-group">
+                        <label>3. Al atender el mantenimiento, ¿Se detectó otra falla no reportada?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q3" value="Si" class="toggle-input" data-target="q3-details"> Sí</label>
+                            <label><input type="radio" name="q3" value="No" class="toggle-input" data-target="q3-details"> No</label>
+                            <label><input type="radio" name="q3" value="NA" class="toggle-input" data-target="q3-details"> NA</label>
+                        </div>
+                        <input type="text" id="q3-details" class="form-control toggle-target" name="q3-details" placeholder="¿Cuál?" style="display: none;">
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="form-group">
+                        <label>4. ¿El área de reparación contaba con las condiciones de iluminación y aireación?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q4" value="Si"> Sí</label>
+                            <label><input type="radio" name="q4" value="No"> No</label>
+                            <label><input type="radio" name="q4" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 5 -->
+                    <div class="form-group">
+                        <label>5. En caso de reparaciones eléctricas, ¿Se tomaron las medidas de seguridad adecuadas?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q5" value="Si"> Sí</label>
+                            <label><input type="radio" name="q5" value="No"> No</label>
+                            <label><input type="radio" name="q5" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 6 -->
+                    <div class="form-group">
+                        <label>6. ¿Sobrarán materiales?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q8" value="Si" class="toggle-input" data-target="q8-folio"> Sí</label>
+                            <label><input type="radio" name="q8" value="No" class="toggle-input" data-target="q8-folio"> No</label>
+                            <label><input type="radio" name="q8" value="NA" class="toggle-input" data-target="q8-folio"> NA</label>
+                        </div>
+                        <input type="text" id="q8-folio" class="form-control toggle-target" name="q8-folio" placeholder="Folio Entrada de Almacén" style="display: none;">
+                    </div>
+
+                    <!-- Pregunta 7 -->
+                    <div class="form-group">
+                        <label>7. La calidad del trabajo fue...</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q7" value="Buena"> Buena</label>
+                            <label><input type="radio" name="q7" value="Regular"> Regular</label>
+                            <label><input type="radio" name="q7" value="Mala"> Mala</label>
+                        </div>
+                        <input type="text" class="form-control" name="q7-details" placeholder="¿Por qué?">
+                    </div>
+
+                    <!-- Pregunta 8 -->
+                    <div class="form-group">
+                        <label>8. ¿Sobrarán materiales?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q8" value="Si" class="toggle-input" data-target="q8-folio"> Sí</label>
+                            <label><input type="radio" name="q8" value="No" class="toggle-input" data-target="q8-folio"> No</label>
+                            <label><input type="radio" name="q8" value="NA" class="toggle-input" data-target="q8-folio"> NA</label>
+                        </div>
+                        <input type="text" id="q8-folio" class="form-control toggle-target" name="q8-folio" placeholder="Folio Entrada de Almacén" style="display: none;">
+                    </div>
+
+                    <!-- Observaciones -->
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <textarea class="form-control" name="observations" rows="3"></textarea>
+                    </div>
+
+                    <center>
+                        <!-- Botón de guardar -->
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
+                    </center>
+                </form>
+            }
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="row margintop1">
+
+        <div class="ibox-content col-lg-offset-2 col-sm-8 ">
+            @using (Html.BeginForm("Eval_Mtto", "Solicitud_Mantenimiento", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.IdCierreOrden)
+                <h2 class="text-center text-success"><b>Preguntas de Valoración</b></h2>
+                <form id="evaluation-form">
+                    <!-- Pregunta 1 -->
+                    <div class="form-group">
+                        <label>1. ¿El tiempo de reparación fue el correcto?</label>
+                        <div class="margintop1">
+
+                            <label><input type="radio" name="q1_TIEMPO" value="Si"> Sí</label>
+                            <label><input type="radio" name="q1_TIEMPO" value="No"> No</label>
+                            <label><input type="radio" name="q1_TIEMPO" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="form-group">
+                        <label>2. ¿La reparación quedó realizada como fue solicitada?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q2" value="Si"> Sí</label>
+                            <label><input type="radio" name="q2" value="No"> No</label>
+                            <label><input type="radio" name="q2" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="form-group">
+                        <label>3. Al atender el mantenimiento, ¿Se detectó otra falla no reportada?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q3" value="Si"> Sí</label>
+                            <label><input type="radio" name="q3" value="No"> No</label>
+                            <label><input type="radio" name="q3" value="NA"> NA</label>
+                        </div>
+                        <input type="text" class="form-control" name="q3-details" placeholder="¿Cuál?">
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="form-group">
+                        <label>4. ¿El personal técnico dejó limpia el área después de realizar el trabajo?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q6" value="Si"> Sí</label>
+                            <label><input type="radio" name="q6" value="No"> No</label>
+                            <label><input type="radio" name="q6" value="NA"> NA</label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 5 -->
+                    <div class="form-group">
+                        <label>5. La calidad del trabajo fue...</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q7" value="Buena"> Buena</label>
+                            <label><input type="radio" name="q7" value="Regular"> Regular</label>
+                            <label><input type="radio" name="q7" value="Mala"> Mala</label>
+                        </div>
+                        <input type="text" class="form-control" name="q7-details" placeholder="¿Por qué?">
+                    </div>
+
+                    <!-- Pregunta 6 -->
+                    <div class="form-group">
+                        <label>6. ¿Sobrarán materiales?</label>
+                        <div class="margintop1">
+                            <label><input type="radio" name="q8" value="Si"> Sí</label>
+                            <label><input type="radio" name="q8" value="No"> No</label>
+                            <label><input type="radio" name="q8" value="NA"> NA</label>
+                        </div>
+                        <input type="text" class="form-control" name="q8-folio" placeholder="Folio Entrada de Almacén">
+                    </div>
+
+                    <!-- Observaciones -->
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <textarea class="form-control" name="observations" rows="3"></textarea>
+                    </div>
+
+                    <center>
+                        <!-- Botón de guardar -->
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
+                    </center>
+                </form>
+            }
+        </div>
+
+    </div>
+}
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los inputs con la clase 'toggle-input'
+    const toggleInputs = document.querySelectorAll(".toggle-input");
+
+    toggleInputs.forEach(input => {
+        input.addEventListener("change", function () {
+            // Obtener el ID del campo asociado
+            const targetId = this.dataset.target;
+            const targetElement = document.getElementById(targetId);
+
+            // Mostrar u ocultar el campo según el valor seleccionado
+            if (this.value === "Si" && targetElement) {
+                targetElement.style.display = "block";
+            } else if (targetElement) {
+                targetElement.style.display = "none";
+                targetElement.value = ""; // Limpiar el valor si se oculta
+            }
+        });
+    });
+});
+
+
+</script>

@@ -1,0 +1,3 @@
+USE NEO_GENESIS
+
+INSERT INTO TipoEvidencias(TipoEvidencia) VALUES('SOLICITUD_MTTO')

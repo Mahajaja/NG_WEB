@@ -12,14 +12,26 @@ namespace BLL
         {
             justificanteDAL = new Justificante_DAL();
         }
-        public bool InsertJustificante(Justificante_E justificante)
+        public int InsertarJustificante(int idUsuario)
         {
-            return justificanteDAL.InsertJustificante(justificante);
+            return justificanteDAL.InsertarJustificante(idUsuario);
         }
         // Método para obtener todos los justificantes
-        public List<Justificante_E> ObtenerTodosLosJustificantes()
+        public List<Justificante_E> ObtenerTodosLosJustificantes(int id)
         {
-            return justificanteDAL.GetAllJustificantes();
+            return justificanteDAL.GetAllJustificantes(id);
+        }
+        public bool ActualizarJustificante(Justificante_E justificante)
+        {
+             return justificanteDAL.ActualizarJustificante(justificante);
+        }
+        public Justificante_E ObtenerJustificantePorId(int idJustificante)
+        { 
+            return justificanteDAL.ObtenerJustificantePorId(idJustificante);
+        }
+        public int Delete(int id)
+        {
+            return justificanteDAL.Delete(id);
         }
     }
 }

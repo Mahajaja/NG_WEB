@@ -21,5 +21,28 @@ namespace BLL
         {
             return _empleadoDal.GetEmpleadosByUbicacion(idUbicacion);
         }
+        public List<Empleados_E> ObtenerEmpleadosSolicitudMantenimiento(int idUbicacion)
+        {
+            return _empleadoDal.ObtenerEmpleadosSolicitudMantenimiento(idUbicacion);
+        }
+        public List<Empleados_E> GetEmpleadosByDepartamento()
+        {
+            return _empleadoDal.GetEmpleadosByDepartamento();
+        }
+        public List<Empleados_E> ObtenerEmpleadosPorUbicacion(int idUbicacion)
+        {
+            return _empleadoDal.ObtenerEmpleadosPorUbicacion(idUbicacion);
+        }
+
+        public List<Empleados_E> ObtenerTodosLosEmpleados()
+        {
+            return _empleadoDal.ObtenerTodosLosEmpleados();
+        }
+
+        public List<Empleados_E> ObtenerMisEmpleadosPorUbicacion(int idEmpleado)
+        {
+            return _empleadoDal.ObtenerMisEmpleadosPorUbicacion(idEmpleado);
+        }
+
     }
 }

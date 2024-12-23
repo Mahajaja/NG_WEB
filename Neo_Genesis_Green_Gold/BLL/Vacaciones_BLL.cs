@@ -84,16 +84,24 @@ public class Vacaciones_BLL
             throw new Exception("Error al actualizar la vacación en la capa BLL: " + ex.Message);
         }
     }
+    public int EliminarVacacion(int idVacacion)
+    {
+        if (idVacacion <= 0)
+        {
+            throw new ArgumentException("El ID de la vacación debe ser mayor a 0.", nameof(idVacacion));
+        }
 
-    //public int EliminarVacacion(int idVacacion)
-    //{
-    //    if (idVacacion <= 0)
-    //    {
-    //        throw new ArgumentException("El ID de vacación no es válido.");
-    //    }
+        try
+        {
+            return _vacacionesDal.DeleteVacacion(idVacacion);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error al eliminar la vacación desde la capa BLL: " + ex.Message);
+        }
+    }
 
-    //    return _vacacionesDal.DeleteVacacion(idVacacion);
-    //}
-    public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato()
-    { return _vacacionesDal.GetVacacionesConFormato(); }
+
+    public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato(int id)
+    { return _vacacionesDal.GetVacacionesConFormato(id); }
 }

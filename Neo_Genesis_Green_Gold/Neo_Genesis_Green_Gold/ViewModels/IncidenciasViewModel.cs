@@ -14,6 +14,6 @@ namespace Neo_Genesis_Green_Gold.ViewModels
         public string Img_empleado_nombre { get; set; }
         public string Ubicacion { get; set; }
         public Incidencia_E IncidenciaModel { get; set; }
-
+        public List<Ubicacion_E> List_Ubicaciones { get; set; }
     }
 }

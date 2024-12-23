@@ -1,0 +1,568 @@
+﻿@model Neo_Genesis_Green_Gold.ViewModels.OrdenMantenimientoViewModel
+@{
+    ViewBag.Title = "Nueva_OrdenMantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="ibox-content col-sm-12 margintop1">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("ConfirmDelete_Orden","Solicitud_Mantenimiento", new {id = Model.OrdenMantenimiento.IdOrden})">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <span class="menu-title">MANTENIMIENTO / SOLICITUD DE MANTENIMIENTO / ORDEN DE MANTENIMIENTO</span>
+    </div>
+</div>
+
+@using (Html.BeginForm("UpdateOrder", "Solicitud_Mantenimiento", FormMethod.Post, new { enctype = "multipart/form-data", id = "formEvidencias" }))
+{
+
+    <div class="row colsm margintop1">
+        <div class="ibox-content col-sm-12 ">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">FOLIO DE SOLICITUD DE MANTENIMIENTO</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" value="@Model.SolicitudMantenimiento.FolioSolicitud" disabled />
+                    <input type="hidden" value="" name="IdSolicitud" id="IdSolicitud" />
+                </div>
+                <label class="col-sm-2 col-form-label col-lg-offset-4">FOLIO DE ORDEN DE MANTENIMIENTO</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" value="@Model.OrdenMantenimiento.FolioOrden" disabled />
+                    <input type="hidden" value="@Model.OrdenMantenimiento.IdOrden" name="IdOrden" id="IdOrden" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row colsm">
+        <div class="col-sm-8 ">
+            <div class="ibox-content col-sm-12 margintop1">
+
+                @*AQUI VA EL USING*@
+
+
+                <!-- Información General -->
+                <div class="form-group row">
+                    <h3 class="col-sm-12">INFORMACION GENERAL</h3>
+                    <br />
+                    <div class="col-sm-6">
+                        <label>UBICACION</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.NombreUbicacion" />
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>¿QUIEN REPORTA?</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.NombreEmpleado @Model.SolicitudMantenimiento.ApellidoEmpleado" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <!-- Información del Servicio -->
+                <div class="form-group row">
+                    <h3 class="col-sm-12">INFORMACION DEL SERVICIO</h3>
+                    <br />
+
+                    <div class="col-sm-3">
+                        <label>EQUIPO</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.CategoriaNombre" />
+                    </div>
+
+                    <!-- Grupo 1: Elementos que deben desaparecer si el ID seleccionado es 29 -->
+                    <div id="Group1">
+                        @if (Model.SolicitudMantenimiento.IdCategoria == 29)
+                        {
+                            <div class="col-sm-3">
+                                <label>INSTALACION</label>
+                                <input class="form-control" readonly value="@Model.SolicitudMantenimiento.nombre_referencia" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label>DESCRIPCION</label>
+                                <input class="form-control" readonly value="@Model.SolicitudMantenimiento.instalacionDescripcion" />
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="col-sm-3">
+                                <label>No. ECONOMICO</label>
+                                <input class="form-control" readonly value="@Model.SolicitudMantenimiento.no_economico" />
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label>MAQUINARIA</label>
+                                <input class="form-control" readonly value="@Model.SolicitudMantenimiento.NombreMaquinaria" />
+                            </div>
+                        }
+
+
+
+                        @if (Model.SolicitudMantenimiento.IdCategoria != 29) { 
+                            <div class="col-sm-3">
+                                <label>ASIGNADO A:</label>
+                                <input class="form-control" readonly value="@Model.SolicitudMantenimiento.Asignado" />
+                            </div>
+                            }
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label>FECHA DE SERVICIO</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.FechaServicio" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label>FECHA DE ENTREGA</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.FechaEntrega" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label>GRADO DE URGENCIA</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.GradoUrgencia" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label>RESPONSABLE SEGUIMIENTO</label>
+                        <input class="form-control" readonly value="@Model.SolicitudMantenimiento.NombreResponsable @Model.SolicitudMantenimiento.ApellidoResponsable" />
+                    </div>
+                </div>
+
+                <hr />
+
+
+
+            </div>
+
+            <div class="ibox-content col-sm-12 ">
+
+                <div class="form-group row">
+                    <h3 class="col-sm-12">TIPO DE SERVICIO</h3>
+                    <div class="col-sm-6">
+                        <div class="form-check">
+                            <input class="form-check-input tipoServicio" type="radio" name="TipoServicio" id="servicioInterno" value="Servicio Interno" checked>
+                            <label class="form-check-label" for="servicioInterno">Servicio Interno</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input tipoServicio" type="radio" name="TipoServicio" id="servicioExterno" value="Servicio Externo">
+                            <label class="form-check-label" for="servicioExterno">Servicio Externo</label>
+                        </div>
+                    </div>
+
+                    <!-- Contenedor para Servicio Interno -->
+                    <div id="ServicioInternoContainer" class="col-sm-6">
+                        <label>ENCARGADO</label>
+                        <select class="form-control" id="ProveedorReparacion" name="AtendidoExterno">
+                            <option value="">Seleccionar</option>
+                            @foreach (var maquinaria in Model.List_ServicioInterno)
+                            {
+                                <option value="@maquinaria.Nombre @maquinaria.ApellidoPaterno">@maquinaria.Nombre @maquinaria.ApellidoPaterno</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Contenedor para Servicio Externo -->
+                    <div id="ServicioExternoContainer" class="col-sm-6" style="display: none;">
+                        <label>Encargado de servicio:</label>
+                        <input type="text" class="form-control" name="AtendidoExterno" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+            <div class="ibox-content col-sm-12 margintop1">
+                <div class="form-group row">
+                    <h3 class="col-sm-12">EVIDENCIA DEL PROBLEMA REPORTADO</h3>
+                </div>
+                <br />
+                @{ int count = 0; }
+
+                <div class="form-group row">
+                    <!-- Primera iteración limitada a 2 elementos -->
+                    @*@foreach (var item in Model.Evidencias.Take(2))
+                        {*@
+                    <div class="col-sm-6">
+                        <div style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <img src="@Url.Content("~/Content/Evidencias/SOLICITUD_MTTO/" + Model.SolicitudMantenimiento.ImgEvidencia)" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <img src="@Url.Content("~/Content/Evidencias/SOLICITUD_MTTO/" + Model.SolicitudMantenimiento.ImgEvidencia2)" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
+                    @*count++;
+                        }*@
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <div style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <img src="@Url.Content("~/Content/Evidencias/SOLICITUD_MTTO/" + Model.SolicitudMantenimiento.ImgEvidencia3)" alt="Vista previa de la imagen 3" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <img src="@Url.Content("~/Content/Evidencias/SOLICITUD_MTTO/" + Model.SolicitudMantenimiento.ImgEvidencia4)" alt="Vista previa de la imagen 4" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="row colsm">
+        <div class="col-sm-4">
+            <div class="ibox-content col-sm-12 margintop1">
+                <div class="form-group row">
+                    <h3 class="col-sm-12">FINALIZACION DEL SERVICIO</h3>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label>DESCRIPCION DE LA FALLA</label>
+
+                        <input value="@Model.SolicitudMantenimiento.DescripcionProblema" class="form-control" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label>DIAGNOSTICO DE LA FALLA</label>
+
+                        <textarea class="form-control" name="DiagnosticoFalla" rows="5" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label>OBSERVACIONES</label>
+
+                        <textarea class="form-control" name="Observaciones" rows="4" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 ">
+            <div class="ibox-content col-sm-12 margintop1">
+                <div class="form-group row">
+                    <h3 class="col-sm-12">REFACCIONES</h3>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Refacciones" id="servicioInterno" value="Si" checked>
+                            <label class="form-check-label" for="servicioInterno">Si</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Refacciones" id="servicioExterno" value="No">
+                            <label class="form-check-label" for="servicioExterno">No</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Refacciones" id="incluidasServicio" value="incluidasServicio">
+                            <label class="form-check-label" for="incluidasServicio">Incluidas en el Servicio</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row" id="folioFields" style="display: none;">
+                    <div class="col-sm-6">
+                        <label>FOLIO SALIDA ALMACÉN</label>
+                        <input class="form-control" name="FolioAlmacen" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label>FOLIO ORDEN DE COMPRA</label>
+                        <input class="form-control" name="FolioCompras" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="ibox-content col-sm-12 margintop1">
+                <div class="form-group row">
+                    <h3 class="col-sm-12">TIEMPO INVERTIDO</h3>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label>¿FUE CORREGIDA LA FALLA?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="FallaCorregida" id="servicioInterno" value="Si" checked>
+                            <label class="form-check-label" for="servicioInterno">Si</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="FallaCorregida" id="servicioExterno" value="No">
+                            <label class="form-check-label" for="servicioExterno">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label>DIAS INVERTIDOS</label>
+                    <input class="form-control" name="TiempoInvertido" id="TiempoInvertido" readonly />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox-content col-sm-12 margintop1">
+                <div class="form-group row">
+                    <h3 class="col-sm-12">EVIDENCIAS DE REPARACION</h3>
+                </div>
+                <div class="form-group row">
+                    <!-- Evidencia 1 -->
+                    <div class="col-sm-6">
+                        <div id="uploadBox1" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <span id="uploadText1">Clic para subir evidencia 1</span>
+                            <img id="imagenPreview1" src="#" alt="Vista previa de la imagen 1" style="max-width: 100%; max-height: 100%; display: none;">
+                        </div>
+                        <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="validateFile(event, 1)">
+                        <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn1" onclick="deleteEvidence(1)" style="display:none;">Borrar Evidencia 1</button>
+                    </div>
+
+                    <!-- Evidencia 2 -->
+
+                    <div class="col-sm-6">
+                        <div id="uploadBox2" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <span id="uploadText2">Clic para subir evidencia 2</span>
+                            <img id="imagenPreview2" src="#" alt="Vista previa de la imagen 2" style="max-width: 100%; max-height: 100%; display: none;">
+                        </div>
+                        <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="validateFile(event, 2)">
+                        <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn2" onclick="deleteEvidence(2)" style="display:none;">Borrar Evidencia 2</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Evidencia 3 -->
+
+                    <div class="col-sm-6">
+                        <div id="uploadBox3" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <span id="uploadText3">Clic para subir evidencia 3</span>
+                            <img id="imagenPreview3" src="#" alt="Vista previa de la imagen 3" style="max-width: 100%; max-height: 100%; display: none;">
+                        </div>
+                        <input type="file" id="imagenInput3" name="imagen3" accept="image/*" style="display: none;" onchange="validateFile(event, 3)">
+                        <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn3" onclick="deleteEvidence(3)" style="display:none;">Borrar Evidencia 3</button>
+                    </div>
+
+                    <!-- Evidencia 4 -->
+
+                    <div class="col-sm-6">
+                        <div id="uploadBox4" style="border: 2px dashed #ccc; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;">
+                            <span id="uploadText4">Clic para subir evidencia 4</span>
+                            <img id="imagenPreview4" src="#" alt="Vista previa de la imagen 4" style="max-width: 100%; max-height: 100%; display: none;">
+                        </div>
+                        <input type="file" id="imagenInput4" name="imagen4" accept="image/*" style="display: none;" onchange="validateFile(event, 4)">
+                        <button type="button" class="btn btn-danger" id="borrarEvidenciaBtn4" onclick="deleteEvidence(4)" style="display:none;">Borrar Evidencia 4</button>
+                    </div>
+
+                </div>
+
+                <input type="file" id="imagenInput1" name="imagen1" accept="image/*" style="display: none;" onchange="validateFile(event, 1)">
+                <input type="file" id="imagenInput2" name="imagen2" accept="image/*" style="display: none;" onchange="validateFile(event, 2)">
+                <input type="file" id="imagenInput3" name="imagen3" accept="image/*" style="display: none;" onchange="validateFile(event, 3)">
+                <input type="file" id="imagenInput4" name="imagen4" accept="image/*" style="display: none;" onchange="validateFile(event, 4)">
+
+                <br />
+
+                <hr />
+
+                <!-- Botón de Guardar -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<script>
+
+        // Función para validar y convertir archivo a base64
+        function validateFile(event, number) {
+            const file = event.target.files[0];
+
+            // Verificar si se seleccionó un archivo
+            if (!file) {
+                alert("No se seleccionó ningún archivo.");
+                return;
+            }
+
+            // Verificar el tipo de archivo
+            const allowedTypes = ["image/png", "image/jpeg"];
+            if (!allowedTypes.includes(file.type)) {
+                alert("Solo se permiten archivos PNG y JPEG.");
+                event.target.value = ""; // Limpiar el campo
+                return;
+            }
+
+            // Verificar el tamaño del archivo (máximo 2 MB)
+            const maxSize = 12 * 1024 * 1024; // 2 MB
+            if (file.size > maxSize) {
+                alert("El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.");
+                event.target.value = ""; // Limpiar el campo
+                return;
+            }
+
+            // Convertir a base64 y mostrar vista previa
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const base64 = e.target.result;
+                document.getElementById("imagenPreview" + number).src = base64;
+                document.getElementById("imagenPreview" + number).style.display = "block";
+                document.getElementById("uploadText" + number).style.display = "none";
+                document.getElementById("borrarEvidenciaBtn" + number).style.display = "inline-block";
+
+                // Guardar en el campo oculto
+                document.getElementById("imagen" + number + "Base64").value = base64;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Función para eliminar la evidencia y reiniciar la vista previa
+        function deleteEvidence(number) {
+            const output = document.getElementById("imagenPreview" + number);
+            const text = document.getElementById("uploadText" + number);
+            const base64Field = document.getElementById("imagen" + number + "Base64");
+            const deleteBtn = document.getElementById("borrarEvidenciaBtn" + number);
+
+            output.src = "#";
+            output.style.display = "none";
+            text.style.display = "inline-block";
+            base64Field.value = ""; // Limpiar el campo oculto
+            deleteBtn.style.display = "none"; // Ocultar botón de borrar
+        }
+
+        // Event listeners dentro de DOMContentLoaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Asignar eventos a los cuadros de subida
+            document.getElementById("uploadBox1").addEventListener("click", function () {
+                document.getElementById("imagenInput1").click();
+            });
+            document.getElementById("uploadBox2").addEventListener("click", function () {
+                document.getElementById("imagenInput2").click();
+            });
+            document.getElementById("uploadBox3").addEventListener("click", function () {
+                document.getElementById("imagenInput3").click();
+            });
+            document.getElementById("uploadBox4").addEventListener("click", function () {
+                document.getElementById("imagenInput4").click();
+            });
+
+            // Validación en la función de envío del formulario
+            document.getElementById("formEvidencias").addEventListener("submit", function (e) {
+                let allValid = true;
+
+                for (let i = 1; i <= 4; i++) {
+                    const base64Value = document.getElementById("imagen" + i + "Base64").value;
+                    if (!base64Value) {
+                        document.getElementById("uploadBox" + i).style.border = "2px dashed red"; // Borde inválido
+                        allValid = false;
+                    } else {
+                        document.getElementById("uploadBox" + i).style.border = "2px dashed #ccc"; // Borde válido
+                    }
+                }
+
+                if (!allValid) {
+                    e.preventDefault(); // Evitar el envío del formulario si falta alguna evidencia
+                    alert("Por favor, sube todas las evidencias antes de guardar.");
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Seleccionar los radios de refacciones
+            const refaccionesRadios = document.querySelectorAll('input[name="Refacciones"]');
+            const folioFields = document.getElementById("folioFields");
+
+            // Función para mostrar/ocultar campos de folios
+            function toggleFolioFields() {
+                const selectedValue = document.querySelector('input[name="Refacciones"]:checked').value;
+                if (selectedValue === "Si") {
+                    folioFields.style.display = "block";
+                } else {
+                    folioFields.style.display = "none";
+                }
+            }
+
+            // Agregar evento change a cada radio
+            refaccionesRadios.forEach(radio => {
+                radio.addEventListener("change", toggleFolioFields);
+            });
+
+            // Inicializar la visibilidad de los campos al cargar la página
+            toggleFolioFields();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+    // Fecha de servicio extraída del modelo
+    const fechaServicio = new Date('@Model.SolicitudMantenimiento.FechaServicio');
+    const tiempoInvertidoField = document.getElementById("TiempoInvertido");
+
+    // Función para calcular días transcurridos
+    function calcularDiasTranscurridos() {
+        const fechaHoy = new Date();
+        // Calcular la diferencia en milisegundos
+        const diferenciaTiempo = fechaHoy - fechaServicio;
+        // Convertir la diferencia a días
+        const diasTranscurridos = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+
+        // Mostrar el resultado en el campo
+        tiempoInvertidoField.value = diasTranscurridos >= 0 ? diasTranscurridos : 0; // No permitir valores negativos
+    }
+
+    // Calcular los días al cargar la página
+    calcularDiasTranscurridos();
+
+    // Recalcular días si la página está abierta mucho tiempo (opcional)
+    setInterval(calcularDiasTranscurridos, 60000); // Recalcula cada minuto
+});
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Fecha de servicio extraída del modelo
+    const fechaServicioString = '@Model.SolicitudMantenimiento.FechaServicio'; // Formato DD/MM/YYYY
+    const tiempoInvertidoField = document.getElementById("TiempoInvertido");
+
+    // Función para convertir una fecha en formato DD/MM/YYYY a un objeto Date
+    function convertirFecha(fechaString) {
+        const partes = fechaString.split('/'); // Dividir por '/'
+        const dia = parseInt(partes[0], 10); // Día
+        const mes = parseInt(partes[1], 10) - 1; // Mes (restar 1 porque los meses empiezan en 0)
+        const anio = parseInt(partes[2], 10); // Año
+        return new Date(anio, mes, dia); // Crear objeto Date
+    }
+
+    // Convertir la fecha de servicio a un objeto Date
+    const fechaServicio = convertirFecha(fechaServicioString);
+
+    // Función para calcular días transcurridos
+    function calcularDiasTranscurridos() {
+        const fechaHoy = new Date(); // Fecha actual
+        // Calcular la diferencia en milisegundos
+        const diferenciaTiempo = fechaHoy - fechaServicio;
+        // Convertir la diferencia a días
+        const diasTranscurridos = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+
+        // Mostrar el resultado en el campo
+        tiempoInvertidoField.value = diasTranscurridos >= 0 ? diasTranscurridos : 0; // No permitir valores negativos
+    }
+
+    // Calcular los días al cargar la página
+    calcularDiasTranscurridos();
+
+    // Recalcular días si la página está abierta mucho tiempo (opcional)
+    setInterval(calcularDiasTranscurridos, 60000); // Recalcula cada minuto
+});
+
+
+
+</script>

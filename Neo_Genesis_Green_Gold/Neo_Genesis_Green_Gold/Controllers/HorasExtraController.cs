@@ -24,7 +24,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
             try
             {
                 // Obtener la lista de todas las solicitudes de vacaciones con el formato adecuado
-                List<Horas_Extras_E> listaHorasExtra = _horasExtra.GetAllHorasExtra();
+                List<Horas_Extras_E> listaHorasExtra = _horasExtra.GetAllHorasExtra(_aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId()));
 
                 // Pasar la lista a la vista
                 return View(listaHorasExtra);
@@ -91,7 +91,7 @@ namespace Neo_Genesis_Green_Gold.Controllers
             horasExtraVM.Folio = horasextramodel.folio_registro;
             horasExtraVM.ID_HoraExtra = horasextramodel.id_horaExtra;
             // Cargar la lista de empleados y procesar el nombre de la imagen
-            var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+            var empleados = _empleadobll.ObtenerMisEmpleadosPorUbicacion(empleadoid);
             foreach (var empleado in empleados)
             {
                 empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
@@ -195,26 +195,39 @@ namespace Neo_Genesis_Green_Gold.Controllers
             }
         }
 
-        // GET: HorasExtra/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ConfirmDelete(int id)
         {
-            return View();
+            ViewBag.id = id;
+            return View(); // Cargar la vista Delete.cshtml
         }
 
-        // POST: HorasExtra/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id_registro)
         {
             try
             {
-                // TODO: Add delete logic here
+                // Validar el ID
+                if (id_registro <= 0)
+                {
+                    TempData["ErrorMessage"] = "El ID del registro no es válido.";
+                    return RedirectToAction("Index");
+                }
 
+                // Llama al método de la capa BLL para eliminar el registro
+                _horasExtra.Delete(id_registro);
+
+                // Mensaje de éxito
+                TempData["SuccessMessage"] = "El registro fue cancelado exitosamente.";
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Manejar errores
+                TempData["ErrorMessage"] = $"Hubo un error al cancelar el registro: {ex.Message}";
+                return RedirectToAction("Index");
             }
         }
+
     }
 }

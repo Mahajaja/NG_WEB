@@ -11,9 +11,9 @@ namespace BLL
     public class Horas_Extra_BLL
     {
         Horas_Extra_DAL _horasextra = new Horas_Extra_DAL();
-        public List<Horas_Extras_E> GetAllHorasExtra()
+        public List<Horas_Extras_E> GetAllHorasExtra(int id)
         {
-            return _horasextra.GetAllHorasExtra();
+            return _horasextra.GetAllHorasExtra(id);
         }
         public int InsertHorasExtra(Horas_Extras_E horaExtra)
         {
@@ -39,6 +39,11 @@ namespace BLL
             }
 
             return _horasextra.ActualizarHorasExtraConEvidencias(horaExtra, evidencia1, evidencia2);
+        }
+
+        public int Delete(int id)
+        {
+            return _horasextra.Delete(id);
         }
 
     }

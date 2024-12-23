@@ -1,0 +1,49 @@
+﻿@model Entity.Usuario_E
+
+@{
+    ViewBag.Title = "Confirmar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5 text-center">
+        <h2 class="control-label">¿Estás seguro de que deseas crear este usuario?</h2>
+
+        <!-- Mostrar detalles del usuario -->
+        <div class="row col-sm-6 col-xs-offset-3">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Nombre de Usuario</th>
+                        <td>@Model.Nom_Usuario</td>
+                    </tr>
+                    <tr>
+                        <th>Correo</th>
+                        <td>@Model.correo</td>
+                    </tr>
+                    <tr>
+                        <th>Permiso</th>
+                        <td>@Model.Permiso</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row col-sm-2 col-xs-offset-5">
+            <!-- Botón para regresar al listado (izquierda) -->
+            <div class="col-sm-6">
+                <a href="@Url.Action("Index", "AdminUsers")" class="btn btn-default">No, regresar</a>
+            </div>
+
+            <!-- Botón para confirmar la creación (derecha) -->
+            <div class="col-sm-6">
+                @using (Html.BeginForm("CrearUsuarioASP", "AdminUsers", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" value="@Model.Id_Usuario" name="id" id="id_registro" />
+                    <button type="submit" class="btn btn-success">Sí, crear usuario</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

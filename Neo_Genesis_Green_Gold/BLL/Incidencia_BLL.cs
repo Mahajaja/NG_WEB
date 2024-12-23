@@ -11,9 +11,9 @@ namespace BLL
     public class Incidencia_BLL
     {
         Incidencia_DAL _incidencia = new Incidencia_DAL();
-        public List<Incidencia_E> GetAllIncidencias()
+        public List<Incidencia_E> GetAllIncidencias(int id)
         {
-            return _incidencia.GetAllIncidencias();
+            return _incidencia.GetAllIncidencias(id);
         }
 
         public int CrearIncidencia(Incidencia_E incidencia)
@@ -88,6 +88,9 @@ namespace BLL
             }
         }
 
-
+        public int Delete(int id)
+        {
+            return _incidencia.Delete(id);
+        }
     }
 }

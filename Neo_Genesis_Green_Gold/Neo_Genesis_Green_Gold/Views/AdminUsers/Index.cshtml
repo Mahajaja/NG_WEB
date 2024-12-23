@@ -1,0 +1,102 @@
+﻿@model List<Entity.Usuario_E>
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("Index","Home")">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <span class="menu-title">ADMINISTRACIÓN / GESTIÓN DE USUARIOS</span>
+    </div>
+</div>
+
+<div class="col-sm-12 form-group margintop1">
+    <a href="@Url.Action("Empleados","AdminUsers")" class="btn btn-success">VER EMPLEADOS</a>
+</div>
+
+<div id="table-container" class="col-sm-12 ibox-content ">
+    <table id="usuarios" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th><CENTER>#</CENTER></th>
+                <th>NOMBRE DE USUARIO</th>
+                <th>USUARIO WEB</th>
+                <th>EMPLEADO</th>
+                <th>PERMISO</th>
+                <th>FECHA REGISTRO</th>
+                <th>HORA REGISTRO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                int index = 1;
+                foreach (var usuario in Model)
+                {
+                    <tr>
+                        <td><center>@index</center></td>
+                        <td>@usuario.Nom_Usuario</td>
+                        <td>@usuario.Nom_Usuario_Web</td>
+                        <td>@usuario.Id_Empleado</td> <!-- Aquí podrías mapear al nombre del empleado si se incluye -->
+                        <td>@usuario.Permiso</td>
+                        <td>@usuario.Fecha_Registro</td>
+                        <td>@usuario.Hora_Registro</td>
+                        <td>
+                            @if (usuario.ExistsInAspNetUsers == false)
+                            {
+                                <a href="@Url.Action("ConfirmarUsuario", "AdminUsers", new { id = usuario.Id_Usuario })" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus"></i> CREAR ASPNETUSER
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Accesos", "AdminUsers", new { idusuario = usuario.Id_Usuario })" class="btn btn-default btn-sm">
+                                    <i class="fa fa-edit"></i> ACCESOS
+                                </a>
+                            }
+
+
+                        </td>
+                    </tr>
+                    index++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#usuarios').DataTable({
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    });
+</script>

@@ -11,7 +11,7 @@ namespace Entity
         public string Nombre { get; set; }
         public string FechaInicio { get; set; }
         public string FechaIncorporacion { get; set; }
-        public int DiasSolicitados { get; set; }
+        public int? DiasSolicitados { get; set; }
         public string Estatus { get; set; }
         public string Observaciones { get; set; }
         

@@ -15,25 +15,30 @@ namespace DAL
             sqlHelper = new SqlHelper();
         }
 
-        // Método para obtener todas las horas extras
-        public List<Horas_Extras_E> GetAllHorasExtra()
+        public List<Horas_Extras_E> GetAllHorasExtra(int idEmpleado)
         {
             List<Horas_Extras_E> horasExtras = new List<Horas_Extras_E>();
+
             try
             {
                 sqlHelper.OpenConnection(); // Abre la conexión
 
+                // Configura el comando para ejecutar el procedimiento almacenado
                 sqlHelper.Command.CommandText = "SP_ObtenerHorasExtras";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
+                // Agregar el parámetro @id_empleado
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", idEmpleado);
+
+                // Ejecutar y leer los datos
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         Horas_Extras_E horaExtra = new Horas_Extras_E
                         {
-                            id_horaExtra = Convert.ToInt32(reader["id_horaExtra"]),
+                            id_horaExtra = reader["id_horaExtra"] != DBNull.Value ? Convert.ToInt32(reader["id_horaExtra"]) : 0,
                             folio_registro = reader["folio_registro"]?.ToString(),
                             fecha_registro = reader["fecha_registro"]?.ToString(),
                             hora_registro = reader["hora_registro"]?.ToString(),
@@ -54,7 +59,7 @@ namespace DAL
                             empleado = new Empleados_E
                             {
                                 IdEmpleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : 0,
-                                Nombre = reader["Nombre"]?.ToString(),
+                                Nombre = reader["nombre"]?.ToString(),
                                 ApellidoPaterno = reader["apellido_paterno"]?.ToString(),
                                 ApellidoMaterno = reader["apellido_materno"]?.ToString(),
                                 FechaNacimiento = reader["fecha_nacimiento"]?.ToString()
@@ -75,6 +80,7 @@ namespace DAL
 
             return horasExtras;
         }
+
 
         // Método para insertar horas extra
         public int InsertHorasExtra(Horas_Extras_E horaExtra)
@@ -208,6 +214,29 @@ namespace DAL
             finally
             {
                 sqlHelper.CloseConnection();
+            }
+        }
+        public int Delete(int id)
+        {
+            try
+            {
+                sqlHelper.OpenConnection(); // Abre la conexión
+
+                sqlHelper.Command.CommandText = "SP_Delete_HORAS_EXTRAS";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+                sqlHelper.Command.Parameters.AddWithValue("@id", id);
+
+                // Ejecuta el comando
+                return sqlHelper.Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar eliminar el registro: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection(); // Cierra la conexión
             }
         }
     }

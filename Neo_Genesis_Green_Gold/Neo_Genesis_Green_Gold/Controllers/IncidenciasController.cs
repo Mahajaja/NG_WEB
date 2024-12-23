@@ -18,15 +18,13 @@ namespace Neo_Genesis_Green_Gold.Controllers
         private Empleados_BLL _empleadobll = new Empleados_BLL();
         private AspNetUsers_BLL _aspNetUser = new AspNetUsers_BLL();
         private Ubicacion_BLL _ubicacionBll = new Ubicacion_BLL();
-        private TiposIncidencias_BLL _tipoIncidencia = new TiposIncidencias_BLL();
-        private Sanciones_BLL _sanciones = new Sanciones_BLL();
         // GET: Incidencias
         public ActionResult Index()
         {
             try
             {
                 // Obtener la lista de todas las solicitudes de vacaciones con el formato adecuado
-                List<Incidencia_E> listaIncidencias = _incidencia.GetAllIncidencias();
+                List<Incidencia_E> listaIncidencias = _incidencia.GetAllIncidencias(_aspNetUser.GetIdEmpleadoByUserId(User.Identity.GetUserId()));
 
                 // Pasar la lista a la vista
                 return View(listaIncidencias);
@@ -85,20 +83,18 @@ namespace Neo_Genesis_Green_Gold.Controllers
             IncidenciasViewModel incidenciasVM = new IncidenciasViewModel();
             incidenciasVM.Ubicacion = _ubicacionBll.GetUbicacionById(idubicacion).Lugar;
             incidenciasVM.List_Empleados = new List<Empleados_E>();
-            incidenciasVM.List_Incidencias = new List<TiposIncidencias_E>();
-            incidenciasVM.List_Sanciones = new List<Sanciones_E>();
+      
             incidenciasVM.IncidenciaModel = new Incidencia_E();
             incidenciasVM.IncidenciaModel = _incidencia.ObtenerIncidenciaPorId(ID_Incidencia);
-
+            incidenciasVM.List_Ubicaciones = _ubicacionBll.GetAllUbicaciones(empleadoid); // Mostrar todas las ubicaciones
             // Cargar la lista de empleados y procesar el nombre de la imagen
-            var empleados = _empleadobll.GetEmpleadosByUbicacion(idubicacion);
+            var empleados = _empleadobll.ObtenerMisEmpleadosPorUbicacion(empleadoid);
             foreach (var empleado in empleados)
             {
                 empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
                 incidenciasVM.List_Empleados.Add(empleado);
             }
-            incidenciasVM.List_Incidencias = _tipoIncidencia.GetAllTiposIncidencias();
-            incidenciasVM.List_Sanciones = _sanciones.GetAllSanciones();
+           
 
             return View(incidenciasVM);
         }
@@ -160,8 +156,6 @@ namespace Neo_Genesis_Green_Gold.Controllers
                     empleado.Img_empleado_nombre = System.IO.Path.GetFileName(empleado.Img_empleado_nombre); // Obtener solo el nombre de archivo
                     incidenciasVM.List_Empleados.Add(empleado);
                 }
-                incidenciasVM.List_Incidencias = _tipoIncidencia.GetAllTiposIncidencias();
-                incidenciasVM.List_Sanciones = _sanciones.GetAllSanciones();
 
                 return View(incidenciasVM);
             }
@@ -190,27 +184,40 @@ namespace Neo_Genesis_Green_Gold.Controllers
             }
         }
 
-        // GET: Incidencias/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ConfirmDelete(int id)
         {
-            return View();
+            ViewBag.id = id;
+            return View(); // Cargar la vista Delete.cshtml
         }
 
-        // POST: Incidencias/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id_registro)
         {
             try
             {
-                // TODO: Add delete logic here
+                // Validar el ID
+                if (id_registro <= 0)
+                {
+                    TempData["ErrorMessage"] = "El ID del registro no es válido.";
+                    return RedirectToAction("Index");
+                }
 
+                // Llama al método de la capa BLL para eliminar el registro
+                _incidencia.Delete(id_registro);
+
+                // Mensaje de éxito
+                TempData["SuccessMessage"] = "El registro fue cancelado exitosamente.";
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Manejar errores
+                TempData["ErrorMessage"] = $"Hubo un error al cancelar el registro: {ex.Message}";
+                return RedirectToAction("Index");
             }
         }
+
     }
 }
 

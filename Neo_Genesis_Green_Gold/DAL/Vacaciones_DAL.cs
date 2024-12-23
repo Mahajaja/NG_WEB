@@ -123,19 +123,20 @@ namespace DAL
                     {
                         Vacaciones_E vacacion = new Vacaciones_E
                         {
-                            id_vacacion = Convert.ToInt32(reader["IdVacacion"]),
-                            folio_registro = reader["FolioRegistro"].ToString(),
-                            fecha_registro = reader["FechaRegistro"].ToString(),
-                            hora_registro = reader["HoraRegistro"].ToString(),
-                            id_ubicacion = Convert.ToInt32(reader["IdUbicacion"]),
-                            id_empleado = Convert.ToInt32(reader["IdEmpleado"]),
-                            fecha_inicio = reader["FechaInicio"].ToString(),
-                            fecha_fin = reader["FechaFin"].ToString(),
-                            dias_vacacion = Convert.ToInt32(reader["DiasVacacion"]),
-                            fecha_incorporacion = reader["FechaIncorporacion"].ToString(),
-                            dias_restantes = Convert.ToInt32(reader["DiasRestantes"]),
-                            observaciones = reader["Observaciones"].ToString(),
-                            id_usuario = Convert.ToInt32(reader["IdUsuario"])
+                            id_vacacion = reader["IdVacacion"] != DBNull.Value ? Convert.ToInt32(reader["IdVacacion"]) : 0,
+                            folio_registro = reader["FolioRegistro"]?.ToString(),
+                            fecha_registro = reader["FechaRegistro"]?.ToString(),
+                            hora_registro = reader["HoraRegistro"]?.ToString(),
+                            id_ubicacion = reader["IdUbicacion"] != DBNull.Value ? Convert.ToInt32(reader["IdUbicacion"]) : (int?)null,
+                            id_empleado = reader["IdEmpleado"] != DBNull.Value ? Convert.ToInt32(reader["IdEmpleado"]) : (int?)null,
+                            fecha_inicio = reader["FechaInicio"]?.ToString(),
+                            fecha_fin = reader["FechaFin"]?.ToString(),
+                            dias_vacacion = reader["DiasVacacion"] != DBNull.Value ? Convert.ToInt32(reader["DiasVacacion"]) : (int?)null,
+                            fecha_incorporacion = reader["FechaIncorporacion"]?.ToString(),
+                            dias_restantes = reader["DiasRestantes"] != DBNull.Value ? Convert.ToInt32(reader["DiasRestantes"]) : (int?)null,
+                            observaciones = reader["Observaciones"]?.ToString(),
+                            id_usuario = reader["IdUsuario"] != DBNull.Value ? Convert.ToInt32(reader["IdUsuario"]) : 0,
+                            ID_Estatus = reader["ID_Estatus"] != DBNull.Value ? Convert.ToInt32(reader["ID_Estatus"]) : (int?)null
                         };
                         vacaciones.Add(vacacion);
                     }
@@ -152,6 +153,7 @@ namespace DAL
 
             return vacaciones;
         }
+
 
         public int UpdateVacacion(Vacaciones_E vacacion)
         {
@@ -191,33 +193,8 @@ namespace DAL
         }
 
 
-        // Método para eliminar una vacación
-        public int DeleteVacacion(int idVacacion)
-        {
-            try
-            {
-                sqlHelper.OpenConnection(); // Abre la conexión
-
-                sqlHelper.Command.CommandText = "SP_DeleteVacacion";
-                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
-                sqlHelper.Command.Parameters.Clear();
-                sqlHelper.Command.Parameters.AddWithValue("@IdVacacion", idVacacion);
-
-                // Ejecuta el comando
-                return sqlHelper.Command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar la vacación: " + ex.Message);
-            }
-            finally
-            {
-                sqlHelper.CloseConnection(); // Cerrar la conexión
-            }
-        }
-
         // Método para obtener todas las vacaciones con formato de fecha (dd/MM/yyyy)
-        public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato()
+        public List<SolicitudesVacacionesViewModel> GetVacacionesConFormato(int idEmpleado)
         {
             List<SolicitudesVacacionesViewModel> vacaciones = new List<SolicitudesVacacionesViewModel>();
 
@@ -230,6 +207,9 @@ namespace DAL
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
 
+                // Agregar el parámetro @id_empleado
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", idEmpleado);
+
                 // Ejecutar y leer los datos
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
                 {
@@ -237,13 +217,13 @@ namespace DAL
                     {
                         SolicitudesVacacionesViewModel vacacion = new SolicitudesVacacionesViewModel
                         {
-                            id_vacacion = Convert.ToInt32(reader["id_vacacion"]),
-                            Nombre = reader["nombre"].ToString(),  // Asume que tienes esta propiedad en Vacaciones_E
-                            FechaInicio = reader["fecha_inicio"].ToString(),
-                            FechaIncorporacion = reader["fecha_incorporacion"].ToString(),
-                            DiasSolicitados = Convert.ToInt32(reader["dias_vacacion"]),
-                            Estatus = reader["Estatus"].ToString(),  // Asume que tienes esta propiedad en Vacaciones_E
-                            Observaciones = reader["observaciones"].ToString()  // Asume que tienes esta propiedad en Vacaciones_E
+                            id_vacacion = reader["id_vacacion"] != DBNull.Value ? Convert.ToInt32(reader["id_vacacion"]) : 0,
+                            Nombre = reader["nombre"]?.ToString(),  // Maneja posibles valores nulos con el operador null-coalescing
+                            FechaInicio = reader["fecha_inicio"]?.ToString(),
+                            FechaIncorporacion = reader["fecha_incorporacion"]?.ToString(),
+                            DiasSolicitados = reader["dias_vacacion"] != DBNull.Value ? Convert.ToInt32(reader["dias_vacacion"]) : (int?)null,
+                            Estatus = reader["Estatus"]?.ToString(),
+                            Observaciones = reader["observaciones"]?.ToString()
                         };
                         vacaciones.Add(vacacion);
                     }
@@ -260,6 +240,32 @@ namespace DAL
 
             return vacaciones;
         }
+
+
+        public int DeleteVacacion(int idVacacion)
+        {
+            try
+            {
+                sqlHelper.OpenConnection(); // Abre la conexión
+
+                sqlHelper.Command.CommandText = "SP_Delete_Vacacion";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+                sqlHelper.Command.Parameters.AddWithValue("@id_vacacion", idVacacion);
+
+                // Ejecuta el comando
+                return sqlHelper.Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la vacación: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection(); // Cierra la conexión
+            }
+        }
+
 
     }
 }

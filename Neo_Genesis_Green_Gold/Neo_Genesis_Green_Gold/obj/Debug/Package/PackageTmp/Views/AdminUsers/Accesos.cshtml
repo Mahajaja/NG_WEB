@@ -1,0 +1,83 @@
+﻿@model List<Entity.Menu_E>
+@{
+    ViewBag.Title = "Accesos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5">
+        <a class="btn btn-success" id="back-to-main" href="@Url.Action("Index","AdminUsers")">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <span class="menu-title">ADMIN USUARIOS / ACCESOS</span>
+    </div>
+</div>
+
+<div id="table-container" class="ibox-content col-sm-12">
+    @using (Html.BeginForm("ActualizarAccesos", "AdminUsers", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="idUsuario" value="@ViewBag.IdUsuario" />
+
+        <table id="accesos" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th><CENTER>#</CENTER></th>
+                    <th>Nombre del Menú</th>
+                    <th>Acceso</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    int index = 1;
+                    foreach (var menu in Model)
+                    {
+                        <tr>
+                            <td><center>@index</center></td>
+                            <td>@menu.Nombre_Menu</td>
+                            <td>
+                                <input type="checkbox" name="selectedMenus" value="@menu.ID_Menu" @(menu.EstaAsignado ? "checked" : "") />
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                }
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    }
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#accesos').DataTable({
+            pageLength: 100,
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    });
+</script>

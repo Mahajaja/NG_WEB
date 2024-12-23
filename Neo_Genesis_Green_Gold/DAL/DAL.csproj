@@ -45,12 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria_DAL.cs" />
     <Compile Include="DiasInhabiles_DAL.cs" />
     <Compile Include="Empleados_DAL.cs" />
+    <Compile Include="Evidencias_DAL.cs" />
     <Compile Include="Horas_Extra_DAL.cs" />
     <Compile Include="Incidencia_DAL.cs" />
+    <Compile Include="Instalacion_DAL.cs" />
     <Compile Include="Justificante_DAL.cs" />
+    <Compile Include="Maquinaria_DAL.cs" />
     <Compile Include="Menu_Usuario_DAL.cs" />
+    <Compile Include="OrdenMtto_DAL.cs" />
     <Compile Include="Prestamo_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AspNetUsers_DAL.cs" />
@@ -58,7 +63,9 @@
     <Compile Include="SolicitudMtto_DAL.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="TiposIncidencias_DAL.cs" />
+    <Compile Include="Ubicaciones_X_Empleado_DAL.cs" />
     <Compile Include="Ubicacion_DAL.cs" />
+    <Compile Include="Usuarios_DAL.cs" />
     <Compile Include="Vacaciones_DAL.cs" />
   </ItemGroup>
   <ItemGroup>

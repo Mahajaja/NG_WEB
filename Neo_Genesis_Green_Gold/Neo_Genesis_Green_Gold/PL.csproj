@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Constants\UserRoles.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorasExtraController.cs" />
     <Compile Include="Controllers\IncidenciasController.cs" />
@@ -191,13 +192,16 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EvalMttoViewModel.cs" />
     <Compile Include="ViewModels\Horas_Extra_ViewModel.cs" />
     <Compile Include="ViewModels\IncidenciasViewModel.cs" />
     <Compile Include="ViewModels\JustificanteViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\OrdenMantenimientoViewModel.cs" />
     <Compile Include="ViewModels\PrestamosViewModel.cs" />
     <Compile Include="ViewModels\SolicitudMttoViewModel.cs" />
     <Compile Include="ViewModels\SolicitudVacacionesViewModel.cs" />
+    <Compile Include="ViewModels\Ubicaciones_x_Empleado_ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -220,6 +224,28 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Evidencias\ORDEN_MTTO\ORDEN_MTTO_20241202_103153_Evidencia1.jpeg" />
+    <Content Include="Content\Evidencias\ORDEN_MTTO\ORDEN_MTTO_20241202_103153_Evidencia2.jpeg" />
+    <Content Include="Content\Evidencias\ORDEN_MTTO\ORDEN_MTTO_20241202_103153_Evidencia3.jpeg" />
+    <Content Include="Content\Evidencias\ORDEN_MTTO\ORDEN_MTTO_20241202_103153_Evidencia4.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\03680ec5-e645-494c-9155-ca37ef0a5e22_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\1313f164-b860-412a-9b32-033afdc7f917_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\1d4cdfdf-4a85-4794-80b7-30cce7b60f1e_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\26edf82b-89c2-4fbc-8a3e-b95f37f910eb_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\3419b749-6f11-460b-a2d3-59eada2b98ba_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\6e119229-9045-4bd6-94bf-9d7ab0acb2c6_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\6f2d5a5c-bafc-4c23-8ede-c48d02a359c9_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\712a8cde-926f-4c03-8310-7409fd8a3117_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\8a74c766-355c-43c5-8d3c-872a338d04b3_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\9a132727-4753-4daf-8090-65fda610ab6f_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\9e1eb529-7998-4457-a82f-3b937a59aab8_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\a7dd0df9-6f0b-429c-8e4c-5453c65d702e_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\abe8ed4a-093e-4dfe-8c25-ad49d0f7a9ae_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\bb64e16c-410f-4777-b7ba-2c5ed590045a_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\bc92bf49-e376-4f9a-bad5-77bd91073a42_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\c94d60c4-54e6-4c2c-a316-97f45b257490_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\fbd3e1c3-226e-4233-ab9f-a4fbd3872bf0_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
+    <Content Include="Content\Evidencias\SOLICITUD_MTTO\fe3d2e3a-ca80-47b9-b2f7-d8f2b878a02e_b4ef6675-cce4-4cbd-b6ea-bc2f1791a4f7_IMG_4553.jpeg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\IMG\Default\user.png" />
@@ -374,6 +400,22 @@
     <Content Include="Views\Justificante_Laboral\Create.cshtml" />
     <Content Include="Views\Solicitud_Mantenimiento\Index.cshtml" />
     <Content Include="Views\Solicitud_Mantenimiento\Create.cshtml" />
+    <Content Include="Views\Solicitud_Vacaciones\ConfirmDelete.cshtml" />
+    <Content Include="Views\Incidencias\ConfirmDelete.cshtml" />
+    <Content Include="Views\HorasExtra\ConfirmDelete.cshtml" />
+    <Content Include="Views\Solicitud_Prestamo\ConfirmDelete.cshtml" />
+    <Content Include="Views\Justificante_Laboral\ConfirmDelete.cshtml" />
+    <Content Include="Views\AdminUsers\Index.cshtml" />
+    <Content Include="Views\AdminUsers\ConfirmarUsuario.cshtml" />
+    <Content Include="Views\AdminUsers\Accesos.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\ConfirmDelete.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\OrdenMantenimiento.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\ConfirmDelete_Orden.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\Nueva_OrdenMantenimiento.cshtml" />
+    <Content Include="Views\AdminUsers\Empleados.cshtml" />
+    <Content Include="Views\AdminUsers\UbicacionesEmpleado.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\Eval_Mtto.cshtml" />
+    <Content Include="Views\Solicitud_Mantenimiento\ConfirmDelete_Eval.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

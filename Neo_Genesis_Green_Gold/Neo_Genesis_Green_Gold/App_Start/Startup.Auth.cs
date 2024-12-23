@@ -209,6 +209,41 @@ namespace Neo_Genesis_Green_Gold
                         }
                     }
 
+                    userEmail = "GERENCIAOP@nggg.com";
+                    userPassword = "G3r3nc14";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "GERENCIA OP", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Administrador);
+                        }
+                    }
+
+                    userEmail = "H.SANJUAN@nggg.com";
+                    userPassword = "encar.sj";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "H.SANJUAN", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Colaborador);
+                        }
+                    }
+
+                    userEmail = "GER.ADMON@nggg.com";
+                    userPassword = "G3r.Adm0n";
+                    if (UserManager.FindByEmail(userEmail) == null)
+                    {
+                        var user = new ApplicationUser { UserName = "GER.ADMON", Email = userEmail };
+                        var result = UserManager.Create(user, userPassword);
+                        if (result.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, UserRoles.Administrador);
+                        }
+                    }
 
                 }
 

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "ConfirmDelete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="ibox-content col-sm-12 marginTop5 text-center">
+        <h2 class="control-label">¿Estás seguro de que deseas cancelar este registro?</h2>
+        <div class="row col-sm-2 col-xs-offset-5">
+            <!-- Botón para regresar a Create (izquierda) -->
+            <div class="col-sm-6">
+                <a href="@Url.Action("Create", "Solicitud_Prestamo", new { id = ViewBag.id })" class="btn btn-default">No, regresar</a>
+            </div>
+
+            <!-- Botón para confirmar la eliminación (derecha) -->
+            <div class="col-sm-6">
+                @using (Html.BeginForm("Delete", "Solicitud_Prestamo", FormMethod.Post, new { id = "deleteForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" value="@ViewBag.id" name="id_registro" id="id_registro" />
+                    <button type="submit" class="btn btn-danger">Sí, cancelar</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

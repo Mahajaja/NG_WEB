@@ -16,7 +16,7 @@ namespace DAL
         }
 
         // Método para obtener todas las incidencias
-        public List<Incidencia_E> GetAllIncidencias()
+        public List<Incidencia_E> GetAllIncidencias(int idEmpleado)
         {
             List<Incidencia_E> incidencias = new List<Incidencia_E>();
             try
@@ -27,6 +27,9 @@ namespace DAL
                 sqlHelper.Command.CommandText = "SP_ObtenerIncidencias";
                 sqlHelper.Command.CommandType = CommandType.StoredProcedure;
                 sqlHelper.Command.Parameters.Clear();
+
+                // Agregar el parámetro @id_empleado
+                sqlHelper.Command.Parameters.AddWithValue("@id_empleado", idEmpleado);
 
                 // Ejecutar y leer los datos
                 using (SqlDataReader reader = sqlHelper.Command.ExecuteReader())
@@ -55,7 +58,7 @@ namespace DAL
                             empleado = new Empleados_E
                             {
                                 IdEmpleado = reader["id_empleado"] != DBNull.Value ? Convert.ToInt32(reader["id_empleado"]) : 0,
-                                Nombre = reader["Nombre"]?.ToString(),
+                                Nombre = reader["nombre"]?.ToString(),
                                 ApellidoPaterno = reader["apellido_paterno"]?.ToString(),
                                 ApellidoMaterno = reader["apellido_materno"]?.ToString(),
                                 FechaNacimiento = reader["fecha_nacimiento"]?.ToString()
@@ -206,7 +209,29 @@ namespace DAL
             }
         }
 
+        public int Delete(int id)
+        {
+            try
+            {
+                sqlHelper.OpenConnection(); // Abre la conexión
 
+                sqlHelper.Command.CommandText = "SP_Delete_INCIDENCIA";
+                sqlHelper.Command.CommandType = CommandType.StoredProcedure;
+                sqlHelper.Command.Parameters.Clear();
+                sqlHelper.Command.Parameters.AddWithValue("@id", id);
+
+                // Ejecuta el comando
+                return sqlHelper.Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar eliminar el registro: " + ex.Message);
+            }
+            finally
+            {
+                sqlHelper.CloseConnection(); // Cierra la conexión
+            }
+        }
 
     }
 }
